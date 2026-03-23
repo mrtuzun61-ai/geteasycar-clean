@@ -33,6 +33,7 @@ export interface CountryRecord {
   meta_title_template?: string;
   meta_description_template?: string;
   h1: string;
+  intro_paragraph?: string;
   breadcrumb_path: BreadcrumbItem[];
   schema_types: string[];
   sitemap_include: boolean;
