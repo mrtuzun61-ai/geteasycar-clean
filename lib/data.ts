@@ -114,6 +114,7 @@ export interface AirportRecord {
   iata_code: string;
   airport_slug: string;
   pickup_instructions?: string;
+  return_instructions?: string; 
   airport_name: string;
   airport_name_short: string;
   city_slug: string;
