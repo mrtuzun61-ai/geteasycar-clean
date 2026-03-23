@@ -1,0 +1,52 @@
+{
+  "iata_code": "SYD",
+  "airport_slug": "syd-sydney-kingsford-smith",
+  "airport_name": "Sydney Kingsford Smith Airport",
+  "airport_name_short": "Sydney Airport",
+  "city_slug": "sydney",
+  "country_slug": "australia",
+  "state_slug": "new-south-wales",
+  "terminal_info": "Sydney Kingsford Smith Airport has three terminals: the International Terminal (T1) and two domestic terminals (T2 and T3). T2 and T3 are adjacent to each other and located approximately 2 kilometres from T1. Car rental counters are available in the arrivals areas of all three terminals. The international terminal has rental counters on the ground floor of the arrivals hall. Domestic terminal counters are located on the ground level of each terminal building.",
+  "pickup_type": "on_site",
+  "shuttle_notes": null,
+  "distance_from_city_km": 8,
+  "affiliate_sid_base": "airport_syd",
+  "page_type": "airport",
+  "canonical_url": "/car-rental/airports/syd-sydney-kingsford-smith/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental at SYD — Sydney Kingsford Smith Airport",
+  "meta_description": "Find car rental options at Sydney Airport (SYD). Pickup info, terminal details, and tips for renting a car at Sydney Kingsford Smith.",
+  "h1": "Car Rental at Sydney Kingsford Smith Airport (SYD)",
+  "intro_paragraph": "Sydney Kingsford Smith Airport is Australia's busiest airport and the primary international gateway to New South Wales, located just 8 kilometres south of the Sydney CBD. Car rental counters are available in the arrivals areas of all three terminals, making pickup convenient for both international and domestic arrivals. The airport connects directly to the M5 motorway and the Airport Drive link road, providing straightforward access to Sydney's freeway network and routes heading south toward Wollongong and the Royal National Park, west toward the Blue Mountains, and north via the Pacific Motorway toward the Central Coast and Hunter Valley.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Australia", "url": "/car-rental/australia/" },
+    { "label": "New South Wales", "url": "/car-rental/australia/new-south-wales/" },
+    { "label": "Sydney", "url": "/car-rental/australia/new-south-wales/sydney/" },
+    { "label": "SYD Airport", "url": "/car-rental/airports/syd-sydney-kingsford-smith/" }
+  ],
+  "faq": [
+    {
+      "question": "Where are the car rental desks at Sydney Airport?",
+      "answer": "Car rental desks at Sydney Airport are located in the arrivals areas of all three terminals. At the International Terminal (T1), counters are on the ground floor of the arrivals hall, past the customs and baggage reclaim area. At the domestic terminals (T2 and T3), counters are on the ground level of each terminal building. Major rental brands are represented at all terminals."
+    },
+    {
+      "question": "How far is Sydney Airport from the city center?",
+      "answer": "Sydney Airport is approximately 8 kilometres south of the Sydney CBD. By car, the drive to the city center typically takes between 15 and 35 minutes depending on traffic. The route via South Dowling Street or the Eastern Distributor is the most direct to the city. Traffic can be heavy during weekday peak hours and on Friday afternoons. A toll applies on the Eastern Distributor — confirm your rental supplier's toll policy."
+    },
+    {
+      "question": "Can I drive interstate from Sydney Airport?",
+      "answer": "Yes. Sydney Airport connects to the M5 motorway, which links to the Sydney motorway network and onwards to interstate highways. The Pacific Motorway (M1) heads north toward Newcastle, Brisbane, and Queensland. The Hume Motorway (M31) heads southwest toward Canberra and Melbourne. Most rental suppliers permit inter-state travel; confirm this with your supplier before booking if you plan to cross state borders."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.85,
+  "sitemap_changefreq": "monthly",
+  "parent_city_slug": "sydney",
+  "sibling_airport_iata_codes": [],
+  "related_guide_slugs": [],
+  "data_completeness_score": 82,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

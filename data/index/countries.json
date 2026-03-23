@@ -1,0 +1,32 @@
+[
+  {
+    "country_slug": "united-states",
+    "country_name": "United States",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "france",
+    "country_name": "France",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "spain",
+    "country_name": "Spain",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "italy",
+    "country_name": "Italy",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "australia",
+    "country_name": "Australia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  }
+]

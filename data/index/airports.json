@@ -1,0 +1,83 @@
+[
+  {
+    "iata_code": "CDG",
+    "airport_slug": "cdg-paris-charles-de-gaulle",
+    "airport_name": "Paris Charles de Gaulle Airport",
+    "city_slug": "paris",
+    "country_slug": "france",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "ORY",
+    "airport_slug": "ory-paris-orly",
+    "airport_name": "Paris Orly Airport",
+    "city_slug": "paris",
+    "country_slug": "france",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "BCN",
+    "airport_slug": "bcn-barcelona-el-prat",
+    "airport_name": "Josep Tarradellas Barcelona–El Prat Airport",
+    "city_slug": "barcelona",
+    "country_slug": "spain",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MAD",
+    "airport_slug": "mad-madrid-barajas",
+    "airport_name": "Adolfo Suárez Madrid–Barajas Airport",
+    "city_slug": "madrid",
+    "country_slug": "spain",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "FCO",
+    "airport_slug": "fco-rome-fiumicino",
+    "airport_name": "Leonardo da Vinci–Fiumicino Airport",
+    "city_slug": "rome",
+    "country_slug": "italy",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "LAX",
+    "airport_slug": "lax-los-angeles-international",
+    "airport_name": "Los Angeles International Airport",
+    "city_slug": "los-angeles",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MCO",
+    "airport_slug": "mco-orlando-international",
+    "airport_name": "Orlando International Airport",
+    "city_slug": "orlando",
+    "country_slug": "united-states",
+    "state_slug": "florida",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "SYD",
+    "airport_slug": "syd-sydney-kingsford-smith",
+    "airport_name": "Sydney Kingsford Smith Airport",
+    "city_slug": "sydney",
+    "country_slug": "australia",
+    "state_slug": "new-south-wales",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MIA",
+    "airport_slug": "mia-miami-international",
+    "airport_name": "Miami International Airport",
+    "city_slug": "miami",
+    "country_slug": "united-states",
+    "state_slug": "florida",
+    "publication_state": "indexed"
+  }
+]

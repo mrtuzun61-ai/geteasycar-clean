@@ -1,0 +1,66 @@
+{
+  "city_slug": "barcelona",
+  "city_name": "Barcelona",
+  "country_slug": "spain",
+  "state_slug": null,
+  "has_state_layer": false,
+  "affiliate_sid_base": "city_barcelona-spain",
+  "page_type": "city",
+  "canonical_url": "/city-rental/spain/barcelona/",
+  "publication_state": "indexed",
+
+  "meta_title": "Car Rental in Barcelona, Spain — Compare Airport & City Options",
+  "meta_description": "Compare car rental in Barcelona including Barcelona Airport (BCN) and city pickup locations. Find the right car for your trip in Spain.",
+
+  "h1": "Car Rental in Barcelona, Spain",
+
+  "intro_paragraph": "Barcelona is one of Europe's most visited cities and a popular starting point for road trips throughout Catalonia and beyond. Barcelona–El Prat Airport serves as the main arrival point for international visitors, with a wide selection of rental providers located directly in the arrivals terminals. While the city itself is well connected by public transport, renting a car becomes highly valuable if you plan to explore the Costa Brava coastline, the Penedès wine region, Montserrat, or the inland villages of Catalonia. Barcelona also operates a Low Emission Zone covering much of the city — make sure your rental vehicle meets environmental requirements before entering restricted areas.",
+
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Spain", "url": "/car-rental/spain/" },
+    { "label": "Barcelona", "url": "/city-rental/spain/barcelona/" }
+  ],
+
+  "faq": [
+    {
+      "question": "Where is the best place to pick up a rental car in Barcelona?",
+      "answer": "Barcelona–El Prat Airport (BCN) is the most convenient pickup location for most visitors, offering a wide choice of major international and local rental companies directly in the arrivals area. City center locations, including Barcelona Sants station, are also available for those already in the city."
+    },
+    {
+      "question": "Can I drive my rental car into Barcelona city center?",
+      "answer": "Barcelona has a Low Emission Zone (Zona de Baixes Emissions) covering most of the city. Access is restricted for certain vehicles depending on their environmental classification. Most modern rental cars meet the requirements, but you should confirm with your rental provider before driving into restricted areas."
+    },
+    {
+      "question": "What is the minimum driver age for car rental in Barcelona?",
+      "answer": "The legal minimum age to rent a car in Spain is typically 18, but most rental companies require drivers to be at least 21. Drivers under 25 may face additional young driver fees, and certain vehicle categories may have higher age requirements."
+    }
+  ],
+
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.9,
+  "sitemap_changefreq": "monthly",
+
+  "parent_country_slug": "spain",
+  "parent_state_slug": null,
+
+  "airport_slugs": ["bcn"],
+
+  "downtown_page_exists": false,
+  "intent_pages_published": [],
+
+  "nearby_city_slugs": [
+    "madrid",
+    "rome",
+    "paris"
+  ],
+
+  "related_guide_slugs": [
+    "renting-a-car-in-spain"
+  ],
+
+  "data_completeness_score": 88,
+  "last_updated": "2026-03-21",
+  "created_at": "2026-03-18"
+}

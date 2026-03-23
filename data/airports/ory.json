@@ -1,0 +1,51 @@
+{
+  "iata_code": "ORY",
+  "airport_slug": "ory-paris-orly",
+  "airport_name": "Paris Orly Airport",
+  "airport_name_short": "Orly",
+  "city_slug": "paris",
+  "country_slug": "france",
+  "state_slug": null,
+  "terminal_info": "Paris Orly has two main terminal buildings: Orly 1-2-3 (formerly Orly Ouest) and Orly 4 (formerly Orly Sud). Car rental counters are located in both terminal areas on the arrivals level. Unlike CDG, most suppliers at Orly have counters directly within the terminal buildings, making the pickup process more straightforward in many cases. Confirm the exact counter location with your supplier when booking as it can vary.",
+  "pickup_type": "mixed",
+  "shuttle_notes": "Some suppliers at Orly operate counters directly within the terminal arrivals areas, while others require a short shuttle transfer to an off-site vehicle collection point. Check with your specific supplier at booking to confirm whether a shuttle is required for vehicle pickup.",
+  "distance_from_city_km": 14,
+  "affiliate_sid_base": "airport_ory",
+  "page_type": "airport",
+  "canonical_url": "/car-rental/airports/ory-paris-orly/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental at ORY — Paris Orly Airport",
+  "meta_description": "Find car rental options at Paris Orly Airport (ORY). Pickup locations, terminal info, and practical tips for renting at Orly.",
+  "h1": "Car Rental at Paris Orly Airport (ORY)",
+  "intro_paragraph": "Paris Orly Airport is the second major international airport serving the Paris region, located approximately 14 kilometres south of central Paris. Orly is generally considered more convenient than Charles de Gaulle for travelers heading into central Paris or the southern suburbs, as the journey into the city is noticeably shorter. Car rental options are available at both of Orly's terminal areas, with counters located in the arrivals zones. Orly serves a wide range of European and international routes and is a practical alternative arrival point for those who prefer a faster connection to the city or who are heading south of Paris toward Burgundy, the Loire Valley, or the Auvergne region.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "France", "url": "/car-rental/france/" },
+    { "label": "Paris", "url": "/car-rental/france/paris/" },
+    { "label": "Orly Airport", "url": "/car-rental/airports/ory-paris-orly/" }
+  ],
+  "faq": [
+    {
+      "question": "Where are the car rental counters at Paris Orly?",
+      "answer": "Car rental counters at Paris Orly Airport are located in the arrivals areas of both terminal buildings — Orly 1-2-3 and Orly 4. In most cases, counters are accessible directly from the arrivals level without needing to take a shuttle. However, some suppliers may direct you to a nearby vehicle collection area. Check your booking confirmation for the specific instructions provided by your supplier."
+    },
+    {
+      "question": "Is Orly closer to central Paris than CDG?",
+      "answer": "Yes. Orly Airport is located approximately 14 kilometres south of central Paris, compared to around 25 kilometres for Charles de Gaulle. The drive to the city center from Orly typically takes 20 to 45 minutes depending on traffic. This makes Orly a more convenient option for those staying in central or southern Paris, or for travelers heading south of the city."
+    },
+    {
+      "question": "Can I travel between Orly and CDG by car?",
+      "answer": "Yes. The two Paris airports are connected by road via the A86 motorway and the Francilienne ring road. The journey between ORY and CDG by car typically takes between 45 and 90 minutes depending on traffic conditions and time of day. There is no direct rail link between the two airports, making a car a practical option if you need to connect between them."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.85,
+  "sitemap_changefreq": "monthly",
+  "parent_city_slug": "paris",
+  "sibling_airport_iata_codes": ["CDG"],
+  "related_guide_slugs": [],
+  "data_completeness_score": 80,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

@@ -1,0 +1,52 @@
+{
+  "city_slug": "orlando",
+  "city_name": "Orlando",
+  "country_slug": "united-states",
+  "state_slug": "florida",
+  "has_state_layer": true,
+  "affiliate_sid_base": "city_orlando-florida-us",
+  "page_type": "city",
+  "canonical_url": "/car-rental/united-states/florida/orlando/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental in Orlando, FL — Find & Compare Options",
+  "meta_description": "Looking for car rental in Orlando? Explore pickup locations at MCO and across the city. Find the right car for your Orlando trip.",
+  "h1": "Car Rental in Orlando, Florida",
+  "intro_paragraph": "Orlando is one of the most visited cities in the United States and consistently ranks among the highest-volume car rental markets in the country. Orlando International Airport (MCO) is the primary arrival point for millions of visitors each year, with all major rental suppliers maintaining a significant presence there. A car is highly practical in Orlando — the city's main attractions, including Walt Disney World, Universal Orlando, SeaWorld, and LEGOLAND, are spread across a wide area and most are not easily reachable without personal transport. Beyond the theme parks, a rental car gives access to Florida's Atlantic and Gulf coasts, the Kennedy Space Center, the Everglades, and the Florida Keys, all within a few hours' drive.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Florida", "url": "/car-rental/united-states/florida/" },
+    { "label": "Orlando", "url": "/car-rental/united-states/florida/orlando/" }
+  ],
+  "faq": [
+    {
+      "question": "Where do I pick up a rental car at Orlando Airport?",
+      "answer": "Orlando International Airport has a centralized rental car facility called the MCO Rental Car Center, located adjacent to the main terminal complex and connected via the automated people mover system. All on-airport rental companies operate from this single building. Follow signs in the arrivals area for Ground Transportation and Rental Cars to reach the people mover platform."
+    },
+    {
+      "question": "Do I need a car to visit the Orlando theme parks?",
+      "answer": "Having a car in Orlando makes visiting the theme parks significantly more flexible, particularly if you are staying off-site or plan to visit multiple parks across different days. While Walt Disney World operates its own internal transport system between its resorts and parks, most other attractions require either a car or a paid shuttle service. For visitors staying at a hotel on International Drive or US-192, a rental car provides much greater freedom than relying on hotel shuttles."
+    },
+    {
+      "question": "What is the minimum rental age in Orlando?",
+      "answer": "Most major rental suppliers in Orlando require renters to be at least 21 years old. A young driver surcharge typically applies for drivers between 21 and 24. Some suppliers accept renters aged 18 to 20 for certain vehicle categories, though surcharges apply and availability is more limited. Confirm the minimum age policy with your chosen supplier at the time of booking."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.9,
+  "sitemap_changefreq": "monthly",
+  "parent_country_slug": "united-states",
+  "parent_state_slug": "florida",
+  "airport_slugs": ["MCO"],
+  "downtown_page_exists": false,
+  "intent_pages_published": [],
+  "nearby_city_slugs": [
+    "miami-florida-us",
+    "los-angeles-california-us"
+  ],
+  "related_guide_slugs": [],
+  "data_completeness_score": 78,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

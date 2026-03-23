@@ -1,0 +1,52 @@
+{
+  "iata_code": "MCO",
+  "airport_slug": "mco-orlando-international",
+  "airport_name": "Orlando International Airport",
+  "airport_name_short": "Orlando International",
+  "city_slug": "orlando",
+  "country_slug": "united-states",
+  "state_slug": "florida",
+  "terminal_info": "Orlando International Airport has two main terminal areas: Terminal A (Gates 1–29 and 100–129) and Terminal B (Gates 30–99). Both terminal areas are connected to a central terminal building via automated people mover trains. The MCO Rental Car Center is a multi-story facility located adjacent to the main terminal complex and is accessible via the automated people mover from the main terminal building. All on-airport rental suppliers operate from the Rental Car Center.",
+  "pickup_type": "shuttle",
+  "shuttle_notes": "The automated people mover (APM) connects the main terminal building to the MCO Rental Car Center on Level 1. From the main terminal, take the people mover marked for ground transportation and rental cars. The journey is short and runs continuously. The Rental Car Center building houses all major on-airport rental suppliers across multiple levels.",
+  "distance_from_city_km": 11,
+  "affiliate_sid_base": "airport_mco",
+  "page_type": "airport",
+  "canonical_url": "/car-rental/airports/mco-orlando-international/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental at MCO — Orlando International Airport",
+  "meta_description": "Find car rental options at Orlando International Airport (MCO). Pickup info, terminal details, and tips for renting at MCO.",
+  "h1": "Car Rental at Orlando International Airport (MCO)",
+  "intro_paragraph": "Orlando International Airport is one of the most important car rental markets in the United States, reflecting the city's role as a major leisure and theme park destination. All on-airport rental companies operate from the dedicated MCO Rental Car Center, which is accessible from the main terminal building via the automated people mover system. The airport is located approximately 11 kilometres southeast of downtown Orlando, with direct freeway access to the SR-528 (Beachline Expressway), connecting west toward Walt Disney World, Universal Orlando, and International Drive, and east toward the Space Coast and Kennedy Space Center.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Florida", "url": "/car-rental/united-states/florida/" },
+    { "label": "Orlando", "url": "/car-rental/united-states/florida/orlando/" },
+    { "label": "MCO Airport", "url": "/car-rental/airports/mco-orlando-international/" }
+  ],
+  "faq": [
+    {
+      "question": "How do I get to the rental car facility at MCO?",
+      "answer": "After collecting your baggage at Orlando International Airport, proceed to the main terminal building's Ground Transportation level and take the automated people mover to the Rental Car Center. The people mover is signposted throughout the terminal and runs continuously. All on-airport rental suppliers are located in the Rental Car Center building, which is separate from the passenger terminal."
+    },
+    {
+      "question": "How far is MCO from the Orlando theme parks?",
+      "answer": "The drive from Orlando International Airport to the Walt Disney World Resort is approximately 30 to 40 minutes via the SR-528 Beachline Expressway and I-4. Universal Orlando is roughly 25 to 35 minutes away. SeaWorld Orlando is around 25 to 30 minutes. Journey times will vary based on traffic conditions, and the I-4 corridor in Orlando can experience congestion during peak hours."
+    },
+    {
+      "question": "Should I book a rental car in advance for MCO?",
+      "answer": "Booking in advance is strongly recommended at Orlando International Airport, particularly during peak periods such as school holidays, summer, and the weeks around Christmas and New Year. MCO is one of the highest-demand rental markets in the US, and walk-up availability during busy periods can be limited. Pre-booking also allows you to compare options and select the vehicle category that suits your trip."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.85,
+  "sitemap_changefreq": "monthly",
+  "parent_city_slug": "orlando",
+  "sibling_airport_iata_codes": [],
+  "related_guide_slugs": [],
+  "data_completeness_score": 82,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

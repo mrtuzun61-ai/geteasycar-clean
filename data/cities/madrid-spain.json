@@ -1,0 +1,84 @@
+{
+  "city_slug": "madrid",
+  "city_name": "Madrid",
+  "country_slug": "spain",
+  "state_slug": null,
+  "has_state_layer": false,
+  "affiliate_sid_base": "city_madrid-spain",
+  "page_type": "city",
+  "canonical_url": "/city-rental/spain/madrid/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental in Madrid, Spain — Compare Airport & City Options",
+  "meta_description": "Compare car rental options in Madrid including airport pickup and city locations. Find the right car for your Spain trip with confidence.",
+  "h1": "Car Rental in Madrid, Spain",
+
+  "intro_paragraph": "Madrid is Spain’s capital and sits at the geographic center of the country, making it one of the best starting points for road trips in every direction. Most visitors arrive via Adolfo Suárez Madrid-Barajas Airport, where a wide selection of rental providers operate from a dedicated rental area. While Madrid’s city center is dense and well connected by metro and train, a rental car becomes highly valuable once you leave the city. From Madrid, travelers can easily reach historic cities like Toledo and Segovia, explore Castilla-La Mancha, or drive toward northern Spain and Andalusia. Choosing the right pickup location and understanding when to use your car is key to getting the most value from your rental.",
+
+  "driving_context": "Driving in Madrid itself requires awareness of traffic levels and environmental restrictions. The city operates a Low Emission Zone (Madrid Central / ZBE), which restricts access for certain vehicles based on emissions classification. Traffic in central areas can be heavy, and parking is limited and often regulated. However, once outside the city, Spain’s highway network is modern, efficient, and well signposted, making regional travel by car smooth and convenient.",
+
+  "pickup_strategy": "Madrid-Barajas Airport (MAD) is the most practical pickup point for most visitors due to its large selection of vehicles and direct access to major highways. Rental counters are primarily located in Terminal 4. City center pickup is available at locations such as Atocha and Chamartín train stations, but navigating traffic immediately after pickup can be more complex. Many travelers choose to pick up their vehicle when leaving Madrid rather than upon arrival.",
+
+  "best_use_cases": [
+    "Day trips to Toledo, Segovia, and Ávila",
+    "Exploring Castilla-La Mancha and central Spain",
+    "Driving routes toward Andalusia or northern Spain",
+    "Visiting smaller towns not easily accessible by train"
+  ],
+
+  "avoid_using_car_for": [
+    "Driving within central Madrid",
+    "Short stays focused only on city attractions",
+    "Trips fully covered by public transport"
+  ],
+
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Spain", "url": "/car-rental/spain/" },
+    { "label": "Madrid", "url": "/city-rental/spain/madrid/" }
+  ],
+
+  "faq": [
+    {
+      "question": "Where is the best place to pick up a rental car in Madrid?",
+      "answer": "Madrid-Barajas Airport (MAD) is typically the best option due to its wide range of rental companies and easy access to highways. It allows you to start your trip without navigating central city traffic."
+    },
+    {
+      "question": "Can I drive in central Madrid?",
+      "answer": "Driving in central Madrid is restricted by Low Emission Zone regulations. Access is limited depending on vehicle emissions classification, and fines may apply for unauthorized entry."
+    },
+    {
+      "question": "Is Madrid a good starting point for road trips?",
+      "answer": "Yes, Madrid is one of the best road trip bases in Spain. Its central location allows easy access to multiple regions, including historic cities, rural areas, and long-distance routes across the country."
+    },
+    {
+      "question": "What documents are required to rent a car in Madrid?",
+      "answer": "You will need a valid driving license, a passport or ID, and a credit card in the driver’s name. Non-EU visitors are often advised to carry an International Driving Permit alongside their license."
+    }
+  ],
+
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.9,
+  "sitemap_changefreq": "monthly",
+
+  "parent_country_slug": "spain",
+  "parent_state_slug": null,
+
+  "airport_slugs": ["mad"],
+  "downtown_page_exists": false,
+  "intent_pages_published": [],
+
+  "nearby_city_slugs": [
+    "barcelona",
+    "paris",
+    "rome"
+  ],
+
+  "related_guide_slugs": [
+    "renting-a-car-in-spain"
+  ],
+
+  "data_completeness_score": 93,
+  "last_updated": "2026-03-21",
+  "created_at": "2026-03-18"
+}

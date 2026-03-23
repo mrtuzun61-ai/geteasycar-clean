@@ -1,0 +1,51 @@
+{
+  "iata_code": "FCO",
+  "airport_slug": "fco-rome-fiumicino",
+  "airport_name": "Leonardo da Vinci–Fiumicino Airport",
+  "airport_name_short": "Fiumicino",
+  "city_slug": "rome",
+  "country_slug": "italy",
+  "state_slug": null,
+  "terminal_info": "Fiumicino Airport has multiple terminals including Terminal 1, Terminal 2, Terminal 3, and Terminal 5. Terminals 1, 2, and 3 are interconnected within the main terminal complex. Terminal 5 handles some non-Schengen flights and is located separately. Car rental counters are located in the arrivals area of the main terminal complex, primarily accessible from Terminals 2 and 3. Vehicle collection is from a covered parking garage within the terminal complex. Follow car rental signage from the baggage reclaim area.",
+  "pickup_type": "on_site",
+  "shuttle_notes": null,
+  "distance_from_city_km": 30,
+  "affiliate_sid_base": "airport_fco",
+  "page_type": "airport",
+  "canonical_url": "/car-rental/airports/fco-rome-fiumicino/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental at FCO — Rome Fiumicino Airport",
+  "meta_description": "Find car rental options at Rome Fiumicino Airport (FCO). Pickup info, terminal details, and tips for renting a car at FCO.",
+  "h1": "Car Rental at Rome Fiumicino Airport (FCO)",
+  "intro_paragraph": "Leonardo da Vinci–Fiumicino Airport, universally known as Fiumicino, is Italy's busiest airport and the primary international gateway to Rome and central Italy. Located approximately 30 kilometres southwest of Rome city center, Fiumicino handles the majority of intercontinental and major European flights into the capital. Car rental counters are located in the main terminal complex and vehicle collection is straightforward from the arrivals level. For visitors planning to explore Italy by road rather than staying in Rome, picking up a rental at Fiumicino and heading directly onto the Grande Raccordo Anulare ring road provides quick access to the A1 north toward Tuscany or south toward Naples and the Amalfi Coast.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Italy", "url": "/car-rental/italy/" },
+    { "label": "Rome", "url": "/car-rental/italy/rome/" },
+    { "label": "FCO Airport", "url": "/car-rental/airports/fco-rome-fiumicino/" }
+  ],
+  "faq": [
+    {
+      "question": "Where are the car rental desks at Fiumicino Airport?",
+      "answer": "Car rental counters at Fiumicino are located in the arrivals area of the main terminal complex, primarily on the ground level accessible from Terminals 2 and 3. After collecting your baggage, follow the car rental signs through the arrivals hall. Vehicles are collected from a multi-storey parking structure within or immediately adjacent to the terminal building."
+    },
+    {
+      "question": "How long does it take to drive from Fiumicino to central Rome?",
+      "answer": "The distance from Fiumicino Airport to central Rome is approximately 30 kilometres. Under normal traffic conditions, the drive via the A91 motorway and the Grande Raccordo Anulare typically takes between 30 and 60 minutes. Traffic into Rome can be heavy, particularly during weekday morning rush hours and on Sunday evenings. Journey times can extend considerably during peak periods."
+    },
+    {
+      "question": "Should I be aware of any driving restrictions after leaving Fiumicino?",
+      "answer": "The main driving restriction to be aware of when driving from Fiumicino toward Rome is the ZTL system in Rome's historic center. Many central areas of Rome are Zona a Traffico Limitato zones, meaning access is restricted to authorized vehicles during certain hours. If you plan to drive into the historic center, confirm the current ZTL boundaries and operating hours with your rental supplier and plan your route to avoid restricted areas."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.85,
+  "sitemap_changefreq": "monthly",
+  "parent_city_slug": "rome",
+  "sibling_airport_iata_codes": [],
+  "related_guide_slugs": [],
+  "data_completeness_score": 80,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

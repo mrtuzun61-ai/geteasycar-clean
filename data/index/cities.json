@@ -1,0 +1,66 @@
+[
+  {
+    "city_slug": "paris",
+    "city_name": "Paris",
+    "country_slug": "france",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "barcelona",
+    "city_name": "Barcelona",
+    "country_slug": "spain",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "madrid",
+    "city_name": "Madrid",
+    "country_slug": "spain",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "rome",
+    "city_name": "Rome",
+    "country_slug": "italy",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "los-angeles",
+    "city_name": "Los Angeles",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "orlando",
+    "city_name": "Orlando",
+    "country_slug": "united-states",
+    "state_slug": "florida",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "sydney",
+    "city_name": "Sydney",
+    "country_slug": "australia",
+    "state_slug": "new-south-wales",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "miami",
+    "city_name": "Miami",
+    "country_slug": "united-states",
+    "state_slug": "florida",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "iata_code": "LAX",
+  "airport_slug": "lax-los-angeles-international",
+  "airport_name": "Los Angeles International Airport",
+  "airport_name_short": "LAX",
+  "city_slug": "los-angeles",
+  "country_slug": "united-states",
+  "state_slug": "california",
+  "terminal_info": "All car rental companies operating at LAX are located at the LAX Consolidated Rent-A-Car facility, known as LAX-C. This is a dedicated off-site rental center separate from all passenger terminals. It is not possible to collect a rental car directly from any LAX terminal building. To reach LAX-C, take the free LAX Rental Car Shuttle, which operates 24 hours a day and departs from the lower arrivals level of each terminal from designated shuttle pickup zones.",
+  "pickup_type": "shuttle",
+  "shuttle_notes": "The free LAX Rental Car Shuttle runs continuously 24 hours a day, 7 days a week. Shuttle stops are located on the lower (arrivals) level of all LAX terminals, marked with a purple Rental Car Shuttle sign. The shuttle journey from the terminals to the LAX-C facility typically takes between 5 and 15 minutes depending on terminal and traffic within the airport loop.",
+  "distance_from_city_km": 24,
+  "affiliate_sid_base": "airport_lax",
+  "page_type": "airport",
+  "canonical_url": "/car-rental/airports/lax-los-angeles-international/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental at LAX — Los Angeles International Airport",
+  "meta_description": "Find car rental options at Los Angeles International Airport (LAX). Pickup info, shuttle details, and tips for renting at LAX.",
+  "h1": "Car Rental at Los Angeles International Airport (LAX)",
+  "intro_paragraph": "Los Angeles International Airport is one of the busiest airports in the world and one of the highest-volume car rental locations in the United States. All rental car suppliers at LAX operate from the LAX Consolidated Rent-A-Car facility, a purpose-built rental center connected to the terminals via a free shuttle service that runs around the clock. After collecting your baggage, allow additional time to reach your vehicle — the shuttle ride plus the counter process means pickup typically takes longer at LAX than at smaller airports. The airport is located approximately 24 kilometres southwest of downtown Los Angeles, with freeway access via the I-405 and I-105 connecting to all parts of the greater LA metro area and beyond.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "California", "url": "/car-rental/united-states/california/" },
+    { "label": "Los Angeles", "url": "/car-rental/united-states/california/los-angeles/" },
+    { "label": "LAX Airport", "url": "/car-rental/airports/lax-los-angeles-international/" }
+  ],
+  "faq": [
+    {
+      "question": "How do I get to the rental car facility at LAX?",
+      "answer": "After collecting your baggage, exit the terminal building onto the lower arrivals level and look for the purple Rental Car Shuttle signs. Board the free shuttle, which runs continuously 24 hours a day. The shuttle takes you directly to the LAX Consolidated Rent-A-Car facility (LAX-C), where all on-airport rental suppliers have their counters and vehicle fleets. The journey typically takes 5 to 15 minutes."
+    },
+    {
+      "question": "How long should I allow for car rental pickup at LAX?",
+      "answer": "Allow at least 45 to 60 minutes after landing before you expect to be in your rental vehicle and leaving the facility. This accounts for baggage reclaim, reaching the shuttle stop, the shuttle journey, the counter process, and reaching your vehicle. During busy periods — particularly Friday afternoons, holiday weekends, and summer — queues at the rental center can be longer. Pre-completing your booking online and using express pickup services where available can reduce counter time."
+    },
+    {
+      "question": "What freeways can I access from LAX?",
+      "answer": "Los Angeles International Airport connects directly to the I-405 (San Diego Freeway) and the I-105 (Century Freeway), which together provide access to the broader LA freeway network. The I-405 heads north toward Santa Monica, West Hollywood, and the San Fernando Valley, and south toward Long Beach and Orange County. The I-105 connects east to the I-110 and I-605. From these connections, you can reach all parts of greater Los Angeles and beyond."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.85,
+  "sitemap_changefreq": "monthly",
+  "parent_city_slug": "los-angeles",
+  "sibling_airport_iata_codes": [],
+  "related_guide_slugs": [],
+  "data_completeness_score": 84,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

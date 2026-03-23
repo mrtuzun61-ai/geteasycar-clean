@@ -1,0 +1,66 @@
+{
+  "guide_slug": "renting-a-car-in-france",
+  "guide_title": "Renting a Car in France — Complete Travel Guide",
+  "country_slug": "france",
+  "page_type": "guide",
+  "canonical_url": "/guide/renting-a-car-in-france/",
+  "publication_state": "indexed",
+  "meta_title": "Renting a Car in France — Driving Rules, Tips & What to Know",
+  "meta_description": "Everything you need to know about renting a car in France. Driving rules, toll roads, fuel, parking, minimum age requirements, and practical tips for your trip.",
+  "h1": "Renting a Car in France — Complete Travel Guide",
+  "intro_paragraph": "France is one of the best countries in Europe to explore by rental car. Its road network is extensive, well-maintained, and connects everything from the grand boulevards of Paris to the winding lanes of Provence, the Atlantic coastline of Brittany, the Alpine passes of the southeast, and the vineyards of Bordeaux and Burgundy. While French cities are best navigated on foot or by public transport, a rental car genuinely transforms what is possible on a trip to France — unlocking rural villages, coastal drives, and regional destinations that have no practical public transport connection. This guide covers everything you need to know before picking up your keys, including driving rules, toll roads, fuel, parking, age requirements, and cross-border travel considerations.",
+  "sections": [
+    {
+      "section_title": "Driving Rules in France",
+      "content": "Traffic in France drives on the right. One of the most important rules for visitors to understand is the priorité à droite (priority to the right) rule, which applies at unmarked junctions in towns and villages — vehicles approaching from the right have right of way unless a sign or road marking indicates otherwise. This rule applies throughout built-up areas and can catch unfamiliar drivers off guard. On roundabouts, vehicles already on the roundabout generally have priority over entering traffic, though some older roundabouts may still apply the old priority-to-the-right rule — look for signage. Speed limits are 130 km/h on motorways in dry conditions, reduced to 110 km/h in rain, 80 km/h on single carriageway roads outside built-up areas, and 50 km/h within towns. Drivers must carry a warning triangle and a high-visibility vest in the vehicle at all times. Mobile phone use while driving is prohibited unless using a hands-free system."
+    },
+    {
+      "section_title": "Minimum Driver Age in France",
+      "content": "The legal minimum driving age in France is 18. Most car rental suppliers set their own minimum rental age, which is also typically 18, though a young driver surcharge applies in most cases for drivers under 25. Some suppliers impose a minimum age of 21 for certain vehicle categories, and premium or large vehicles may require the driver to be 25 or older. If you are under 25, it is worth checking the specific age policy of your chosen supplier at the time of booking, as surcharge amounts and category restrictions vary."
+    },
+    {
+      "section_title": "Toll Roads in France",
+      "content": "France has an extensive motorway network, the majority of which is subject to tolls. Tolls are collected at péage stations, which accept credit cards, debit cards, and cash. Contactless card payment is widely accepted at manned and automated toll lanes. The Liber-t electronic toll tag is an alternative that allows passage through dedicated fast lanes without stopping — some rental suppliers offer this as an optional add-on. Toll costs vary depending on the route and vehicle category. Long-distance journeys on the autoroute network can accumulate meaningful toll charges, so it is worth factoring this into your budget. Free alternative routes (routes nationales) exist for most motorway corridors but add significantly to journey times."
+    },
+    {
+      "section_title": "Fuel in France",
+      "content": "Fuel in France is sold in litres. The two main fuel types are petrol (essence — SP95 or SP98) and diesel (gazole). Both are widely available at service stations across the country. Supermarket fuel stations (hypermarché) are generally the cheapest option. Fuel stations on autoroutes tend to be more expensive than those in towns. In rural areas, opening hours may be limited, particularly on Sundays and public holidays — many rural stations are unstaffed and require a chip-and-PIN card for self-service. Electric vehicle charging is increasingly available at motorway service areas and in city centers, though coverage in remote rural areas remains limited."
+    },
+    {
+      "section_title": "Parking in France",
+      "content": "Parking regulations vary across French cities and towns. In most urban areas, on-street parking is managed through a paid zone system with time limits. Blue zone parking (zone bleue) operates in many town centers and requires a parking disc (disque de stationnement) to be displayed showing your arrival time. Discs are available free from tourist offices and many shops. Yellow lines indicate no parking. In Paris and other major cities, underground car parks (parkings souterrains) are the most reliable option for city center visits. Parking is generally free in smaller villages and rural areas. Always read roadside signage carefully, as restrictions can vary by street, day of the week, and time of day."
+    },
+    {
+      "section_title": "Cross-Border Travel from France",
+      "content": "France shares land borders with Belgium, Luxembourg, Germany, Switzerland, Italy, Spain, and the principality of Monaco, and is connected to the United Kingdom via the Channel Tunnel. Most major rental suppliers permit travel into neighboring Schengen Area countries, but cross-border permissions vary by company and sometimes by vehicle category. Travel to the UK, Switzerland, or any non-Schengen country typically requires explicit advance authorization from the rental supplier. Always confirm cross-border travel plans with your supplier before booking, and obtain any required documentation — typically a border crossing letter — before pickup. Traveling without authorization may void your insurance coverage."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need an International Driving Permit to rent a car in France?",
+      "answer": "EU and EEA license holders do not require an International Driving Permit to drive in France. Visitors from outside the EU, including those from the United States, Canada, Australia, and the United Kingdom, are generally advised to carry an IDP alongside their national driving license. Requirements can vary between rental suppliers, so confirm with your chosen supplier at the time of booking. An IDP is obtained in your home country before travel and cannot be issued abroad."
+    },
+    {
+      "question": "Can I take my rental car from France to other European countries?",
+      "answer": "Many rental suppliers allow cross-border travel within the Schengen Area from France, but this is not automatically permitted on all contracts. You must request cross-border authorization from your supplier in advance. Travel to non-Schengen countries such as the United Kingdom or Switzerland typically requires a separate authorization letter. Traveling across a border without the correct documentation may invalidate your insurance, so always confirm the full list of permitted countries when booking."
+    },
+    {
+      "question": "What should I know about driving in Paris with a rental car?",
+      "answer": "Driving in central Paris is generally not recommended for visitors unfamiliar with the city. Traffic is heavy, parking is scarce and expensive, and many streets in the historic center are narrow or one-way. Paris also operates an air quality alert system that can restrict certain vehicles from entering the city center during high pollution periods. If you are renting a car primarily for travel beyond Paris, it is often more practical to collect your vehicle from one of the Paris airports or from a train station on the outskirts of the city rather than from a city center location."
+    }
+  ],
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Travel Guides", "url": "/guide/" },
+    { "label": "Renting a Car in France", "url": "/guide/renting-a-car-in-france/" }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.75,
+  "sitemap_changefreq": "monthly",
+  "related_city_slugs": ["paris"],
+  "related_airport_iata_codes": ["CDG", "ORY"],
+  "data_completeness_score": 88,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

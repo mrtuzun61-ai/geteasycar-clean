@@ -1,0 +1,58 @@
+[
+  {
+    "state_slug": "california",
+    "state_name": "California",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-CA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "florida",
+    "state_name": "Florida",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-FL",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "new-york",
+    "state_name": "New York",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-NY",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "nevada",
+    "state_name": "Nevada",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-NV",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "illinois",
+    "state_name": "Illinois",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-IL",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "new-south-wales",
+    "state_name": "New South Wales",
+    "country_slug": "australia",
+    "iso_subdivision_code": "AU-NSW",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "victoria",
+    "state_name": "Victoria",
+    "country_slug": "australia",
+    "iso_subdivision_code": "AU-VIC",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "queensland",
+    "state_name": "Queensland",
+    "country_slug": "australia",
+    "iso_subdivision_code": "AU-QLD",
+    "publication_state": "indexed"
+  }
+]

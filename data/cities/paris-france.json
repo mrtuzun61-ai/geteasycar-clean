@@ -1,0 +1,52 @@
+{
+  "city_slug": "paris",
+  "city_name": "Paris",
+  "country_slug": "france",
+  "state_slug": null,
+  "has_state_layer": false,
+  "affiliate_sid_base": "city_paris-france",
+  "page_type": "city",
+  "canonical_url": "/car-rental/france/paris/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental in Paris, France — Find & Compare Options",
+  "meta_description": "Looking for car rental in Paris? Explore pickup locations across the city and at CDG and ORY airports. Find the right car for your Paris trip.",
+  "h1": "Car Rental in Paris, France",
+  "intro_paragraph": "Paris offers a wide range of car rental options across its two major international airports and several city center locations. Charles de Gaulle and Orly airports are the most popular pickup points for international visitors, with a full range of vehicle categories available from multiple suppliers. While driving within central Paris is generally not recommended due to heavy traffic, complex one-way systems, and limited parking, a rental car is an excellent choice for exploring the surrounding regions. Day trips to the Palace of Versailles, the Loire Valley, Champagne country, and Normandy are all straightforward by road from Paris, making a rental car a practical addition to any extended stay.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "France", "url": "/car-rental/france/" },
+    { "label": "Paris", "url": "/car-rental/france/paris/" }
+  ],
+  "faq": [
+    {
+      "question": "What is the minimum age to rent a car in Paris?",
+      "answer": "The minimum age to rent a car in France is 18 with most suppliers, though drivers under 21 or under 25 are typically subject to a young driver surcharge. Some premium or larger vehicle categories require a minimum age of 21 or 25. Age requirements vary by supplier, so it is worth confirming directly when booking."
+    },
+    {
+      "question": "Is it worth renting a car in central Paris?",
+      "answer": "Renting a car for use within central Paris is generally not recommended. The city center has heavy traffic, a complex one-way road network, expensive and scarce parking, and a comprehensive metro and bus system that makes getting around without a car straightforward. However, a rental car is genuinely useful if you plan to take day trips or road trips to destinations outside the city such as Versailles, Normandy, or the Loire Valley."
+    },
+    {
+      "question": "Where can I pick up a rental car in Paris?",
+      "answer": "The most convenient pickup locations in Paris are at Charles de Gaulle Airport (CDG) and Orly Airport (ORY), where multiple major rental suppliers operate from dedicated rental centers. City center pickup locations are also available at Paris Gare du Nord, Gare de Lyon, and several other locations throughout the city."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.9,
+  "sitemap_changefreq": "monthly",
+  "parent_country_slug": "france",
+  "parent_state_slug": null,
+  "airport_slugs": ["CDG", "ORY"],
+  "downtown_page_exists": false,
+  "intent_pages_published": [],
+  "nearby_city_slugs": [
+    "barcelona-spain",
+    "madrid-spain",
+    "rome-italy"
+  ],
+  "related_guide_slugs": [],
+  "data_completeness_score": 76,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

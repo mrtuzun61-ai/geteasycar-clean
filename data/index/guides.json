@@ -1,0 +1,33 @@
+[
+  {
+    "guide_slug": "renting-a-car-in-france",
+    "guide_title": "Renting a Car in France — Complete Travel Guide",
+    "country_slug": "france",
+    "publication_state": "indexed"
+  },
+  {
+    "guide_slug": "renting-a-car-in-spain",
+    "guide_title": "Renting a Car in Spain — Complete Travel Guide",
+    "country_slug": "spain",
+    "publication_state": "indexed"
+  },
+  {
+    "guide_slug": "renting-a-car-in-italy",
+    "guide_title": "Renting a Car in Italy — Complete Travel Guide",
+    "country_slug": "italy",
+    "publication_state": "indexed"
+  },
+  {
+  "guide_slug": "renting-a-car-in-united-states",
+  "guide_title": "Renting a Car in the United States",
+  "country_slug": "united-states",
+  "publication_state": "indexed"
+  },
+  {
+  "guide_slug": "renting-a-car-in-australia",
+  "guide_title": "Renting a Car in Australia",
+  "country_slug": "australia",
+  "publication_state": "indexed"
+  }
+
+]

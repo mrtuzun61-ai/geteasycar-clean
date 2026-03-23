@@ -1,0 +1,66 @@
+{
+  "guide_slug": "renting-a-car-in-spain",
+  "guide_title": "Renting a Car in Spain — Complete Travel Guide",
+  "country_slug": "spain",
+  "page_type": "guide",
+  "canonical_url": "/guide/renting-a-car-in-spain/",
+  "publication_state": "indexed",
+  "meta_title": "Renting a Car in Spain — Driving Rules, Tips & What to Know",
+  "meta_description": "Everything you need to know about renting a car in Spain. Driving rules, toll roads, low emission zones, fuel, parking, and practical tips for your trip.",
+  "h1": "Renting a Car in Spain — Complete Travel Guide",
+  "intro_paragraph": "Spain is an outstanding country to explore by rental car. Its geography is enormously varied — from the green coastline of Galicia in the northwest to the sun-baked plains of Castile, the dramatic landscapes of Andalusia, the volcanic terrain of the Canary Islands, and the pine-forested mountains of the Pyrenees. Many of Spain's most rewarding destinations are simply not reachable without a car, and even in regions that are well connected by rail, a rental car adds a level of flexibility that transforms a standard trip into something more adventurous. This guide covers the essential practical information you need before picking up your rental vehicle in Spain, including traffic rules, low emission zones, toll roads, fuel, parking, age requirements, and cross-border travel.",
+  "sections": [
+    {
+      "section_title": "Driving Rules in Spain",
+      "content": "Traffic in Spain drives on the right. Speed limits are 120 km/h on motorways (autopistas and autovías), 90 km/h on conventional roads outside built-up areas, and 50 km/h in urban areas unless otherwise posted. Some residential zones have limits as low as 20 or 30 km/h — watch for local signage. Drivers must carry their driving license, vehicle documentation, and identification at all times. A warning triangle is required in the vehicle. Mobile phone use while driving is prohibited unless using a completely hands-free system. Driving under the influence is strictly enforced, and random roadside checks are conducted regularly. Headlights must be used in tunnels regardless of time of day."
+    },
+    {
+      "section_title": "Minimum Driver Age in Spain",
+      "content": "The legal minimum driving age in Spain is 18. Most rental suppliers follow this minimum for standard vehicle categories, though young driver surcharges typically apply for drivers under 25. Some suppliers impose a minimum age of 21 for certain vehicle types, and premium, large, or specialist vehicles may carry a minimum age requirement of 25. Age policies vary between suppliers, so check the specific terms when booking. If you are renting in the Canary or Balearic Islands, the same national age rules apply, though island-specific suppliers may have slightly different terms."
+    },
+    {
+      "section_title": "Toll Roads in Spain",
+      "content": "Spain's motorway network includes both free roads (autovías) and tolled roads (autopistas). Historically, many autopistas were privately operated and subject to tolls, but the Spanish government has converted a number of major toll roads to free access in recent years, including parts of the AP-7 coastal motorway in Catalonia and Valencia. As a result, the current toll situation in Spain can be confusing — a road that was previously tolled may now be free, and vice versa. Electronic toll payment via the Via-T tag is accepted at all toll plazas. Some suppliers offer transponders as rental add-ons. For the most current toll road status on your planned route, check the Dirección General de Tráfico (DGT) website or a current navigation app before departure."
+    },
+    {
+      "section_title": "Fuel in Spain",
+      "content": "Fuel in Spain is sold in litres. Petrol is sold as gasolina (SP95 or SP98) and diesel as gasóleo. Both are widely available throughout mainland Spain and on the major islands. Supermarket fuel stations typically offer the lowest prices. Fuel stations on motorways are more expensive. LPG (autogás) is available at a reasonable number of stations across mainland Spain. Electric vehicle charging infrastructure is expanding, particularly in cities and along major motorway corridors, though rural and island coverage varies. In the Canary Islands, fuel is generally cheaper than on the mainland due to different tax arrangements."
+    },
+    {
+      "section_title": "Parking in Spain",
+      "content": "Parking in Spanish cities operates on a colour-coded zone system. Blue lines (zona azul) indicate metered, time-limited parking open to all drivers. Green lines indicate parking reserved for local residents during certain hours, though non-residents can sometimes park there outside those hours. Yellow lines indicate no parking. Underground car parks (aparcamientos) are widely available in city centers and are the most reliable option for extended stays. In coastal resort areas during summer, parking near beaches and popular areas can be very limited. In rural areas and smaller towns, parking is generally free and plentiful."
+    },
+    {
+      "section_title": "Cross-Border Travel from Spain",
+      "content": "Spain shares a land border with France, Portugal, and the small principalities of Andorra. Travel between Spain, France, and Portugal is straightforward within the Schengen Area, but you must confirm with your rental supplier that cross-border travel is permitted under your rental contract. Travel to Andorra, while geographically simple, requires specific authorization as Andorra is not an EU member state. The Spanish enclaves of Ceuta and Melilla on the North African coast are technically Spanish territory but are treated differently by most rental suppliers — travel to these areas requires explicit permission. Always obtain written confirmation of any permitted cross-border travel before pickup."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need an International Driving Permit to rent a car in Spain?",
+      "answer": "EU and EEA license holders do not require an International Driving Permit to drive in Spain. Visitors from outside the EU, including those from the United States, Canada, Australia, and the United Kingdom, are advised to carry an IDP alongside their national driving license. Some rental suppliers in Spain specifically require an IDP for non-EU license holders before they will issue a rental vehicle. Confirm requirements with your chosen supplier at booking. An IDP must be obtained in your home country before you travel."
+    },
+    {
+      "question": "What are Low Emission Zones and do they affect rental cars in Spain?",
+      "answer": "Barcelona and Madrid both operate Low Emission Zones (Zonas de Bajas Emisiones — ZBE) that restrict access for vehicles that do not meet certain environmental standards. Vehicles are classified by a coloured sticker system administered by the DGT. Most modern rental vehicles will carry the appropriate classification sticker and be permitted to enter these zones. However, you should confirm the environmental classification of your specific assigned vehicle with your supplier at pickup before driving into a restricted area, as restrictions and permitted vehicle categories can change."
+    },
+    {
+      "question": "Is it safe to drive in Spain as a visitor?",
+      "answer": "Driving in Spain is generally straightforward and safe for visitors. Road quality on major routes is excellent. Spanish drivers tend to drive at pace on motorways, so be prepared to keep up with the flow of traffic. Mountain roads in regions like Andalusia, the Pyrenees, and parts of Galicia can be narrow and winding — drive at an appropriate speed and be aware of oncoming vehicles on tight bends. In cities, be prepared for busy urban traffic, particularly in Barcelona and Madrid."
+    }
+  ],
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Travel Guides", "url": "/guide/" },
+    { "label": "Renting a Car in Spain", "url": "/guide/renting-a-car-in-spain/" }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.75,
+  "sitemap_changefreq": "monthly",
+  "related_city_slugs": ["barcelona", "madrid"],
+  "related_airport_iata_codes": ["BCN", "MAD"],
+  "data_completeness_score": 88,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

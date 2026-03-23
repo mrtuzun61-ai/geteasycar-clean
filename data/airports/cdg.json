@@ -1,0 +1,51 @@
+{
+  "iata_code": "CDG",
+  "airport_slug": "cdg-paris-charles-de-gaulle",
+  "airport_name": "Paris Charles de Gaulle Airport",
+  "airport_name_short": "Charles de Gaulle",
+  "city_slug": "paris",
+  "country_slug": "france",
+  "state_slug": null,
+  "terminal_info": "Car rental counters at CDG are located in the dedicated Car Rental Center building, which is separate from the passenger terminals. The facility is accessible from Terminals 1, 2, and 3 via a free shuttle bus marked for car rental and hotel connections. The rental center is open seven days a week and houses counters for multiple major suppliers.",
+  "pickup_type": "shuttle",
+  "shuttle_notes": "Free shuttle buses connect all CDG terminals to the Car Rental Center. Shuttle stops are clearly marked in the arrivals hall of each terminal, typically at the ground transportation level. Journey time from terminal to rental center is approximately 8 to 15 minutes depending on the terminal and traffic conditions.",
+  "distance_from_city_km": 25,
+  "affiliate_sid_base": "airport_cdg",
+  "page_type": "airport",
+  "canonical_url": "/car-rental/airports/cdg-paris-charles-de-gaulle/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental at CDG — Paris Charles de Gaulle Airport",
+  "meta_description": "Find car rental options at Paris Charles de Gaulle Airport (CDG). Pickup locations, terminal info, and practical tips for renting at CDG.",
+  "h1": "Car Rental at Paris Charles de Gaulle Airport (CDG)",
+  "intro_paragraph": "Paris Charles de Gaulle Airport is the largest airport in France and one of the busiest international hubs in Europe, handling flights from destinations worldwide. All car rental suppliers at CDG operate from a centralized Car Rental Center that is accessible from every terminal via a free dedicated shuttle. This setup means the pickup process requires a short additional journey after collecting your bags, so allow extra time if you have a tight schedule. CDG is located approximately 25 kilometres northeast of central Paris, and the drive into the city via the A1 motorway or the Périphérique ring road typically takes between 30 and 60 minutes depending on traffic conditions.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "France", "url": "/car-rental/france/" },
+    { "label": "Paris", "url": "/car-rental/france/paris/" },
+    { "label": "CDG Airport", "url": "/car-rental/airports/cdg-paris-charles-de-gaulle/" }
+  ],
+  "faq": [
+    {
+      "question": "Where do I collect my rental car at CDG?",
+      "answer": "All rental car suppliers at Charles de Gaulle Airport are based in the Car Rental Center, a dedicated building separate from the passenger terminals. To reach it, follow the signs in the arrivals hall for car rental or hotel shuttles and take the free shuttle bus. Shuttle stops are located on the ground transportation level of each terminal. The journey takes approximately 8 to 15 minutes."
+    },
+    {
+      "question": "Which terminal should I use for car rental at CDG?",
+      "answer": "CDG has multiple terminals including Terminal 1, Terminal 2 (with several sub-terminals), and Terminal 3. Regardless of which terminal you arrive at, all rental car pickups are at the same Car Rental Center and the shuttle connects from all terminals. There is no specific terminal that is more convenient for car rental."
+    },
+    {
+      "question": "How long does it take to drive from CDG to central Paris?",
+      "answer": "The drive from Charles de Gaulle Airport to central Paris is approximately 25 kilometres and typically takes between 30 and 60 minutes by car. Journey times vary considerably depending on the time of day and traffic conditions. Morning and evening peak hours, particularly on weekday mornings, can extend the journey significantly. The A1 motorway and the A3 are the main route options into the city."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.85,
+  "sitemap_changefreq": "monthly",
+  "parent_city_slug": "paris",
+  "sibling_airport_iata_codes": ["ORY"],
+  "related_guide_slugs": [],
+  "data_completeness_score": 82,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

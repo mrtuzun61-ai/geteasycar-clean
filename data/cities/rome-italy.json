@@ -1,0 +1,52 @@
+{
+  "city_slug": "rome",
+  "city_name": "Rome",
+  "country_slug": "italy",
+  "state_slug": null,
+  "has_state_layer": false,
+  "affiliate_sid_base": "city_rome-italy",
+  "page_type": "city",
+  "canonical_url": "/car-rental/italy/rome/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental in Rome, Italy — Find & Compare Options",
+  "meta_description": "Looking for car rental in Rome? Explore pickup locations at Fiumicino Airport and across the city. Find the right car for your Italy road trip.",
+  "h1": "Car Rental in Rome, Italy",
+  "intro_paragraph": "Rome is Italy's capital and the country's busiest international gateway, served primarily by Leonardo da Vinci–Fiumicino Airport to the southwest of the city. Car rental is widely available at Fiumicino, at Ciampino Airport, and at city center locations including Roma Termini railway station. Driving within Rome's historic center is subject to Zona a Traffico Limitato (ZTL) restrictions, which operate through camera enforcement — entering a ZTL without authorization can result in fines issued to the registered vehicle. A rental car is most valuable in Rome as the starting point for road trips rather than for city use: Tuscany, the Amalfi Coast, Umbria, and the Castelli Romani hill towns are all within comfortable driving distance.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Italy", "url": "/car-rental/italy/" },
+    { "label": "Rome", "url": "/car-rental/italy/rome/" }
+  ],
+  "faq": [
+    {
+      "question": "Can I drive a rental car into the center of Rome?",
+      "answer": "Most of Rome's historic center is a Zona a Traffico Limitato (ZTL), meaning access is restricted to authorized vehicles only during certain hours. Cameras enforce these zones automatically. Rental car drivers should avoid driving into ZTL areas unless they have confirmed authorization. Your rental supplier should be able to advise on current ZTL boundaries and operating hours before you depart."
+    },
+    {
+      "question": "Where should I pick up my rental car in Rome?",
+      "answer": "Leonardo da Vinci–Fiumicino Airport (FCO) is the most practical pickup point for international arrivals, with a dedicated car rental area accessible from the terminal. Roma Termini, the city's main railway station, also has rental desks and is convenient if you are arriving by train. Picking up outside the city center generally avoids the complications of driving in Rome's heavily restricted historic areas."
+    },
+    {
+      "question": "What are the best road trip destinations from Rome?",
+      "answer": "Rome is an outstanding base for road trips. Tuscany and the hill towns of Chianti are around two hours north by car. The Amalfi Coast is approximately three hours south. Umbria and Orvieto are under two hours away. The Castelli Romani, a cluster of historic hill towns popular with Romans on weekends, are less than an hour from the city center."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.9,
+  "sitemap_changefreq": "monthly",
+  "parent_country_slug": "italy",
+  "parent_state_slug": null,
+  "airport_slugs": ["FCO"],
+  "downtown_page_exists": false,
+  "intent_pages_published": [],
+  "nearby_city_slugs": [
+    "paris-france",
+    "barcelona-spain",
+    "madrid-spain"
+  ],
+  "related_guide_slugs": [],
+  "data_completeness_score": 77,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

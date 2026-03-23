@@ -1,0 +1,26 @@
+{
+  "state_slug": "nevada",
+  "state_name": "Nevada",
+  "country_slug": "united-states",
+  "iso_subdivision_code": "US-NV",
+  "has_state_layer": true,
+  "affiliate_sid_base": "state_nevada-us",
+  "page_type": "state_hub",
+  "canonical_url": "/car-rental/united-states/nevada/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental in Nevada — Find Your Rental Location",
+  "meta_description": "Find car rental options across Nevada. Explore pickup locations in cities and airports throughout the state.",
+  "h1": "Car Rental in Nevada",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Nevada", "url": "/car-rental/united-states/nevada/" }
+  ],
+  "schema_types": ["WebPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.7,
+  "sitemap_changefreq": "monthly",
+  "data_completeness_score": 71,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

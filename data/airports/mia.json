@@ -1,0 +1,52 @@
+{
+  "iata_code": "MIA",
+  "airport_slug": "mia-miami-international",
+  "airport_name": "Miami International Airport",
+  "airport_name_short": "Miami International",
+  "city_slug": "miami",
+  "country_slug": "united-states",
+  "state_slug": "florida",
+  "terminal_info": "Miami International Airport is a single terminal complex organized into three concourses: Concourse D (North), Concourse E and H (Central), and Concourses F, G, and J (South). All on-airport car rental companies operate from the MIA Rental Car Center, a dedicated facility located adjacent to the terminal. The Rental Car Center is accessible via the free MIA Mover automated people mover train, which departs from the Rental Car Center station on the third level of the Miami Intermodal Center, connected to the terminal.",
+  "pickup_type": "shuttle",
+  "shuttle_notes": "The MIA Mover is a free automated people mover connecting the main terminal to the Miami Intermodal Center and the MIA Rental Car Center. Boarding for the MIA Mover is on Level 3 of the terminal complex. The journey takes approximately 5 minutes and runs continuously. All on-airport rental suppliers have counters and vehicle fleets at the Rental Car Center building.",
+  "distance_from_city_km": 11,
+  "affiliate_sid_base": "airport_mia",
+  "page_type": "airport",
+  "canonical_url": "/car-rental/airports/mia-miami-international/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental at MIA — Miami International Airport",
+  "meta_description": "Find car rental options at Miami International Airport (MIA). Pickup info, MIA Mover details, and tips for renting a car at MIA.",
+  "h1": "Car Rental at Miami International Airport (MIA)",
+  "intro_paragraph": "Miami International Airport is a major international hub serving South Florida, with particularly strong connections to Latin America, the Caribbean, and Europe. All car rental suppliers at MIA operate from the dedicated MIA Rental Car Center, accessible via the free MIA Mover automated people mover from the main terminal building. The airport is located approximately 11 kilometres northwest of Miami Beach and downtown Miami, with direct access to SR-836 (Dolphin Expressway) and the Florida Turnpike, connecting north toward Fort Lauderdale and Palm Beach, south toward the Florida Keys, and west toward Everglades National Park.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Florida", "url": "/car-rental/united-states/florida/" },
+    { "label": "Miami", "url": "/car-rental/united-states/florida/miami/" },
+    { "label": "MIA Airport", "url": "/car-rental/airports/mia-miami-international/" }
+  ],
+  "faq": [
+    {
+      "question": "How do I get to the rental car facility at Miami Airport?",
+      "answer": "After collecting your baggage, follow signs to the MIA Mover station on Level 3 of the terminal. Board the free automated people mover and ride it to the Rental Car Center station. The journey takes approximately 5 minutes and runs continuously. The Rental Car Center building houses counters and vehicle fleets for all on-airport rental suppliers."
+    },
+    {
+      "question": "How far is Miami Airport from South Beach?",
+      "answer": "Miami International Airport is approximately 11 kilometres west of South Beach on Miami Beach. By car via the SR-836 Dolphin Expressway and the MacArthur Causeway, the drive typically takes 20 to 35 minutes under normal conditions. Traffic on the causeways connecting Miami Beach to the mainland can be heavy during peak hours and on weekend evenings."
+    },
+    {
+      "question": "What toll roads should I be aware of when renting a car from MIA?",
+      "answer": "Several toll roads are accessible from Miami International Airport, including SR-836 (Dolphin Expressway), SR-112 (Airport Expressway), and the Florida Turnpike. Most Miami toll roads are all-electronic, meaning there are no cash lanes — tolls are collected via SunPass transponders or through license plate billing. Rental suppliers typically offer SunPass transponders as an add-on or bill tolls plus an administration fee post-rental. Clarify the toll arrangement with your supplier at pickup."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.85,
+  "sitemap_changefreq": "monthly",
+  "parent_city_slug": "miami",
+  "sibling_airport_iata_codes": [],
+  "related_guide_slugs": [],
+  "data_completeness_score": 83,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

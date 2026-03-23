@@ -1,0 +1,51 @@
+{
+  "guide_slug": "renting-a-car-in-united-states",
+  "guide_title": "Renting a Car in the United States",
+  "country_slug": "united-states",
+  "meta_title": "Renting a Car in the United States | Get Easy Car",
+  "meta_description": "Learn about renting a car in the United States, including license rules, minimum age, insurance, fuel, toll roads, and practical driving tips.",
+  "canonical_url": "/guide/renting-a-car-in-united-states/",
+  "publication_state": "indexed",
+  "last_updated": "2026-03-19",
+  "h1": "Renting a Car in the United States",
+  "intro_paragraph": "The United States is one of the most popular car rental markets in the world. Renting a car is often the easiest way to travel between airports, cities, suburbs, beaches, and national parks. This guide explains the main rules, requirements, and practical tips for renting and driving in the USA.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Travel Guides", "url": "/guide/" },
+    { "label": "Renting a Car in the United States", "url": "/guide/renting-a-car-in-united-states/" }
+  ],
+  "related_city_slugs": ["los-angeles", "orlando", "miami"],
+  "related_airport_iata_codes": ["LAX", "MCO", "MIA"],
+  "sections": [
+    {
+      "section_title": "License and Driver Requirements",
+      "content": "Most major rental suppliers in the United States accept a valid driver’s license from your home country. International visitors may also benefit from carrying an International Driving Permit, especially if their original license is not in English. The minimum rental age is usually 21, but drivers under 25 often pay a young driver surcharge."
+    },
+    {
+      "section_title": "Insurance and Deposits",
+      "content": "Rental rates in the United States may not always include full protection. Collision Damage Waiver, liability coverage, and roadside assistance are common optional products. A credit card in the main driver’s name is usually required for the security deposit. Before pickup, review whether your credit card or travel insurance already provides rental coverage."
+    },
+    {
+      "section_title": "Fuel, Tolls, and Parking",
+      "content": "Most rentals are supplied with a full tank and should be returned full unless you choose a prepaid fuel option. Toll roads are common in several states, and some rental companies offer electronic toll programs or transponders. Parking rules vary by city, so always read street signs carefully, especially in downtown areas and airport zones."
+    },
+    {
+      "section_title": "Driving Tips in the USA",
+      "content": "Drivers in the United States use the right-hand side of the road. Distances can be long, speed limits differ by state, and traffic conditions vary greatly between cities and regions. Always keep your driving license, passport, rental agreement, and insurance documents with you while driving."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do I need an International Driving Permit in the United States?",
+      "answer": "Not always. Many rental suppliers accept foreign licenses, but an International Driving Permit is recommended if your original license is not in English."
+    },
+    {
+      "question": "What is the minimum age to rent a car in the United States?",
+      "answer": "In many cases the minimum age is 21, but drivers under 25 often face extra fees and may have limited vehicle choices."
+    },
+    {
+      "question": "Do I need a credit card to rent a car in the United States?",
+      "answer": "Usually yes. Most suppliers require a credit card in the main driver’s name for the security deposit."
+    }
+  ]
+}

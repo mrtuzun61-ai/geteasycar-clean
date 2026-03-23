@@ -1,0 +1,26 @@
+{
+  "state_slug": "victoria",
+  "state_name": "Victoria",
+  "country_slug": "australia",
+  "iso_subdivision_code": "AU-VIC",
+  "has_state_layer": true,
+  "affiliate_sid_base": "state_victoria-au",
+  "page_type": "state_hub",
+  "canonical_url": "/car-rental/australia/victoria/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental in Victoria, Australia — Find Your Rental Location",
+  "meta_description": "Find car rental options across Victoria, Australia. Explore pickup locations in cities and airports throughout the state.",
+  "h1": "Car Rental in Victoria, Australia",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Australia", "url": "/car-rental/australia/" },
+    { "label": "Victoria", "url": "/car-rental/australia/victoria/" }
+  ],
+  "schema_types": ["WebPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.7,
+  "sitemap_changefreq": "monthly",
+  "data_completeness_score": 71,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

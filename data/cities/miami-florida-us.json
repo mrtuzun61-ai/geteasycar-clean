@@ -1,0 +1,52 @@
+{
+  "city_slug": "miami",
+  "city_name": "Miami",
+  "country_slug": "united-states",
+  "state_slug": "florida",
+  "has_state_layer": true,
+  "affiliate_sid_base": "city_miami-florida-us",
+  "page_type": "city",
+  "canonical_url": "/car-rental/united-states/florida/miami/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental in Miami, FL — Find & Compare Options",
+  "meta_description": "Looking for car rental in Miami? Explore pickup locations at MIA and across the city. Find the right car for your Miami trip.",
+  "h1": "Car Rental in Miami, Florida",
+  "intro_paragraph": "Miami is one of Florida's most dynamic cities and a major international arrival hub, drawing visitors from across Latin America, Europe, and beyond. Miami International Airport (MIA) is the primary gateway and offers extensive car rental options with all major suppliers operating from a single consolidated facility. Having a rental car in Miami gives you access to the full range of what South Florida offers: the Art Deco district of South Beach is a short drive from the airport, the Florida Keys begin less than an hour south via US-1, and the Everglades National Park entrance is under an hour away. Miami's road network connects easily to the rest of Florida, making it a strong starting point for longer journeys north toward the Space Coast, Tampa, and Orlando.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Florida", "url": "/car-rental/united-states/florida/" },
+    { "label": "Miami", "url": "/car-rental/united-states/florida/miami/" }
+  ],
+  "faq": [
+    {
+      "question": "Where is the rental car center at Miami International Airport?",
+      "answer": "Miami International Airport has a centralized Rental Car Center located adjacent to the terminal complex and accessible via a free MIA Mover automated train that departs from the terminal. The journey takes approximately 5 minutes. All major on-airport rental suppliers operate from this building, which is open around the clock."
+    },
+    {
+      "question": "Is a car necessary in Miami?",
+      "answer": "A rental car is highly practical in Miami, particularly if you plan to explore beyond the South Beach and downtown areas. Miami's public transport system is limited in coverage, and many of the most popular destinations — including the Florida Keys, Everglades National Park, Fort Lauderdale, and the surrounding beach communities — require a car. Rideshare services are available but can be expensive for longer journeys."
+    },
+    {
+      "question": "What documents do I need to rent a car in Miami?",
+      "answer": "You will need a valid full driving license, a passport or government-issued photo ID, and a credit card in the primary driver's name for the deposit. International visitors driving on a non-English language license are recommended to carry an International Driving Permit alongside their home license. Minimum age requirements vary by supplier but are typically 21 years, with a young driver surcharge for those under 25."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.9,
+  "sitemap_changefreq": "monthly",
+  "parent_country_slug": "united-states",
+  "parent_state_slug": "florida",
+  "airport_slugs": ["MIA"],
+  "downtown_page_exists": false,
+  "intent_pages_published": [],
+  "nearby_city_slugs": [
+    "orlando-florida-us",
+    "los-angeles-california-us"
+  ],
+  "related_guide_slugs": [],
+  "data_completeness_score": 78,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}

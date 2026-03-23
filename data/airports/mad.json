@@ -1,0 +1,51 @@
+{
+  "iata_code": "MAD",
+  "airport_slug": "mad-madrid-barajas",
+  "airport_name": "Adolfo Suárez Madrid–Barajas Airport",
+  "airport_name_short": "Madrid Barajas",
+  "city_slug": "madrid",
+  "country_slug": "spain",
+  "state_slug": null,
+  "terminal_info": "Madrid Barajas Airport has four passenger terminals: T1, T2, T3, and T4. Terminal 4 (T4) is the largest and handles the majority of international long-haul and Iberia flights. Car rental counters are located in the arrivals area of each terminal. The largest concentration of rental suppliers is in Terminal 4. Terminals 1, 2, and 3 are connected and within walking distance of each other; T4 is a separate building connected by a free shuttle train.",
+  "pickup_type": "on_site",
+  "shuttle_notes": null,
+  "distance_from_city_km": 12,
+  "affiliate_sid_base": "airport_mad",
+  "page_type": "airport",
+  "canonical_url": "/car-rental/airports/mad-madrid-barajas/",
+  "publication_state": "indexed",
+  "meta_title": "Car Rental at MAD — Adolfo Suárez Madrid–Barajas Airport",
+  "meta_description": "Find car rental options at Madrid–Barajas Airport (MAD). Pickup info, terminal details, and tips for renting a car at MAD.",
+  "h1": "Car Rental at Madrid–Barajas Airport (MAD)",
+  "intro_paragraph": "Adolfo Suárez Madrid–Barajas Airport is Spain's busiest airport and one of the most significant aviation hubs in Europe, connecting Madrid to destinations across the Americas, Europe, Africa, and Asia. The airport has four terminals with car rental counters available in each arrivals area, making pickup accessible regardless of which terminal your flight uses. Madrid sits at the geographic center of Spain, and the airport's location to the northeast of the city provides quick motorway access in all directions — north toward Burgos and the Basque Country, west toward Toledo and Portugal, south toward Andalusia, and east toward Valencia and the Mediterranean coast.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "Spain", "url": "/car-rental/spain/" },
+    { "label": "Madrid", "url": "/car-rental/spain/madrid/" },
+    { "label": "MAD Airport", "url": "/car-rental/airports/mad-madrid-barajas/" }
+  ],
+  "faq": [
+    {
+      "question": "Where are the car rental desks at Madrid Barajas Airport?",
+      "answer": "Car rental counters at Madrid–Barajas Airport are located in the arrivals areas of all four terminals. Terminal 4 has the largest number of rental suppliers and is the most commonly used terminal for intercontinental arrivals. If your flight arrives at T1, T2, or T3, those terminals are connected and their rental counters are on the arrivals level. In all cases, follow the car rental signs from the baggage reclaim area."
+    },
+    {
+      "question": "How far is Madrid Barajas Airport from the city center?",
+      "answer": "Madrid–Barajas Airport is approximately 12 kilometres northeast of Madrid city center. By car via the M-40 or M-30 ring roads, the journey typically takes between 20 and 40 minutes under normal conditions. Traffic can be heavy during morning and evening rush hours on weekdays, so factor this into your departure planning if catching a flight."
+    },
+    {
+      "question": "What road trip destinations are accessible from Madrid Airport?",
+      "answer": "Madrid's central location makes it one of the best airports in Spain for beginning a road trip. Toledo is around 70 kilometres south and makes an excellent first stop. Segovia is approximately 90 kilometres northwest. The historic university city of Salamanca is around 200 kilometres west. Heading south on the A-4, the wine regions of La Mancha are within 90 minutes. The A-2 east connects to Zaragoza and eventually Barcelona in around 6 hours."
+    }
+  ],
+  "schema_types": ["WebPage", "FAQPage", "BreadcrumbList"],
+  "sitemap_include": true,
+  "sitemap_priority": 0.85,
+  "sitemap_changefreq": "monthly",
+  "parent_city_slug": "madrid",
+  "sibling_airport_iata_codes": [],
+  "related_guide_slugs": [],
+  "data_completeness_score": 80,
+  "last_updated": "2026-03-18",
+  "created_at": "2026-03-18"
+}
