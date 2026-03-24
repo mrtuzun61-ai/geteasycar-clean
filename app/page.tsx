@@ -75,8 +75,7 @@ const AFFILIATE =
   "https://www.dpbolvw.net/click-101574986-15736982?sid=get_easy_car";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1800&q=80";
-
+  "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=1800&q=80";
 const countryMeta: Record<string, { emoji: string; tagline: string }> = {
   france: { emoji: "🇫🇷", tagline: "Cities, airports and driving guidance" },
   spain: { emoji: "🇪🇸", tagline: "Popular coastal and city pickup locations" },
