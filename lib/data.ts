@@ -233,7 +233,7 @@ async function readJsonDirectory<T>(dir: string): Promise<T[]> {
     const results = await Promise.all(
       jsonFiles.map((file) => readJsonFile<T>(path.join(dir, file)))
     );
-    return results.filter((item): item is T => item !== null);
+    return results.filter(Boolean) as T[];
   } catch {
     return [];
   }

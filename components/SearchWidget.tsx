@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
-    google?: typeof google;
+    google?: any;
     initGetEasyCarPlaces?: () => void;
   }
 }
@@ -50,7 +50,7 @@ export default function SearchWidget({
 }: SearchWidgetProps) {
   const locationInputRef = useRef<HTMLInputElement | null>(null);
   const autocompleteRef =
-    useRef<google.maps.places.Autocomplete | null>(null);
+    useRef<any>(null);
 
   const [locationText, setLocationText] = useState("");
   const [pickupDate, setPickupDate] = useState("");

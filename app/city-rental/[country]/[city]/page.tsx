@@ -10,7 +10,6 @@ import {
   resolveNearbyCities,
   type CityIndexEntry,
 } from "@/lib/data";
-import { getCityHeroImage } from "@/lib/images";
 
 const AFFILIATE_BASE =
   "https://www.dpbolvw.net/click-101574986-15736982?sid=";
@@ -19,13 +18,110 @@ function affiliateUrl(sidBase: string, position: string): string {
   return `${AFFILIATE_BASE}${sidBase}_${position}`;
 }
 
+const CITY_HERO_IMAGES: Record<string, string> = {
+  paris:
+    "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1800&q=80",
+  barcelona:
+    "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1800&q=80",
+  madrid:
+    "https://images.unsplash.com/photo-1531572753322-ad063cecc140?auto=format&fit=crop&w=1800&q=80",
+  rome:
+    "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1800&q=80",
+  "los-angeles":
+    "https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?auto=format&fit=crop&w=1800&q=80",
+  orlando:
+    "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1800&q=80",
+  sydney:
+    "https://images.unsplash.com/photo-1506973035872-a4ec16b8d4a5?auto=format&fit=crop&w=1800&q=80",
+  miami:
+    "https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?auto=format&fit=crop&w=1800&q=80",
+};
+
+function getCityHeroImage(
+  citySlug: string,
+  cityName: string,
+  countryName: string
+): string {
+  return (
+    CITY_HERO_IMAGES[citySlug] ||
+    `https://images.unsplash.com/featured/1800x1000/?${encodeURIComponent(
+      `${cityName},${countryName},city,travel`
+    )}`
+  );
+}
+
+function nearbyCityUrl(city: CityIndexEntry): string {
+  if (city.has_state_layer && city.state_slug) {
+    return `/car-rental/${city.country_slug}/${city.state_slug}/${city.city_slug}/`;
+  }
+  return `/city-rental/${city.country_slug}/${city.city_slug}/`;
+}
+
+function SectionHeading({
+  label,
+  title,
+  subtitle,
+}: {
+  label?: string;
+  title: string;
+  subtitle?: string;
+}) {
+  return (
+    <div className="mb-8">
+      {label && (
+        <p className="text-blue-600 text-xs font-bold uppercase tracking-widest mb-2">
+          {label}
+        </p>
+      )}
+      <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+        {title}
+      </h2>
+      {subtitle && (
+        <p className="mt-2 text-slate-500 text-base max-w-2xl">{subtitle}</p>
+      )}
+    </div>
+  );
+}
+
+function ChevronRight() {
+  return (
+    <svg
+      className="w-4 h-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
+  );
+}
+
+function FaqAccordionItem({
+  question,
+  answer,
+}: {
+  question: string;
+  answer: string;
+}) {
+  return (
+    <div className="border border-slate-200 rounded-xl overflow-hidden bg-white">
+      <div className="p-5">
+        <p className="font-semibold text-slate-900 text-sm mb-2">{question}</p>
+        <p className="text-slate-600 text-sm leading-relaxed">{answer}</p>
+      </div>
+    </div>
+  );
+}
+
 export async function generateStaticParams() {
   const cities = await getCitiesIndex();
-
   return cities
-    .filter(
-      (c) => c.publication_state === "indexed" && c.has_state_layer === false
-    )
+    .filter((c) => c.publication_state === "indexed" && c.has_state_layer === false)
     .map((c) => ({
       country: c.country_slug,
       city: c.city_slug,
@@ -40,7 +136,7 @@ export async function generateMetadata({
   const { country: countrySlug, city: citySlug } = await params;
 
   const [city, country] = await Promise.all([
-    getCityBySlug(citySlug, countrySlug, null),
+    getCityBySlug(citySlug, countrySlug,),
     getCountryBySlug(countrySlug),
   ]);
 
@@ -63,62 +159,10 @@ export async function generateMetadata({
       title: city.meta_title,
       description: city.meta_description,
       url: canonical,
-      siteName: "GetEasyCar",
+      siteName: "Get Easy Car",
       type: "website",
     },
   };
-}
-
-function nearbyCityUrl(city: CityIndexEntry): string {
-  if (city.has_state_layer && city.state_slug) {
-    return `/car-rental/${city.country_slug}/${city.state_slug}/${city.city_slug}/`;
-  }
-  return `/city-rental/${city.country_slug}/${city.city_slug}/`;
-}
-
-function SectionHeading({
-  label,
-  title,
-  subtitle,
-}: {
-  label?: string;
-  title: string;
-  subtitle?: string;
-}) {
-  return (
-    <div className="mb-8">
-      {label && (
-        <p className="text-[#2C5F95] text-xs font-bold uppercase tracking-widest mb-2">
-          {label}
-        </p>
-      )}
-      <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-        {title}
-      </h2>
-      {subtitle && (
-        <p className="mt-2 text-slate-500 text-base max-w-2xl">{subtitle}</p>
-      )}
-    </div>
-  );
-}
-
-function ChevronRight() {
-  return (
-    <svg
-      className="w-4 h-4 shrink-0"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9 5l7 7-7 7"
-      />
-    </svg>
-  );
 }
 
 export default async function CityPage({
@@ -150,17 +194,18 @@ export default async function CityPage({
 
   const indexedGuides = guides.filter((g) => g.publication_state === "indexed");
   const hasFaq = city.faq.length >= 3;
+
+  const hasPracticalInfo =
+    !!country.driving_notes ||
+    !!country.toll_information ||
+    !!country.fuel_notes ||
+    !!country.parking_notes;
+
   const heroImage = getCityHeroImage(
     city.city_slug,
     city.city_name,
     country.country_name
   );
-
-  const hasPracticalInfo =
-    country.driving_notes ||
-    country.toll_information ||
-    country.fuel_notes ||
-    country.parking_notes;
 
   const webPageSchema = {
     "@context": "https://schema.org",
@@ -232,7 +277,7 @@ export default async function CityPage({
                   ) : (
                     <Link
                       href={item.url}
-                      className="hover:text-[#2C5F95] transition-colors"
+                      className="hover:text-blue-600 transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -248,111 +293,54 @@ export default async function CityPage({
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${heroImage})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0F2742]/88 via-[#163B66]/80 to-[#2C5F95]/62" />
-
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-blue-700/75 to-blue-500/65" />
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden pointer-events-none"
           >
-            <div className="absolute -top-20 right-0 w-[540px] h-[540px] rounded-full bg-sky-300/10 blur-3xl" />
-            <div className="absolute -bottom-16 -left-16 w-[420px] h-[420px] rounded-full bg-[#0B1D31]/25 blur-3xl" />
+            <div className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full bg-sky-400/15 blur-3xl" />
+            <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-blue-900/25 blur-3xl" />
           </div>
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-20">
-            <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
-              <div className="max-w-3xl">
-                <p className="text-blue-200 text-sm font-semibold uppercase tracking-widest mb-4">
-                  {country.country_name} · City Car Rental
-                </p>
-
-                <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
-                  {city.h1}
-                </h1>
-
-                <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-2xl">
-                  {city.intro_paragraph}
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={affiliateUrl(city.affiliate_sid_base, "hero")}
-                    className="inline-flex items-center justify-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 active:bg-blue-100 font-bold text-base px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-900/20"
-                  >
-                    Compare Car Rentals in {city.city_name}
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </a>
-
-                  {cityAirports.length > 0 && (
-                    <Link
-                      href={`/car-rental/airports/${cityAirports[0].airport_slug}/`}
-                      className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold text-base px-6 py-3.5 rounded-xl transition-colors border border-white/20"
-                    >
-                      Airport Pickup Options
-                    </Link>
-                  )}
-                </div>
-
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
-                  <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4">
-                    <p className="text-blue-200 text-xs uppercase tracking-wide font-semibold">
-                      Driving Side
-                    </p>
-                    <p className="mt-1 text-white font-semibold">
-                      {country.driving_side === "left"
-                        ? "Drive on the left"
-                        : "Drive on the right"}
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4">
-                    <p className="text-blue-200 text-xs uppercase tracking-wide font-semibold">
-                      Minimum Age
-                    </p>
-                    <p className="mt-1 text-white font-semibold">
-                      {country.minimum_driver_age}+ years
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4">
-                    <p className="text-blue-200 text-xs uppercase tracking-wide font-semibold">
-                      Currency
-                    </p>
-                    <p className="mt-1 text-white font-semibold">
-                      {country.currency_code}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-3xl border border-white/10 bg-white/10 backdrop-blur-sm p-6">
-                <p className="text-blue-100 text-xs font-semibold uppercase tracking-widest mb-3">
-                  Why book here
-                </p>
-                <h2 className="text-2xl font-bold text-white tracking-tight mb-4">
-                  Start with a smarter city rental page
-                </h2>
-                <div className="space-y-3 text-sm text-blue-50/90">
-                  <p>Compare airport and city pickup options before you book.</p>
-                  <p>Jump directly to trusted rental partners with no platform booking fees.</p>
-                  <p>Use local driving guidance to avoid common mistakes after pickup.</p>
-                </div>
+            <div className="max-w-2xl">
+              <p className="text-blue-200 text-sm font-semibold uppercase tracking-widest mb-4">
+                {country.country_name} · Car Rental
+              </p>
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
+                {city.h1}
+              </h1>
+              <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-xl">
+                {city.intro_paragraph}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href={affiliateUrl(city.affiliate_sid_base, "sidebar")}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 font-bold px-6 py-3 rounded-xl transition-colors"
+                  href={affiliateUrl(city.affiliate_sid_base, "hero")}
+                  className="inline-flex items-center justify-center gap-2 bg-white text-blue-700 hover:bg-blue-50 active:bg-blue-100 font-bold text-base px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-900/20"
                 >
-                  Check Prices in {city.city_name}
+                  Compare Car Rentals in {city.city_name}
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
                 </a>
+                {cityAirports.length > 0 && (
+                  <Link
+                    href={`/car-rental/airports/${cityAirports[0].airport_slug}/`}
+                    className="inline-flex items-center justify-center gap-2 bg-blue-800/50 hover:bg-blue-800/70 text-white font-semibold text-base px-6 py-3.5 rounded-xl transition-colors border border-white/20"
+                  >
+                    Airport Pickup
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -362,9 +350,9 @@ export default async function CityPage({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-10 text-sm font-medium text-slate-600">
               {[
-                "Free cancellation where available",
-                "No hidden platform fees",
-                "Trusted rental partners",
+                "Free Cancellation Available",
+                "No Hidden Platform Fees",
+                "Trusted Rental Partners",
               ].map((label) => (
                 <div key={label} className="flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xs font-black">
@@ -393,7 +381,7 @@ export default async function CityPage({
                     className="group flex flex-col gap-4 p-6 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-sky-400/40 rounded-2xl transition-all duration-200"
                   >
                     <div className="flex items-start justify-between">
-                      <span className="inline-flex bg-[#2C5F95] text-white text-xs font-extrabold px-3 py-1.5 rounded-lg tracking-wider">
+                      <span className="inline-flex bg-blue-600 text-white text-xs font-extrabold px-3 py-1.5 rounded-lg tracking-wider">
                         {airport.iata_code}
                       </span>
                       <span className="text-slate-600 group-hover:text-sky-400 transition-colors">
@@ -427,19 +415,19 @@ export default async function CityPage({
           </section>
         )}
 
-        <section className="py-12 sm:py-14 bg-[#F2F6FA] border-y border-slate-200">
+        <section className="py-12 sm:py-14 bg-blue-50 border-y border-blue-100">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-4">
               Ready to Compare Rental Cars in {city.city_name}?
             </h2>
             <p className="text-slate-600 text-base mb-7 leading-relaxed">
-              Compare city pickup and airport rental options in {city.city_name},
-              review practical travel information, and continue directly to trusted
-              partners when you are ready to book.
+              Find and compare rental vehicles across {city.city_name} and
+              surrounding areas. Connect directly with trusted suppliers — no
+              booking fees.
             </p>
             <a
               href={affiliateUrl(city.affiliate_sid_base, "mid")}
-              className="inline-flex items-center gap-2 bg-[#163B66] hover:bg-[#1E4C82] active:bg-[#143454] text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-900/10 text-base"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/20 text-base"
             >
               Check Availability and Prices
               <svg
@@ -447,7 +435,6 @@ export default async function CityPage({
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -467,17 +454,16 @@ export default async function CityPage({
                 <SectionHeading
                   label="Local Driving"
                   title={`Driving in ${city.city_name}`}
-                  subtitle="Key practical information before you set off."
+                  subtitle="Key information before you set off."
                 />
                 <div className="flex flex-col gap-3 mt-6">
                   <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
                     <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
                       <svg
-                        className="w-4 h-4 text-[#2C5F95]"
+                        className="w-4 h-4 text-blue-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
-                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
@@ -498,15 +484,13 @@ export default async function CityPage({
                       </p>
                     </div>
                   </div>
-
                   <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
                     <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
                       <svg
-                        className="w-4 h-4 text-[#2C5F95]"
+                        className="w-4 h-4 text-blue-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
-                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
@@ -518,22 +502,20 @@ export default async function CityPage({
                     </div>
                     <div>
                       <p className="text-xs text-slate-400 font-medium">
-                        Minimum Driver Age
+                        Min. Driver Age
                       </p>
                       <p className="text-sm font-semibold text-slate-800">
                         {country.minimum_driver_age}+ years
                       </p>
                     </div>
                   </div>
-
                   <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
                     <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
                       <svg
-                        className="w-4 h-4 text-[#2C5F95]"
+                        className="w-4 h-4 text-blue-600"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
-                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
@@ -556,20 +538,6 @@ export default async function CityPage({
               </div>
 
               <div className="lg:col-span-2 flex flex-col gap-6">
-                <div className="border-b border-slate-100 pb-6">
-                  <h3 className="text-base font-semibold text-slate-900 mb-2">
-                    Why compare before booking in {city.city_name}?
-                  </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    Car rental prices in {city.city_name} can vary significantly
-                    depending on seasonality, airport pickup charges, vehicle class,
-                    insurance choices, and cancellation conditions. Starting with a
-                    comparison page helps you review city and airport options before
-                    committing to a supplier, which is especially useful in popular
-                    destinations and peak travel periods.
-                  </p>
-                </div>
-
                 {hasPracticalInfo ? (
                   <>
                     {country.driving_notes && (
@@ -622,11 +590,12 @@ export default async function CityPage({
                       Traffic in {country.country_name} drives on the{" "}
                       {country.driving_side === "left" ? "left" : "right"}.
                       The minimum age to rent a car is typically{" "}
-                      {country.minimum_driver_age} years old, though young driver
-                      surcharges may apply for drivers under 25. Always carry your
-                      driving license, passport, and rental documentation. An
-                      International Driving Permit is recommended for visitors whose
-                      license is not in the local language.
+                      {country.minimum_driver_age} years old, though young
+                      driver surcharges may apply for drivers under 25. Carry
+                      your driving license, passport, and rental documentation
+                      at all times. An International Driving Permit is
+                      recommended for visitors whose license is not in the local
+                      language.
                     </p>
                   </div>
                 )}
@@ -645,28 +614,118 @@ export default async function CityPage({
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
                 {
-                  title: "Book in advance",
-                  body: `Booking ahead in ${city.city_name} often secures better rates and a stronger choice of vehicles, especially during peak travel periods and holiday weekends.`,
+                  icon: (
+                    <svg
+                      className="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                      />
+                    </svg>
+                  ),
+                  title: "Book in Advance",
+                  body: `Rental availability in ${city.city_name} is strong, but booking ahead secures better rates and your preferred vehicle category — especially during peak travel periods.`,
                 },
                 {
-                  title: "Compare airport and city pickup",
-                  body: `Airport pickup is convenient, but city pickup can sometimes be cheaper. Review both options before deciding which location best fits your trip.`,
+                  icon: (
+                    <svg
+                      className="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                  ),
+                  title: "Check Insurance Options",
+                  body: `Review what coverage is included in your rental. Some credit cards offer supplemental coverage — check your card benefits before purchasing additional insurance at the counter.`,
                 },
                 {
-                  title: "Check insurance carefully",
-                  body: "Review what coverage is included in your booking and whether your credit card provides supplemental rental coverage before buying extra protection.",
+                  icon: (
+                    <svg
+                      className="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 9a2 2 0 10-4 0v5a2 2 0 01-2 2h6m-6-4h4m8 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  ),
+                  title: "Understand Fuel Policy",
+                  body: `Most rentals come with a full tank and ask you to return it full. Confirm the fuel policy at pickup and note the nearest fuel station to your return location.`,
                 },
                 {
-                  title: "Bring the right payment card",
-                  body: "Most suppliers require a credit card in the primary driver's name for the security deposit. Debit card acceptance is often more limited.",
+                  icon: (
+                    <svg
+                      className="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                      />
+                    </svg>
+                  ),
+                  title: "Bring a Credit Card",
+                  body: `A credit card in the primary driver's name is required by most suppliers for the security deposit. Some suppliers do not accept debit cards for the deposit even if they accept them for payment.`,
                 },
                 {
-                  title: "Understand the fuel policy",
-                  body: "Many rentals are provided full-to-full. Confirm the policy before pickup and plan where to refuel before returning the vehicle.",
+                  icon: (
+                    <svg
+                      className="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2"
+                      />
+                    </svg>
+                  ),
+                  title: "Carry Your Documents",
+                  body: `You will need your driving license, passport or national ID, and booking confirmation. If your license is not in English or the local language, carry an International Driving Permit.`,
                 },
                 {
-                  title: "Inspect the vehicle",
-                  body: "Take photos and note any pre-existing damage before leaving the lot so you are not charged later for issues that were already there.",
+                  icon: (
+                    <svg
+                      className="w-5 h-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                      />
+                    </svg>
+                  ),
+                  title: "Inspect Before You Drive",
+                  body: `Walk around the vehicle with the rental agent before driving away. Note any existing damage on the inspection form and photograph it — this protects you from being charged for pre-existing issues.`,
                 },
               ].map((tip) => (
                 <div
@@ -674,20 +733,7 @@ export default async function CityPage({
                   className="flex flex-col gap-3 p-6 bg-white border border-slate-200 rounded-2xl"
                 >
                   <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
-                    <svg
-                      className="w-5 h-5 text-[#2C5F95]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
+                    {tip.icon}
                   </div>
                   <h3 className="font-semibold text-slate-900 text-base">
                     {tip.title}
@@ -710,109 +756,87 @@ export default async function CityPage({
               />
               <div className="flex flex-col gap-3">
                 {city.faq.map((item, index) => (
-                  <div
+                  <FaqAccordionItem
                     key={index}
-                    className="border border-slate-200 rounded-xl bg-white p-5"
-                  >
-                    <p className="font-semibold text-slate-900 text-sm mb-2">
-                      {item.question}
-                    </p>
-                    <p className="text-slate-600 text-sm leading-relaxed">
-                      {item.answer}
-                    </p>
-                  </div>
+                    question={item.question}
+                    answer={item.answer}
+                  />
                 ))}
               </div>
             </div>
           </section>
         )}
 
-        {(indexedGuides.length > 0 || nearbyCities.length > 0) && (
+        {indexedGuides.length > 0 && (
           <section className="py-14 sm:py-16 bg-slate-50 border-y border-slate-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <SectionHeading
-                label="Plan More"
-                title={`More ways to plan your ${city.city_name} rental`}
-                subtitle="Use nearby destinations and country guides to compare pickup strategies and driving context."
+                label="Travel Guides"
+                title={`Car Rental Guides for ${country.country_name}`}
+                subtitle={`Essential information for renting a car in ${country.country_name}.`}
               />
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {nearbyCities.length > 0 && (
-                  <div className="bg-white border border-slate-200 rounded-2xl p-6">
-                    <h3 className="font-semibold text-slate-900 text-base mb-4">
-                      Nearby rental destinations
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {nearbyCities.slice(0, 6).map((nearby) => (
-                        <Link
-                          key={nearby.city_slug}
-                          href={nearbyCityUrl(nearby)}
-                          className="group flex items-center justify-between rounded-xl border border-slate-200 px-4 py-3 hover:border-[#B7CDE3] hover:bg-slate-50 transition-colors"
-                        >
-                          <span className="text-sm font-medium text-slate-700 group-hover:text-[#163B66]">
-                            {nearby.city_name}
-                          </span>
-                          <span className="text-slate-300 group-hover:text-[#2C5F95]">
-                            <ChevronRight />
-                          </span>
-                        </Link>
-                      ))}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {indexedGuides.map((guide) => (
+                  <Link
+                    key={guide.guide_slug}
+                    href={`/guide/${guide.guide_slug}/`}
+                    className="group flex items-start gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:shadow-blue-50 transition-all duration-200"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors">
+                      <svg
+                        className="w-5 h-5 text-blue-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                        />
+                      </svg>
                     </div>
-                  </div>
-                )}
-
-                {indexedGuides.length > 0 && (
-                  <div className="bg-white border border-slate-200 rounded-2xl p-6">
-                    <h3 className="font-semibold text-slate-900 text-base mb-4">
-                      Country-level rental guides
-                    </h3>
-                    <div className="flex flex-col gap-3">
-                      {indexedGuides.map((guide) => (
-                        <Link
-                          key={guide.guide_slug}
-                          href={`/guide/${guide.guide_slug}/`}
-                          className="group flex items-start justify-between gap-3 rounded-xl border border-slate-200 px-4 py-4 hover:border-[#B7CDE3] hover:bg-slate-50 transition-colors"
-                        >
-                          <div>
-                            <p className="text-xs font-semibold uppercase tracking-wide text-[#2C5F95] mb-1">
-                              Country Guide
-                            </p>
-                            <p className="text-sm font-medium text-slate-800 group-hover:text-[#163B66]">
-                              {guide.guide_title}
-                            </p>
-                          </div>
-                          <span className="text-slate-300 group-hover:text-[#2C5F95] mt-0.5">
-                            <ChevronRight />
-                          </span>
-                        </Link>
-                      ))}
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-1">
+                        Country Guide
+                      </p>
+                      <h3 className="font-semibold text-slate-900 group-hover:text-blue-700 transition-colors text-base leading-snug">
+                        {guide.guide_title}
+                      </h3>
+                      <p className="text-xs text-slate-400 mt-2">
+                        Driving rules · Tolls · Fuel · Parking
+                      </p>
                     </div>
-                  </div>
-                )}
+                    <span className="text-slate-300 group-hover:text-blue-500 transition-colors shrink-0 mt-0.5">
+                      <ChevronRight />
+                    </span>
+                  </Link>
+                ))}
               </div>
             </div>
           </section>
         )}
 
-        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-[#163B66] to-[#0F2742]">
+        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-blue-700 to-blue-600">
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden pointer-events-none"
           >
             <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-white/5 blur-3xl" />
-            <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-sky-300/10 blur-3xl" />
+            <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-blue-900/20 blur-3xl" />
           </div>
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-4">
               Find the Best Car Rental Deals in {city.city_name}
             </h2>
             <p className="text-blue-100 text-base mb-8 leading-relaxed">
-              Compare city and airport pickup options, review trusted suppliers,
-              and choose the vehicle that fits your trip in {city.city_name}.
+              Compare options across all suppliers serving {city.city_name}.
+              Transparent pricing, trusted partners.
             </p>
             <a
               href={affiliateUrl(city.affiliate_sid_base, "bottom")}
-              className="inline-flex items-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 active:bg-blue-100 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl shadow-blue-900/20 text-base"
+              className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl shadow-blue-900/20 text-base"
             >
               Compare Car Rental Deals Now
             </a>
@@ -833,7 +857,7 @@ export default async function CityPage({
                   <li>
                     <Link
                       href={`/car-rental/${countrySlug}/`}
-                      className="text-sm text-slate-600 hover:text-[#2C5F95] transition-colors flex items-center gap-1.5"
+                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
                     >
                       <span className="text-slate-300">›</span>
                       Car Rental in {country.country_name}
@@ -841,11 +865,11 @@ export default async function CityPage({
                   </li>
                   <li>
                     <Link
-                      href="/car-rental/airports/"
-                      className="text-sm text-slate-600 hover:text-[#2C5F95] transition-colors flex items-center gap-1.5"
+                      href={`/guide/`}
+                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
                     >
                       <span className="text-slate-300">›</span>
-                      All Airport Rental Locations
+                      All Travel Guides
                     </Link>
                   </li>
                 </ul>
@@ -861,7 +885,7 @@ export default async function CityPage({
                       <li key={`${airport.iata_code}-link`}>
                         <Link
                           href={`/car-rental/airports/${airport.airport_slug}/`}
-                          className="text-sm text-slate-600 hover:text-[#2C5F95] transition-colors flex items-center gap-1.5"
+                          className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
                         >
                           <span className="text-slate-300">›</span>
                           {airport.iata_code} — {airport.airport_name_short}
@@ -882,7 +906,7 @@ export default async function CityPage({
                       <li key={nearby.city_slug}>
                         <Link
                           href={nearbyCityUrl(nearby)}
-                          className="text-sm text-slate-600 hover:text-[#2C5F95] transition-colors flex items-center gap-1.5"
+                          className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
                         >
                           <span className="text-slate-300">›</span>
                           Car Rental in {nearby.city_name}
@@ -903,7 +927,7 @@ export default async function CityPage({
                       <li key={guide.guide_slug}>
                         <Link
                           href={`/guide/${guide.guide_slug}/`}
-                          className="text-sm text-slate-600 hover:text-[#2C5F95] transition-colors flex items-center gap-1.5"
+                          className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
                         >
                           <span className="text-slate-300">›</span>
                           {guide.guide_title}
