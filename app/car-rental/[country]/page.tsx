@@ -20,16 +20,12 @@ function getCountryHeroImage(countrySlug: string): string {
   const map: Record<string, string> = {
     france:
       "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1800&q=80",
-
     spain:
       "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1800&q=80",
-
     italy:
       "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?auto=format&fit=crop&w=1800&q=80",
-
     australia:
       "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1800&q=80",
-
     "united-states":
       "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1800&q=80",
   };
@@ -45,6 +41,7 @@ function countryLabel(slug: string): string {
     australia: "Australia",
     "united-states": "United States",
   };
+
   return map[slug] ?? slug.replace(/-/g, " ");
 }
 
@@ -57,80 +54,47 @@ function cityUrl(city: {
   if (city.has_state_layer && city.state_slug) {
     return `/car-rental/${city.country_slug}/${city.state_slug}/${city.city_slug}/`;
   }
+
   return `/city-rental/${city.country_slug}/${city.city_slug}/`;
-}
-
-export async function generateStaticParams() {
-  const countries = ["france", "spain", "italy", "united-states", "australia"];
-  return countries.map((country) => ({ country }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ country: string }>;
-}): Promise<Metadata> {
-  const { country: countrySlug } = await params;
-  const country = await getCountryBySlug(countrySlug);
-console.log("COUNTRY DEBUG:", countrySlug, country);
-
-if (!country) {
-  return (
-    <div style={{ padding: 40, background: "black", color: "white" }}>
-      Country not found: {countrySlug}
-    </div>
-  );
-}
-
-if (country.publication_state !== "indexed") {
-  return (
-    <div style={{ padding: 40, background: "black", color: "white" }}>
-      Country not indexed: {countrySlug}
-    </div>
-  );
-}
-
-  const canonical = `https://geteasycar.com/car-rental/${countrySlug}/`;
-
-  return {
-    title: country.meta_title || `Car Rental in ${country.country_name}`,
-    description:
-      country.meta_description ||
-      `Compare car rental options in ${country.country_name}.`,
-    alternates: { canonical },
-    openGraph: {
-      title: country.meta_title || `Car Rental in ${country.country_name}`,
-      description:
-        country.meta_description ||
-        `Compare car rental options in ${country.country_name}.`,
-      url: canonical,
-      siteName: "GetEasyCar",
-      type: "website",
-    },
-  };
 }
 
 function SectionHeading({
   label,
   title,
   subtitle,
+  light = false,
 }: {
   label?: string;
   title: string;
   subtitle?: string;
+  light?: boolean;
 }) {
   return (
     <div className="mb-8">
       {label && (
-        <p className="text-[#2C5F95] text-xs font-bold uppercase tracking-widest mb-2">
+        <p
+          className={`text-xs font-bold uppercase tracking-widest mb-2 ${
+            light ? "text-sky-300" : "text-[#2C5F95]"
+          }`}
+        >
           {label}
         </p>
       )}
-      <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+      <h2
+        className={`text-2xl sm:text-3xl font-bold tracking-tight ${
+          light ? "text-white" : "text-slate-900"
+        }`}
+      >
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-2 text-slate-500 text-base max-w-2xl">{subtitle}</p>
+        <p
+          className={`mt-2 text-base max-w-2xl ${
+            light ? "text-slate-300" : "text-slate-500"
+          }`}
+        >
+          {subtitle}
+        </p>
       )}
     </div>
   );
@@ -153,6 +117,52 @@ function ChevronRight() {
       />
     </svg>
   );
+}
+
+function FaqItem({ question, answer }: { question: string; answer: string }) {
+  return (
+    <div className="border border-slate-200 rounded-xl bg-white p-5">
+      <p className="font-semibold text-slate-900 text-sm mb-2">{question}</p>
+      <p className="text-slate-600 text-sm leading-relaxed">{answer}</p>
+    </div>
+  );
+}
+
+export async function generateStaticParams() {
+  const countries = ["france", "spain", "italy", "united-states", "australia"];
+  return countries.map((country) => ({ country }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ country: string }>;
+}): Promise<Metadata> {
+  const { country: countrySlug } = await params;
+  const country = await getCountryBySlug(countrySlug);
+
+  if (!country || country.publication_state !== "indexed") {
+    return { title: "Not Found" };
+  }
+
+  const canonical = `https://geteasycar.com/car-rental/${countrySlug}/`;
+
+  return {
+    title: country.meta_title || `Car Rental in ${country.country_name}`,
+    description:
+      country.meta_description ||
+      `Compare car rental options in ${country.country_name}.`,
+    alternates: { canonical },
+    openGraph: {
+      title: country.meta_title || `Car Rental in ${country.country_name}`,
+      description:
+        country.meta_description ||
+        `Compare car rental options in ${country.country_name}.`,
+      url: canonical,
+      siteName: "GetEasyCar",
+      type: "website",
+    },
+  };
 }
 
 export default async function CountryPage({
@@ -197,6 +207,21 @@ export default async function CountryPage({
     (guide) => guide.publication_state === "indexed"
   );
 
+  const faqItems = [
+    {
+      question: `Is renting a car in ${country.country_name} a good idea?`,
+      answer: `A rental car is often the best option in ${country.country_name} if you plan to explore outside major city centers, visit smaller towns, or follow your own schedule. In dense urban centers, public transport may be easier, but a car adds flexibility for regional travel.`,
+    },
+    {
+      question: `What documents do I need to rent a car in ${country.country_name}?`,
+      answer: `Most suppliers require a valid driving licence, a passport or government ID, and a credit card in the main driver's name. Depending on your licence country, an International Driving Permit may also be recommended or required.`,
+    },
+    {
+      question: `Should I pick up my rental car at the airport or in the city?`,
+      answer: `Airport pickup is usually the easiest option because vehicle selection is broader and major highways are easier to access. City pickup can sometimes work better if you plan to spend several days in the city before starting a road trip.`,
+    },
+  ];
+
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -224,21 +249,6 @@ export default async function CountryPage({
       ],
     },
   };
-
-  const faqItems = [
-    {
-      question: `Is renting a car in ${country.country_name} a good idea?`,
-      answer: `A rental car is often the best option in ${country.country_name} if you plan to explore outside major city centers, visit smaller towns, or follow your own schedule. In dense urban centers, public transport may be easier, but a car adds flexibility for regional travel.`,
-    },
-    {
-      question: `What documents do I need to rent a car in ${country.country_name}?`,
-      answer: `Most suppliers require a valid driving licence, a passport or government ID, and a credit card in the main driver's name. Depending on your licence country, an International Driving Permit may also be recommended or required.`,
-    },
-    {
-      question: `Should I pick up my rental car at the airport or in the city?`,
-      answer: `Airport pickup is usually the easiest option because vehicle selection is broader and major highways are easier to access. City pickup can sometimes work better if you plan to spend several days in the city before starting a road trip.`,
-    },
-  ];
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -289,18 +299,20 @@ export default async function CountryPage({
         </nav>
 
         <section className="relative overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImage})` }}
+          <img
+            src={heroImage}
+            alt={`${country.country_name} car rental`}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0F2742]/68 via-[#163B66]/56 to-[#2C5F95]/38" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0F2742]/70 via-[#163B66]/56 to-[#2C5F95]/34" />
 
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden pointer-events-none"
           >
             <div className="absolute -top-20 right-0 w-[540px] h-[540px] rounded-full bg-sky-300/10 blur-3xl" />
-            <div className="absolute -bottom-16 -left-16 w-[420px] h-[420px] rounded-full bg-[#0B1D31]/20 blur-3xl" />
+            <div className="absolute -bottom-16 -left-16 w-[420px] h-[420px] rounded-full bg-[#0B1D31]/18 blur-3xl" />
           </div>
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-20">
@@ -351,7 +363,7 @@ export default async function CountryPage({
                   )}
                 </div>
 
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl">
                   <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
                     <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
                       Driving Side
@@ -496,6 +508,7 @@ export default async function CountryPage({
                 label="Airport Pickup"
                 title={`Major airport rental locations in ${country.country_name}`}
                 subtitle="Compare airport pickup options before you land and choose the access point that best fits your route."
+                light
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {indexedAirports.map((airport) => (
@@ -768,17 +781,11 @@ export default async function CountryPage({
             />
             <div className="flex flex-col gap-3">
               {faqItems.map((item, index) => (
-                <div
+                <FaqItem
                   key={index}
-                  className="border border-slate-200 rounded-xl bg-white p-5"
-                >
-                  <p className="font-semibold text-slate-900 text-sm mb-2">
-                    {item.question}
-                  </p>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {item.answer}
-                  </p>
-                </div>
+                  question={item.question}
+                  answer={item.answer}
+                />
               ))}
             </div>
           </div>
