@@ -2,14 +2,13 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  getAirportsIndex,
   getAirportBySlug,
-  getCountryBySlug,
+  getAirportsByCountry,
+  getAirportsIndex,
   getCityBySlug,
-  resolveNearbyCities,
-  type CityIndexEntry,
+  getCountryBySlug,
+  getGuidesByCountry,
 } from "@/lib/data";
-import { getAirportHeroImage } from "@/lib/images";
 
 const AFFILIATE_BASE =
   "https://www.dpbolvw.net/click-101574986-15736982?sid=";
@@ -18,23 +17,148 @@ function affiliateUrl(sidBase: string, position: string): string {
   return `${AFFILIATE_BASE}${sidBase}_${position}`;
 }
 
+const AIRPORT_HERO_IMAGES: Record<string, string> = {
+  cdg: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1800&q=80",
+  ory: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1800&q=80",
+  nce: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80",
+  lys: "https://images.unsplash.com/photo-1474302770737-173ee21bab63?auto=format&fit=crop&w=1800&q=80",
+  mrs: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1800&q=80",
+  bcn: "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1800&q=80",
+  mad: "https://images.unsplash.com/photo-1531572753322-ad063cecc140?auto=format&fit=crop&w=1800&q=80",
+  fco: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1800&q=80",
+  lax: "https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?auto=format&fit=crop&w=1800&q=80",
+  mco: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1800&q=80",
+  mia: "https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?auto=format&fit=crop&w=1800&q=80",
+  syd: "https://images.unsplash.com/photo-1523428096881-5bd79d043006?auto=format&fit=crop&w=1800&q=80",
+  mel: "https://images.unsplash.com/photo-1514395462725-fb4566210144?auto=format&fit=crop&w=1800&q=80",
+  bne: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80",
+  per: "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1800&q=80",
+  adl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80",
+};
+
+function getAirportHeroImage(iataCode: string): string {
+  return (
+    AIRPORT_HERO_IMAGES[iataCode.toLowerCase()] ||
+    "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1800&q=80"
+  );
+}
+
+function SectionHeading({
+  label,
+  title,
+  subtitle,
+  light = false,
+}: {
+  label?: string;
+  title: string;
+  subtitle?: string;
+  light?: boolean;
+}) {
+  return (
+    <div className="mb-8">
+      {label && (
+        <p
+          className={`text-xs font-bold uppercase tracking-widest mb-2 ${
+            light ? "text-sky-300" : "text-[#2C5F95]"
+          }`}
+        >
+          {label}
+        </p>
+      )}
+      <h2
+        className={`text-2xl sm:text-3xl font-bold tracking-tight ${
+          light ? "text-white" : "text-slate-900"
+        }`}
+      >
+        {title}
+      </h2>
+      {subtitle && (
+        <p
+          className={`mt-2 text-base max-w-2xl ${
+            light ? "text-slate-300" : "text-slate-500"
+          }`}
+        >
+          {subtitle}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function ChevronRight() {
+  return (
+    <svg
+      className="w-4 h-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
+  );
+}
+
+function cityUrl(city: {
+  country_slug: string;
+  state_slug: string | null;
+  city_slug: string;
+  has_state_layer: boolean;
+}) {
+  if (city.has_state_layer && city.state_slug) {
+    return `/car-rental/${city.country_slug}/${city.state_slug}/${city.city_slug}/`;
+  }
+  return `/city-rental/${city.country_slug}/${city.city_slug}/`;
+}
+
+function getPickupSummary(
+  pickupType: "on_site" | "shuttle" | "mixed",
+  shuttleNotes: string | null
+) {
+  if (pickupType === "on_site") {
+    return "Most travelers prefer airport pickup because counters are usually inside the terminal complex or a short walk from arrivals.";
+  }
+  if (pickupType === "shuttle") {
+    return shuttleNotes
+      ? shuttleNotes
+      : "This airport commonly uses shuttle transfers to reach the rental lot, so allow extra time after landing.";
+  }
+  return "This airport may offer a mix of in-terminal counters and off-airport shuttle pickup depending on supplier and vehicle category.";
+}
+
+function getReturnSummary(
+  pickupType: "on_site" | "shuttle" | "mixed",
+  airportNameShort: string
+) {
+  if (pickupType === "on_site") {
+    return `Returning your car at ${airportNameShort} is usually the simplest option because return lanes are generally signposted close to the terminal road system.`;
+  }
+  if (pickupType === "shuttle") {
+    return `Return procedures at ${airportNameShort} may include dropping the vehicle at an off-airport lot and taking a shuttle back to the terminal, so leave extra time before your flight.`;
+  }
+  return `Return arrangements at ${airportNameShort} depend on the supplier. Some providers use on-airport return bays while others require a shuttle connection back to departures.`;
+}
+
 export async function generateStaticParams() {
   const airports = await getAirportsIndex();
-
   return airports
-    .filter((a) => a.publication_state === "indexed")
-    .map((a) => ({
-      "airport-slug": a.airport_slug,
+    .filter((airport) => airport.publication_state === "indexed")
+    .map((airport) => ({
+      airport: airport.airport_slug,
     }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ "airport-slug": string }>;
+  params: Promise<{ airport: string }>;
 }): Promise<Metadata> {
-  const { "airport-slug": airportSlug } = await params;
-
+  const { airport: airportSlug } = await params;
   const airport = await getAirportBySlug(airportSlug);
 
   if (!airport || airport.publication_state !== "indexed") {
@@ -51,69 +175,18 @@ export async function generateMetadata({
       title: airport.meta_title,
       description: airport.meta_description,
       url: canonical,
-      siteName: "Get Easy Car",
+      siteName: "GetEasyCar",
       type: "website",
     },
   };
 }
 
-function cityUrl(city: CityIndexEntry): string {
-  if (city.has_state_layer && city.state_slug) {
-    return `/car-rental/${city.country_slug}/${city.state_slug}/${city.city_slug}/`;
-  }
-  return `/city-rental/${city.country_slug}/${city.city_slug}/`;
-}
-
-function SectionHeading({
-  label,
-  title,
-  subtitle,
-}: {
-  label?: string;
-  title: string;
-  subtitle?: string;
-}) {
-  return (
-    <div className="mb-8">
-      {label && (
-        <p className="text-blue-600 text-xs font-bold uppercase tracking-widest mb-2">
-          {label}
-        </p>
-      )}
-      <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-        {title}
-      </h2>
-      {subtitle && (
-        <p className="mt-2 text-slate-500 text-base max-w-2xl">{subtitle}</p>
-      )}
-    </div>
-  );
-}
-
-function ChevronRight() {
-  return (
-    <svg
-      className="w-4 h-4 shrink-0"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9 5l7 7-7 7"
-      />
-    </svg>
-  );
-}
-
 export default async function AirportPage({
   params,
 }: {
-  params: Promise<{ "airport-slug": string }>;
+  params: Promise<{ airport: string }>;
 }) {
-  const { "airport-slug": airportSlug } = await params;
+  const { airport: airportSlug } = await params;
 
   const airport = await getAirportBySlug(airportSlug);
 
@@ -121,30 +194,47 @@ export default async function AirportPage({
     notFound();
   }
 
-  const [country, city] = await Promise.all([
+  const [country, city, countryAirports, countryGuides] = await Promise.all([
     getCountryBySlug(airport.country_slug),
-    getCityBySlug(
-      airport.city_slug,
-      airport.country_slug,
-      airport.state_slug ?? null
-    ),
+    getCityBySlug(airport.city_slug, airport.country_slug, airport.state_slug),
+    getAirportsByCountry(airport.country_slug),
+    getGuidesByCountry(airport.country_slug),
   ]);
 
-  if (!country || country.publication_state !== "indexed") {
+  if (!country || !city) {
     notFound();
   }
 
-  const nearbyCities = city
-    ? await resolveNearbyCities(city.nearby_city_slugs)
-    : [];
+  const heroImage = getAirportHeroImage(airport.iata_code);
+  const relatedAirports = countryAirports
+    .filter(
+      (item) =>
+        item.publication_state === "indexed" &&
+        item.airport_slug !== airport.airport_slug
+    )
+    .slice(0, 6);
 
-  const hasFaq = airport.faq.length >= 3;
+  const indexedGuides = countryGuides
+    .filter((guide) => guide.publication_state === "indexed")
+    .slice(0, 6);
 
-  const heroImage = getAirportHeroImage(
-    airport.iata_code,
-    airport.airport_name,
-    airport.city_slug.replace(/-/g, " ")
-  );
+  const faqItems =
+    airport.faq.length >= 3
+      ? airport.faq
+      : [
+          {
+            question: `Where do I pick up my rental car at ${airport.airport_name_short}?`,
+            answer: getPickupSummary(airport.pickup_type, airport.shuttle_notes),
+          },
+          {
+            question: `Should I rent a car at ${airport.airport_name_short} or in the city?`,
+            answer: `Airport pickup at ${airport.airport_name_short} is usually the easiest option if you want to start driving immediately after arrival. City pickup can work for travelers who plan to spend time downtown before beginning a road trip.`,
+          },
+          {
+            question: `How early should I return my rental car at ${airport.airport_name_short}?`,
+            answer: getReturnSummary(airport.pickup_type, airport.airport_name_short),
+          },
+        ];
 
   const webPageSchema = {
     "@context": "https://schema.org",
@@ -164,20 +254,18 @@ export default async function AirportPage({
     },
   };
 
-  const faqSchema = hasFaq
-    ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: airport.faq.map((item) => ({
-          "@type": "Question",
-          name: item.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: item.answer,
-          },
-        })),
-      }
-    : null;
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
 
   return (
     <>
@@ -185,12 +273,10 @@ export default async function AirportPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       <div className="min-h-screen bg-white">
         <nav
@@ -207,16 +293,13 @@ export default async function AirportPage({
                     </span>
                   )}
                   {index === airport.breadcrumb_path.length - 1 ? (
-                    <span
-                      className="text-slate-700 font-medium"
-                      aria-current="page"
-                    >
+                    <span className="text-slate-700 font-medium" aria-current="page">
                       {item.label}
                     </span>
                   ) : (
                     <Link
                       href={item.url}
-                      className="hover:text-blue-600 transition-colors"
+                      className="hover:text-[#2C5F95] transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -228,349 +311,306 @@ export default async function AirportPage({
         </nav>
 
         <section className="relative overflow-hidden">
-          <div
-            className="absolute inset-0 bg-center bg-cover"
-            style={{ backgroundImage: `url(${heroImage})` }}
+          <img
+            src={heroImage}
+            alt={`${airport.airport_name} car rental`}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-blue-700/80 to-blue-500/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0F2742]/72 via-[#163B66]/58 to-[#2C5F95]/28" />
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden pointer-events-none"
           >
-            <div className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full bg-sky-400/15 blur-3xl" />
-            <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-blue-900/25 blur-3xl" />
+            <div className="absolute -top-20 right-0 w-[540px] h-[540px] rounded-full bg-sky-300/10 blur-3xl" />
+            <div className="absolute -bottom-16 -left-16 w-[420px] h-[420px] rounded-full bg-[#0B1D31]/18 blur-3xl" />
           </div>
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-20">
-            <div className="max-w-2xl">
-              <div className="flex items-center gap-3 mb-4 flex-wrap">
-                <span className="inline-flex items-center bg-white/15 text-white text-xs font-extrabold px-3 py-1.5 rounded-lg tracking-wider">
-                  {airport.iata_code}
-                </span>
-                <span className="text-blue-200 text-sm font-semibold uppercase tracking-widest">
-                  Airport Car Rental
-                </span>
-              </div>
+            <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
+              <div className="max-w-3xl">
+                <p className="text-blue-100 text-sm font-semibold uppercase tracking-widest mb-4">
+                  Airport Rental Hub · {airport.iata_code}
+                </p>
 
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
-                {airport.h1}
-              </h1>
+                <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
+                  {airport.h1}
+                </h1>
 
-              <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-xl">
-                {airport.intro_paragraph}
-              </p>
+                <p className="text-blue-50 text-lg leading-relaxed mb-8 max-w-2xl">
+                  {airport.intro_paragraph}
+                </p>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href={affiliateUrl(airport.affiliate_sid_base, "hero")}
-                  className="inline-flex items-center justify-center gap-2 bg-white text-blue-700 hover:bg-blue-50 active:bg-blue-100 font-bold text-base px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-900/20"
-                >
-                  Compare Car Rentals at {airport.iata_code}
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={affiliateUrl(airport.affiliate_sid_base, "hero")}
+                    className="inline-flex items-center justify-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 active:bg-blue-100 font-bold text-base px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-900/20"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </a>
+                    Compare Car Rentals at {airport.iata_code}
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a>
 
-                {city && (
                   <Link
                     href={cityUrl(city)}
-                    className="inline-flex items-center justify-center gap-2 bg-blue-800/50 hover:bg-blue-800/70 text-white font-semibold text-base px-6 py-3.5 rounded-xl transition-colors border border-white/20"
+                    className="inline-flex items-center justify-center gap-2 bg-white/12 hover:bg-white/18 text-white font-semibold text-base px-6 py-3.5 rounded-xl transition-colors border border-white/20"
                   >
                     Explore {city.city_name}
                   </Link>
-                )}
+                </div>
+
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-4 gap-3 max-w-4xl">
+                  <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
+                    <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
+                      Pickup Type
+                    </p>
+                    <p className="mt-1 text-white font-semibold capitalize">
+                      {airport.pickup_type === "on_site"
+                        ? "On-site"
+                        : airport.pickup_type === "shuttle"
+                          ? "Shuttle"
+                          : "Mixed"}
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
+                    <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
+                      Distance
+                    </p>
+                    <p className="mt-1 text-white font-semibold">
+                      {airport.distance_from_city_km} km
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
+                    <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
+                      City
+                    </p>
+                    <p className="mt-1 text-white font-semibold">
+                      {city.city_name}
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
+                    <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
+                      Country
+                    </p>
+                    <p className="mt-1 text-white font-semibold">
+                      {country.country_name}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-white/10 bg-white/12 backdrop-blur-sm p-6">
+                <p className="text-blue-100 text-xs font-semibold uppercase tracking-widest mb-3">
+                  Airport Snapshot
+                </p>
+                <h2 className="text-2xl font-bold text-white tracking-tight mb-4">
+                  What to expect at {airport.airport_name_short}
+                </h2>
+                <div className="space-y-3 text-sm text-blue-50/90">
+                  <p>{getPickupSummary(airport.pickup_type, airport.shuttle_notes)}</p>
+                  <p>
+                    Terminal details: {airport.terminal_info}
+                  </p>
+                  <p>
+                    Most travelers choose airport pickup here for easier luggage handling
+                    and immediate road access after arrival.
+                  </p>
+                </div>
+                <a
+                  href={affiliateUrl(airport.affiliate_sid_base, "sidebar")}
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 font-bold px-6 py-3 rounded-xl transition-colors"
+                >
+                  Check Prices at {airport.iata_code}
+                </a>
               </div>
             </div>
           </div>
         </section>
 
         <section className="border-b border-slate-100 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-                  <svg
-                    className="w-4 h-4 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
-                    />
-                  </svg>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-10 text-sm font-medium text-slate-600">
+              {[
+                "Strong airport availability",
+                "Trusted rental partners",
+                "Easy comparison flow",
+              ].map((label) => (
+                <div key={label} className="flex items-center gap-2">
+                  <span className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xs font-black">
+                    ✓
+                  </span>
+                  <span>{label}</span>
                 </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">Country</p>
-                  <p className="text-sm font-semibold text-slate-800">
-                    {country.country_name}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-                  <svg
-                    className="w-4 h-4 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">Serves</p>
-                  <p className="text-sm font-semibold text-slate-800">
-                    {city ? city.city_name : airport.city_slug.replace(/-/g, " ")}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-                  <svg
-                    className="w-4 h-4 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">Pickup</p>
-                  <p className="text-sm font-semibold text-slate-800">
-                    {airport.pickup_type === "shuttle"
-                      ? "Shuttle transfer"
-                      : airport.pickup_type === "on_site"
-                        ? "On-site counter"
-                        : "Mixed options"}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-                  <svg
-                    className="w-4 h-4 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">Distance</p>
-                  <p className="text-sm font-semibold text-slate-800">
-                    {airport.distance_from_city_km
-                      ? `${airport.distance_from_city_km} km`
-                      : "See details"}
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         <section className="py-14 sm:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-              <div className="lg:col-span-1">
-                <SectionHeading
-                  label="Airport Pickup"
-                  title={`Collecting Your Car at ${airport.iata_code}`}
-                  subtitle="What to expect before you arrive."
-                />
-                <div className="flex flex-col gap-3 mt-6">
-                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-                      <svg
-                        className="w-4 h-4 text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-400 font-medium">
-                        Supplier desks
-                      </p>
-                      <p className="text-sm font-semibold text-slate-800">
-                        {airport.pickup_type === "on_site"
-                          ? "Inside terminal or arrivals"
-                          : airport.pickup_type === "shuttle"
-                            ? "Shuttle to depot"
-                            : "Terminal and shuttle options"}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-                      <svg
-                        className="w-4 h-4 text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-400 font-medium">
-                        Airport to city
-                      </p>
-                      <p className="text-sm font-semibold text-slate-800">
-                        {airport.distance_from_city_km
-                          ? `${airport.distance_from_city_km} km to city center`
-                          : "Distance varies"}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-                      <svg
-                        className="w-4 h-4 text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-400 font-medium">
-                        Driver requirements
-                      </p>
-                      <p className="text-sm font-semibold text-slate-800">
-                        {country.minimum_driver_age}+ years
-                      </p>
-                    </div>
-                  </div>
-                </div>
+            <SectionHeading
+              label="Pickup Experience"
+              title={`Picking up your rental car at ${airport.airport_name_short}`}
+              subtitle="Know where to go, how much time to allow, and what kind of handoff to expect."
+            />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-base font-semibold text-slate-900 mb-2">
+                  Terminal access
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {airport.terminal_info}
+                </p>
               </div>
-
-              <div className="lg:col-span-2 flex flex-col gap-6">
-                <div className="border-b border-slate-100 pb-6">
-                  <h3 className="text-base font-semibold text-slate-900 mb-2">
-                    Pickup at {airport.airport_name}
-                  </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {airport.pickup_instructions}
-                  </p>
-                </div>
-
-                {airport.return_instructions && (
-                  <div className="border-b border-slate-100 pb-6">
-                    <h3 className="text-base font-semibold text-slate-900 mb-2">
-                      Returning Your Rental Car
-                    </h3>
-                    <p className="text-slate-600 text-sm leading-relaxed">
-                      {airport.return_instructions}
-                    </p>
-                  </div>
-                )}
-
-                <div className="border-b border-slate-100 pb-6">
-                  <h3 className="text-base font-semibold text-slate-900 mb-2">
-                    Driving from {airport.iata_code}
-                  </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    Traffic in {country.country_name} drives on the{" "}
-                    {country.driving_side === "left" ? "left" : "right"}.
-                    Before leaving the airport, make sure you understand toll
-                    roads, parking rules, and fuel policy. Keep your driving
-                    license, passport, and rental documents ready at pickup.
-                  </p>
-                </div>
-
-                {country.parking_notes && (
-                  <div>
-                    <h3 className="text-base font-semibold text-slate-900 mb-2">
-                      Parking and Local Notes
-                    </h3>
-                    <p className="text-slate-600 text-sm leading-relaxed">
-                      {country.parking_notes}
-                    </p>
-                  </div>
-                )}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-base font-semibold text-slate-900 mb-2">
+                  Pickup style
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {getPickupSummary(airport.pickup_type, airport.shuttle_notes)}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-base font-semibold text-slate-900 mb-2">
+                  Distance from city
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {airport.airport_name_short} sits about {airport.distance_from_city_km} km
+                  from central {city.city_name}, which makes airport pickup especially useful
+                  for late arrivals, early departures, and direct regional driving.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-12 sm:py-14 bg-blue-50 border-y border-blue-100">
+        <section className="py-14 sm:py-16 bg-slate-900">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeading
+              light
+              label="Airport vs City"
+              title={`Should you rent at ${airport.iata_code} or in ${city.city_name}?`}
+              subtitle="Airport pickup is usually best for convenience. City pickup may work if you plan to stay downtown before driving."
+            />
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+              <div className="grid grid-cols-3 text-sm">
+                <div className="p-4 font-semibold text-white border-b border-white/10">
+                  Feature
+                </div>
+                <div className="p-4 font-semibold text-white border-b border-white/10">
+                  Airport
+                </div>
+                <div className="p-4 font-semibold text-white border-b border-white/10">
+                  City
+                </div>
+
+                <div className="p-4 text-slate-300 border-b border-white/10">
+                  Convenience after arrival
+                </div>
+                <div className="p-4 text-white border-b border-white/10">
+                  High
+                </div>
+                <div className="p-4 text-slate-300 border-b border-white/10">
+                  Medium
+                </div>
+
+                <div className="p-4 text-slate-300 border-b border-white/10">
+                  Vehicle choice
+                </div>
+                <div className="p-4 text-white border-b border-white/10">
+                  Usually broader
+                </div>
+                <div className="p-4 text-slate-300 border-b border-white/10">
+                  Often narrower
+                </div>
+
+                <div className="p-4 text-slate-300 border-b border-white/10">
+                  Best for luggage
+                </div>
+                <div className="p-4 text-white border-b border-white/10">
+                  Excellent
+                </div>
+                <div className="p-4 text-slate-300 border-b border-white/10">
+                  Moderate
+                </div>
+
+                <div className="p-4 text-slate-300">
+                  Best for city-only stays
+                </div>
+                <div className="p-4 text-white">
+                  Sometimes less ideal
+                </div>
+                <div className="p-4 text-slate-300">
+                  Often better
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 text-center">
+              <a
+                href={affiliateUrl(airport.affiliate_sid_base, "comparison")}
+                className="inline-flex items-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 font-bold px-7 py-3.5 rounded-xl transition-colors"
+              >
+                Compare Current Airport Rental Deals
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-14 sm:py-16 bg-[#F2F6FA] border-y border-slate-200">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeading
+              label="Return Process"
+              title={`Returning your rental car at ${airport.airport_name_short}`}
+              subtitle="The hand-back process matters just as much as pickup, especially for morning flights and tight check-in windows."
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-base font-semibold text-slate-900 mb-2">
+                  What to expect
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {getReturnSummary(airport.pickup_type, airport.airport_name_short)}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <h3 className="text-base font-semibold text-slate-900 mb-2">
+                  Smart return tips
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Refill fuel if your booking requires full-to-full return, allow extra
+                  time for terminal traffic, and photograph the vehicle after parking if
+                  you are returning outside desk hours.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12 sm:py-14 bg-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-4">
-              Ready to Compare Rental Cars at {airport.airport_name}?
+              Ready to compare rental cars at {airport.airport_name_short}?
             </h2>
             <p className="text-slate-600 text-base mb-7 leading-relaxed">
-              Compare rental vehicles available at {airport.iata_code} and book
-              with trusted suppliers serving {airport.airport_name}.
+              Compare airport pickup options, review supplier access details, and choose
+              the vehicle that fits your route, budget, and arrival time.
             </p>
             <a
               href={affiliateUrl(airport.affiliate_sid_base, "mid")}
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/20 text-base"
+              className="inline-flex items-center gap-2 bg-[#163B66] hover:bg-[#1E4C82] active:bg-[#143454] text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-900/10 text-base"
             >
               Check Availability and Prices
               <svg
@@ -578,6 +618,7 @@ export default async function AirportPage({
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -590,95 +631,231 @@ export default async function AirportPage({
           </div>
         </section>
 
-        {city && (
-          <section className="py-14 sm:py-16 bg-slate-50 border-y border-slate-100">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <SectionHeading
-                label="Nearby City"
-                title={`Explore Car Rental in ${city.city_name}`}
-                subtitle={`See more rental options and local driving information for ${city.city_name}.`}
-              />
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <Link
-                  href={cityUrl(city)}
-                  className="group flex items-start gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:shadow-blue-50 transition-all duration-200"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors">
-                    <svg
-                      className="w-5 h-5 text-blue-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-1">
-                      City Guide
-                    </p>
-                    <h3 className="font-semibold text-slate-900 group-hover:text-blue-700 transition-colors text-base leading-snug">
-                      Car Rental in {city.city_name}
-                    </h3>
-                    <p className="text-xs text-slate-400 mt-2">
-                      Pickup options · Driving tips · Nearby areas
-                    </p>
-                  </div>
-                  <span className="text-slate-300 group-hover:text-blue-500 transition-colors shrink-0 mt-0.5">
-                    <ChevronRight />
-                  </span>
-                </Link>
-
-                {nearbyCities.slice(0, 2).map((nearby) => (
-                  <Link
-                    key={`${nearby.country_slug}-${nearby.city_slug}`}
-                    href={cityUrl(nearby)}
-                    className="group flex items-start gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:shadow-blue-50 transition-all duration-200"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors">
+        <section className="py-14 sm:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeading
+              label="Local Driving"
+              title={`Driving after pickup from ${airport.airport_name_short}`}
+              subtitle={`Use these country-level basics before leaving ${airport.airport_name}.`}
+            />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+              <div className="lg:col-span-1">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
                       <svg
-                        className="w-5 h-5 text-blue-600"
+                        className="w-4 h-4 text-[#2C5F95]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                          d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
                         />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400 font-medium">
+                        Traffic Side
+                      </p>
+                      <p className="text-sm font-semibold text-slate-800">
+                        {country.driving_side === "left"
+                          ? "Drive on the left"
+                          : "Drive on the right"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+                      <svg
+                        className="w-4 h-4 text-[#2C5F95]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400 font-medium">
+                        Minimum Driver Age
+                      </p>
+                      <p className="text-sm font-semibold text-slate-800">
+                        {country.minimum_driver_age}+ years
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+                      <svg
+                        className="w-4 h-4 text-[#2C5F95]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400 font-medium">
+                        Currency
+                      </p>
+                      <p className="text-sm font-semibold text-slate-800">
+                        {country.currency_code}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-2 flex flex-col gap-6">
+                {country.driving_notes && (
+                  <div className="border-b border-slate-100 pb-6">
+                    <h3 className="text-base font-semibold text-slate-900 mb-2">
+                      Road rules
+                    </h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      {country.driving_notes}
+                    </p>
+                  </div>
+                )}
+
+                {country.toll_information && (
+                  <div className="border-b border-slate-100 pb-6">
+                    <h3 className="text-base font-semibold text-slate-900 mb-2">
+                      Tolls and charges
+                    </h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      {country.toll_information}
+                    </p>
+                  </div>
+                )}
+
+                {country.fuel_notes && (
+                  <div className="border-b border-slate-100 pb-6">
+                    <h3 className="text-base font-semibold text-slate-900 mb-2">
+                      Fuel
+                    </h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      {country.fuel_notes}
+                    </p>
+                  </div>
+                )}
+
+                {country.parking_notes && (
+                  <div>
+                    <h3 className="text-base font-semibold text-slate-900 mb-2">
+                      Parking
+                    </h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      {country.parking_notes}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {relatedAirports.length > 0 && (
+          <section className="py-14 sm:py-16 bg-slate-50 border-y border-slate-100">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <SectionHeading
+                label="Related Airports"
+                title={`More airport rental locations in ${country.country_name}`}
+                subtitle="Use these nearby airport pages to compare access points before choosing where to collect your car."
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {relatedAirports.map((item) => (
+                  <Link
+                    key={item.airport_slug}
+                    href={`/car-rental/airports/${item.airport_slug}/`}
+                    className="group flex flex-col gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-[#B7CDE3] hover:shadow-md transition-all duration-200"
+                  >
+                    <div className="flex items-start justify-between">
+                      <span className="inline-flex bg-[#2C5F95] text-white text-xs font-extrabold px-3 py-1.5 rounded-lg tracking-wider">
+                        {item.iata_code}
+                      </span>
+                      <span className="text-slate-300 group-hover:text-[#2C5F95] transition-colors">
+                        <ChevronRight />
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-slate-900 font-semibold text-base leading-snug">
+                        {item.airport_name}
+                      </p>
+                      <p className="text-slate-500 text-sm mt-1">
+                        {country.country_name}
+                      </p>
+                    </div>
+                    <p className="text-[#2C5F95] text-sm font-medium">
+                      View airport page
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {indexedGuides.length > 0 && (
+          <section className="py-14 sm:py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <SectionHeading
+                label="Guides"
+                title={`Country guides for ${country.country_name}`}
+                subtitle="Read practical driving and rental guidance before choosing your pickup strategy."
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {indexedGuides.map((guide) => (
+                  <Link
+                    key={guide.guide_slug}
+                    href={`/guide/${guide.guide_slug}/`}
+                    className="group flex items-start gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-[#B7CDE3] hover:shadow-md transition-all duration-200"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                      <svg
+                        className="w-5 h-5 text-[#2C5F95]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                         />
                       </svg>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-1">
-                        Nearby Destination
+                      <p className="text-xs text-[#2C5F95] font-semibold uppercase tracking-wide mb-1">
+                        Country Guide
                       </p>
-                      <h3 className="font-semibold text-slate-900 group-hover:text-blue-700 transition-colors text-base leading-snug">
-                        Car Rental in {nearby.city_name}
+                      <h3 className="font-semibold text-slate-900 group-hover:text-[#163B66] transition-colors text-base leading-snug">
+                        {guide.guide_title}
                       </h3>
-                      <p className="text-xs text-slate-400 mt-2">
-                        More pickup locations nearby
-                      </p>
                     </div>
-                    <span className="text-slate-300 group-hover:text-blue-500 transition-colors shrink-0 mt-0.5">
+                    <span className="text-slate-300 group-hover:text-[#2C5F95] transition-colors shrink-0 mt-0.5">
                       <ChevronRight />
                     </span>
                   </Link>
@@ -688,182 +865,55 @@ export default async function AirportPage({
           </section>
         )}
 
-        {hasFaq && (
-          <section className="py-14 sm:py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <SectionHeading
-                label="FAQs"
-                title={`Car Rental at ${airport.iata_code} — Common Questions`}
-              />
-              <div className="flex flex-col gap-3">
-                {airport.faq.map((item, index) => (
-                  <div
-                    key={index}
-                    className="border border-slate-200 rounded-xl bg-white p-5"
-                  >
-                    <p className="font-semibold text-slate-900 text-sm mb-2">
-                      {item.question}
-                    </p>
-                    <p className="text-slate-600 text-sm leading-relaxed">
-                      {item.answer}
-                    </p>
-                  </div>
-                ))}
-              </div>
+        <section className="py-14 sm:py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeading
+              label="FAQs"
+              title={`Car rental at ${airport.airport_name_short} — common questions`}
+            />
+            <div className="flex flex-col gap-3">
+              {faqItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="border border-slate-200 rounded-xl bg-white p-5"
+                >
+                  <p className="font-semibold text-slate-900 text-sm mb-2">
+                    {item.question}
+                  </p>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
+              ))}
             </div>
-          </section>
-        )}
+          </div>
+        </section>
 
-        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-blue-700 to-blue-600">
+        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-[#163B66] to-[#0F2742]">
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden pointer-events-none"
           >
             <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-white/5 blur-3xl" />
-            <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-blue-900/20 blur-3xl" />
+            <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-sky-300/10 blur-3xl" />
           </div>
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-4">
-              Find the Best Car Rental Deals at {airport.iata_code}
+              Find the best car rental deals at {airport.airport_name_short}
             </h2>
             <p className="text-blue-100 text-base mb-8 leading-relaxed">
-              Compare suppliers serving {airport.airport_name} and book your
-              airport pickup with trusted rental partners.
+              Compare pickup options, review terminal access, and choose the right
+              vehicle before you land.
             </p>
             <a
               href={affiliateUrl(airport.affiliate_sid_base, "bottom")}
-              className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 active:bg-blue-100 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl shadow-blue-900/20 text-base"
+              className="inline-flex items-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 active:bg-blue-100 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl shadow-blue-900/20 text-base"
             >
-              Compare Airport Car Rental Deals Now
+              Compare Car Rental Deals Now
             </a>
             <p className="mt-4 text-blue-200/70 text-xs">
               Free to use · No booking fees
             </p>
-          </div>
-        </section>
-
-        <section className="py-12 bg-slate-50 border-t border-slate-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div>
-                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">
-                  Navigation
-                </h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link
-                      href={`/car-rental/${airport.country_slug}/`}
-                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="text-slate-300">›</span>
-                      Car Rental in {country.country_name}
-                    </Link>
-                  </li>
-                  {city && (
-                    <li>
-                      <Link
-                        href={cityUrl(city)}
-                        className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
-                      >
-                        <span className="text-slate-300">›</span>
-                        Car Rental in {city.city_name}
-                      </Link>
-                    </li>
-                  )}
-                  <li>
-                    <Link
-                      href="/"
-                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="text-slate-300">›</span>
-                      All Destinations
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {nearbyCities.length > 0 && (
-                <div>
-                  <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">
-                    Nearby Cities
-                  </h3>
-                  <ul className="space-y-2">
-                    {nearbyCities.slice(0, 6).map((nearby) => (
-                      <li key={`${nearby.country_slug}-${nearby.city_slug}`}>
-                        <Link
-                          href={cityUrl(nearby)}
-                          className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
-                        >
-                          <span className="text-slate-300">›</span>
-                          Car Rental in {nearby.city_name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div>
-                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">
-                  Airport Info
-                </h3>
-                <ul className="space-y-2">
-                  <li className="text-sm text-slate-600 flex items-center gap-1.5">
-                    <span className="text-slate-300">›</span>
-                    {airport.iata_code} — {airport.airport_name}
-                  </li>
-                  <li className="text-sm text-slate-600 flex items-center gap-1.5">
-                    <span className="text-slate-300">›</span>
-                    {airport.pickup_type === "shuttle"
-                      ? "Shuttle pickup"
-                      : airport.pickup_type === "on_site"
-                        ? "On-site pickup"
-                        : "Mixed pickup options"}
-                  </li>
-                  {airport.distance_from_city_km && (
-                    <li className="text-sm text-slate-600 flex items-center gap-1.5">
-                      <span className="text-slate-300">›</span>
-                      {airport.distance_from_city_km} km from city center
-                    </li>
-                  )}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">
-                  Helpful Links
-                </h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link
-                      href="/guide/"
-                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="text-slate-300">›</span>
-                      All Travel Guides
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/about/"
-                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="text-slate-300">›</span>
-                      About GetEasyCar
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contact/"
-                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="text-slate-300">›</span>
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
         </section>
       </div>
