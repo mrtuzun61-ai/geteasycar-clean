@@ -71,22 +71,11 @@ function countryUrl(countrySlug: string): string {
   return `/car-rental/${countrySlug}/`;
 }
 
-function countryLabel(slug: string): string {
-  const map: Record<string, string> = {
-    france: "France",
-    spain: "Spain",
-    italy: "Italy",
-    australia: "Australia",
-    "united-states": "United States",
-  };
-  return map[slug] ?? slug;
-}
-
 const AFFILIATE =
   "https://www.dpbolvw.net/click-101574986-15736982?sid=get_easy_car";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1800&q=80";
+  "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1800&q=80";
 
 const countryMeta: Record<string, { emoji: string; tagline: string }> = {
   france: { emoji: "🇫🇷", tagline: "Cities, airports and driving guidance" },
@@ -122,6 +111,48 @@ const guideEmoji: Record<string, string> = {
   "renting-a-car-in-united-states": "🇺🇸",
   "renting-a-car-in-australia": "🇦🇺",
 };
+
+function SectionHeading({
+  label,
+  title,
+  subtitle,
+  light = false,
+}: {
+  label?: string;
+  title: string;
+  subtitle?: string;
+  light?: boolean;
+}) {
+  return (
+    <div className="mb-8">
+      {label && (
+        <p
+          className={`text-xs font-bold uppercase tracking-widest mb-2 ${
+            light ? "text-sky-300" : "text-[#2C5F95]"
+          }`}
+        >
+          {label}
+        </p>
+      )}
+      <h2
+        className={`text-2xl sm:text-3xl font-bold tracking-tight ${
+          light ? "text-white" : "text-slate-900"
+        }`}
+      >
+        {title}
+      </h2>
+      {subtitle && (
+        <p
+          className={`mt-2 text-base max-w-2xl ${
+            light ? "text-slate-300" : "text-slate-500"
+          }`}
+        >
+          {subtitle}
+        </p>
+      )}
+    </div>
+  );
+}
 
 export default function HomePage() {
   const allCountries = readIndex<CountryIndex>("countries.json").filter(
@@ -173,6 +204,29 @@ export default function HomePage() {
     .map((code) => allAirports.find((a) => a.iata_code === code))
     .filter(Boolean) as AirportIndex[];
 
+  const heroQuickLinks = [
+    {
+      label: "Browse Destinations",
+      href: "#destinations",
+      icon: "🌍",
+    },
+    {
+      label: "Explore Cities",
+      href: "#cities",
+      icon: "🏙️",
+    },
+    {
+      label: "Airport Pickup Guides",
+      href: "/car-rental/airports/",
+      icon: "✈️",
+    },
+    {
+      label: "Read Guides",
+      href: "/guide/",
+      icon: "📘",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#F7F9FC] text-slate-800 antialiased">
       <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur">
@@ -212,12 +266,12 @@ export default function HomePage() {
             >
               Cities
             </a>
-            <a
-              href="#airports"
+            <Link
+              href="/car-rental/airports/"
               className="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-slate-900 transition-colors"
             >
               Airports
-            </a>
+            </Link>
             <Link
               href="/guide/"
               className="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-slate-900 transition-colors"
@@ -236,11 +290,13 @@ export default function HomePage() {
       </header>
 
       <section className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_IMAGE})` }}
+        <img
+          src={HERO_IMAGE}
+          alt="Airport rental guidance hero"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F2742]/90 via-[#163B66]/82 to-[#2C5F95]/68" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F2742]/78 via-[#163B66]/56 to-[#2C5F95]/22" />
 
         <div aria-hidden="true" className="absolute inset-0 opacity-[0.08]">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -268,74 +324,116 @@ export default function HomePage() {
           className="absolute inset-0 overflow-hidden pointer-events-none"
         >
           <div className="absolute -top-16 right-0 w-[620px] h-[620px] rounded-full bg-sky-300/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-20 w-[460px] h-[460px] rounded-full bg-[#0B1D31]/30 blur-3xl" />
+          <div className="absolute bottom-0 -left-20 w-[460px] h-[460px] rounded-full bg-[#0B1D31]/22 blur-3xl" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
-          <div className="max-w-3xl mx-auto text-center mb-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-blue-100 mb-6">
-              Airport, city and destination rental guidance
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 sm:pt-20 sm:pb-16">
+          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-blue-100 mb-6">
+                Airport, city and destination rental guidance
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-5">
+                Find the Right Rental Car Before You Land
+              </h1>
+
+              <p className="text-blue-50 text-lg sm:text-xl leading-relaxed max-w-2xl">
+                Compare airport and city pickup options, explore destination pages,
+                and choose the rental strategy that fits your route, timing, and budget.
+              </p>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <a
+                  href={AFFILIATE}
+                  className="inline-flex items-center justify-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 active:bg-blue-100 font-bold text-base px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-900/20"
+                >
+                  Compare Car Rentals
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </a>
+
+                <Link
+                  href="/car-rental/airports/"
+                  className="inline-flex items-center justify-center gap-2 bg-white/12 hover:bg-white/18 text-white font-semibold text-base px-6 py-3.5 rounded-xl transition-colors border border-white/20"
+                >
+                  Browse Airport Guides
+                </Link>
+              </div>
+
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl">
+                <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
+                    Airports Indexed
+                  </p>
+                  <p className="mt-1 text-white font-semibold">
+                    {allAirports.length}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
+                    Popular Cities
+                  </p>
+                  <p className="mt-1 text-white font-semibold">
+                    {featuredCities.length}
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
+                    Country Hubs
+                  </p>
+                  <p className="mt-1 text-white font-semibold">
+                    {featuredCountries.length}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-5">
-              Find the Right Rental Car with Confidence
-            </h1>
-
-            <p className="text-blue-100/90 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
-              Compare airport and city rental options, explore destination
-              guides, and choose the vehicle that fits your trip and budget.
-            </p>
-          </div>
-
-          <SearchWidget affiliateUrl={AFFILIATE} />
-
-          <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
-            {[
-              {
-                label: "Browse Destinations",
-                href: "#destinations",
-                icon: "🌍",
-              },
-              {
-                label: "Explore Cities",
-                href: "#cities",
-                icon: "🏙️",
-              },
-              {
-                label: "Search Airports",
-                href: "#airports",
-                icon: "✈️",
-              },
-              {
-                label: "Read Guides",
-                href: "/guide/",
-                icon: "📘",
-              },
-            ].map((item) =>
-              item.href.startsWith("/") ? (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="group rounded-2xl border border-white/15 bg-white/10 px-4 py-4 text-left hover:bg-white/15 transition-colors"
-                >
-                  <div className="text-xl mb-2">{item.icon}</div>
-                  <div className="text-white font-semibold text-sm sm:text-base">
-                    {item.label}
-                  </div>
-                </Link>
-              ) : (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="group rounded-2xl border border-white/15 bg-white/10 px-4 py-4 text-left hover:bg-white/15 transition-colors"
-                >
-                  <div className="text-xl mb-2">{item.icon}</div>
-                  <div className="text-white font-semibold text-sm sm:text-base">
-                    {item.label}
-                  </div>
-                </a>
-              )
-            )}
+            <div className="rounded-3xl border border-white/10 bg-white/12 backdrop-blur-sm p-5 sm:p-6">
+              <p className="text-blue-100 text-xs font-semibold uppercase tracking-widest mb-3">
+                Start your search
+              </p>
+              <SearchWidget affiliateUrl={AFFILIATE} />
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {heroQuickLinks.map((item) =>
+                  item.href.startsWith("/") ? (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="group rounded-2xl border border-white/10 bg-white/10 px-4 py-4 text-left hover:bg-white/15 transition-colors"
+                    >
+                      <div className="text-xl mb-2">{item.icon}</div>
+                      <div className="text-white font-semibold text-sm sm:text-base">
+                        {item.label}
+                      </div>
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="group rounded-2xl border border-white/10 bg-white/10 px-4 py-4 text-left hover:bg-white/15 transition-colors"
+                    >
+                      <div className="text-xl mb-2">{item.icon}</div>
+                      <div className="text-white font-semibold text-sm sm:text-base">
+                        {item.label}
+                      </div>
+                    </a>
+                  )
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -365,19 +463,11 @@ export default function HomePage() {
 
       <section id="destinations" className="py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-            <div>
-              <p className="text-[#2C5F95] text-sm font-semibold uppercase tracking-widest mb-2">
-                Destinations
-              </p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-                Top Car Rental Destinations
-              </h2>
-              <p className="mt-2 text-slate-500 text-base">
-                Explore country hubs with major cities, airports and rental guidance.
-              </p>
-            </div>
-          </div>
+          <SectionHeading
+            label="Destinations"
+            title="Top car rental destinations"
+            subtitle="Explore country hubs with major cities, airports and rental guidance."
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {featuredCountries.map((country) => {
@@ -412,19 +502,11 @@ export default function HomePage() {
 
       <section id="cities" className="py-16 sm:py-20 bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-            <div>
-              <p className="text-[#2C5F95] text-sm font-semibold uppercase tracking-widest mb-2">
-                Cities
-              </p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-                Popular Rental Cities
-              </h2>
-              <p className="mt-2 text-slate-500 text-base">
-                Explore city-specific rental pages with airport and local guidance.
-              </p>
-            </div>
-          </div>
+          <SectionHeading
+            label="Cities"
+            title="Popular rental cities"
+            subtitle="Explore city-specific rental pages with airport and local guidance."
+          />
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {featuredCities.map((city) => {
@@ -446,7 +528,7 @@ export default function HomePage() {
                       {city.city_name}
                     </p>
                     <p className="text-xs text-slate-400 mt-1">
-                      {meta?.tagline ?? countryLabel(city.country_slug)}
+                      {meta?.tagline ?? city.country_slug}
                     </p>
                   </div>
                   <p className="text-xs font-medium text-[#2C5F95]">
@@ -459,21 +541,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="airports" className="py-16 sm:py-20 bg-[#0F2742]">
+      <section className="py-16 sm:py-20 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-            <div>
-              <p className="text-sky-300 text-sm font-semibold uppercase tracking-widest mb-2">
-                Airports
-              </p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                Major Airport Pickup Locations
-              </h2>
-              <p className="mt-2 text-slate-300 text-base">
-                Collect your rental car on arrival at major international airports.
-              </p>
-            </div>
-          </div>
+          <SectionHeading
+            label="Airports"
+            title="Major airport pickup locations"
+            subtitle="Compare some of the strongest airport pages before you choose your arrival pickup."
+            light
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
             {featuredAirports.map((airport) => {
@@ -509,60 +584,26 @@ export default function HomePage() {
               );
             })}
           </div>
-        </div>
-      </section>
 
-      <section className="py-12 bg-[#F2F6FA] border-y border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 rounded-3xl bg-white border border-slate-200 p-8 shadow-sm">
-            <div className="max-w-2xl">
-              <p className="text-[#2C5F95] text-sm font-semibold uppercase tracking-widest mb-2">
-                Airport Hub
-              </p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-                Browse All Airport Rental Locations
-              </h2>
-              <p className="mt-3 text-slate-600 text-base leading-relaxed">
-                Explore major international airport pickup points, compare rental
-                options before you land, and choose the location that fits your trip
-                best.
-              </p>
-            </div>
-
-            <div className="shrink-0">
-              <Link
-                href="/car-rental/airports/"
-                className="inline-flex items-center gap-2 bg-[#163B66] hover:bg-[#1E4C82] text-white font-bold px-7 py-3.5 rounded-2xl transition-colors shadow-sm"
-              >
-                Browse All Airports
-                <span aria-hidden="true">→</span>
-              </Link>
-            </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/car-rental/airports/"
+              className="inline-flex items-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 font-bold px-7 py-3.5 rounded-2xl transition-colors shadow-sm"
+            >
+              Browse All Airport Rental Locations
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </section>
 
       <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-            <div>
-              <p className="text-[#2C5F95] text-sm font-semibold uppercase tracking-widest mb-2">
-                Guides
-              </p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-                Car Rental Travel Guides
-              </h2>
-              <p className="mt-2 text-slate-500 text-base">
-                Practical country guides covering what you need before you drive.
-              </p>
-            </div>
-            <Link
-              href="/guide/"
-              className="shrink-0 text-sm font-semibold text-[#2C5F95] hover:text-[#163B66] hover:underline underline-offset-2 transition-colors"
-            >
-              Browse all guides →
-            </Link>
-          </div>
+          <SectionHeading
+            label="Guides"
+            title="Car rental travel guides"
+            subtitle="Practical country guides covering what you need before you drive."
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {allGuides.map((guide) => (
@@ -598,10 +639,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-[#2C5F95] text-sm font-semibold uppercase tracking-widest mb-2">
-              How it Works
+              How It Works
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Smarter Rental Guidance in Three Steps
+              Smarter rental guidance in three steps
             </h2>
             <p className="mt-2 text-slate-500 text-base max-w-xl mx-auto">
               Discover, compare and choose with more confidence.
@@ -612,18 +653,18 @@ export default function HomePage() {
             {[
               {
                 num: "1",
-                title: "Choose Your Location",
-                body: "Search by airport or city and start with the location that fits your trip.",
+                title: "Choose Your Pickup Point",
+                body: "Start with airport, city or destination pages depending on how and when you arrive.",
               },
               {
                 num: "2",
-                title: "Compare Your Options",
-                body: "Review rental choices, destination pages and practical travel guidance.",
+                title: "Compare Smarter",
+                body: "Review major pickup locations, travel guidance and route context before you book.",
               },
               {
                 num: "3",
                 title: "Book with Confidence",
-                body: "Continue to trusted partners and choose the option that suits your budget.",
+                body: "Continue to trusted partners and choose the option that fits your timing and budget.",
               },
             ].map((item) => (
               <div
@@ -722,9 +763,9 @@ export default function HomePage() {
                   </a>
                 </li>
                 <li>
-                  <a href="#airports" className="hover:text-white transition-colors">
+                  <Link href="/car-rental/airports/" className="hover:text-white transition-colors">
                     Airports
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link href="/guide/" className="hover:text-white transition-colors">
