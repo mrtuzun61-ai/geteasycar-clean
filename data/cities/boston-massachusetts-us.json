@@ -1,0 +1,15 @@
+{
+  "city_slug": "boston",
+  "city_name": "Boston",
+  "country_slug": "united-states",
+  "state_slug": "massachusetts",
+  "has_state_layer": true,
+  "airport_slugs": ["BOS"],
+  "nearby_city_slugs": ["new-york", "philadelphia"],
+  "affiliate_sid_base": "us_boston",
+  "meta_title": "Car Rental in Boston, MA — Compare Rental Options",
+  "meta_description": "Compare car rental options in Boston, Massachusetts with airport and city pickup guidance.",
+  "h1": "Car Rental in Boston",
+  "intro_paragraph": "Compare rental options across Boston and nearby airport pickup locations before you book.",
+  "publication_state": "indexed"
+}

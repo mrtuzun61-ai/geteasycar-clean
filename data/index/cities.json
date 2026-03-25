@@ -62,5 +62,13 @@
     "state_slug": "florida",
     "has_state_layer": true,
     "publication_state": "indexed"
+  },
+  {
+    "city_slug": "boston",
+    "city_name": "Boston",
+    "country_slug": "united-states",
+    "state_slug": "massachusetts",
+    "has_state_layer": true,
+    "publication_state": "indexed"
   }
 ]
