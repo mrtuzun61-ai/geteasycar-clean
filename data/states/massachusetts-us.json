@@ -1,0 +1,19 @@
+{
+  "state_slug": "massachusetts",
+  "state_name": "Massachusetts",
+  "country_slug": "united-states",
+  "iso_subdivision_code": "US-MA",
+  "has_state_layer": true,
+  "affiliate_sid_base": "state_united-states_massachusetts",
+  "canonical_url": "/car-rental/united-states/massachusetts/",
+  "meta_title": "Car Rental in Massachusetts — Cities & Airports",
+  "meta_description": "Compare car rental options across Massachusetts. Explore city and airport pickup locations.",
+  "h1": "Car Rental in Massachusetts",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Massachusetts", "url": "/car-rental/united-states/massachusetts/" }
+  ],
+  "last_updated": "2026-03-25",
+  "publication_state": "indexed"
+}
