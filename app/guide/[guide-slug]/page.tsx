@@ -69,25 +69,84 @@ function SectionHeading({
   label,
   title,
   subtitle,
+  light = false,
 }: {
   label?: string;
   title: string;
   subtitle?: string;
+  light?: boolean;
 }) {
   return (
     <div className="mb-8">
       {label && (
-        <p className="text-blue-600 text-xs font-bold uppercase tracking-widest mb-2">
+        <p
+          className={`text-xs font-bold uppercase tracking-[0.24em] mb-2 ${
+            light ? "text-stone-300" : "text-[#7A5C2E]"
+          }`}
+        >
           {label}
         </p>
       )}
-      <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+      <h2
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight ${
+          light ? "text-white" : "text-slate-900"
+        }`}
+      >
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-2 text-slate-500 text-base max-w-2xl">{subtitle}</p>
+        <p
+          className={`mt-3 text-base leading-relaxed max-w-2xl ${
+            light ? "text-stone-200/90" : "text-slate-500"
+          }`}
+        >
+          {subtitle}
+        </p>
       )}
     </div>
+  );
+}
+
+function InfoCard({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-stone-200 bg-white px-4 py-4">
+      <p className="text-xs text-slate-400 font-medium">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-slate-800">{value}</p>
+    </div>
+  );
+}
+
+function FaqItem({ question, answer }: GuideFaqItem) {
+  return (
+    <div className="rounded-2xl border border-stone-200 bg-white p-6">
+      <p className="font-semibold text-slate-900 text-base mb-2">{question}</p>
+      <p className="text-slate-600 text-sm leading-relaxed">{answer}</p>
+    </div>
+  );
+}
+
+function ChevronRight() {
+  return (
+    <svg
+      className="w-4 h-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
   );
 }
 
@@ -174,10 +233,10 @@ export default async function GuidePage({
         />
       )}
 
-      <div className="min-h-screen bg-white text-slate-800">
+      <div className="min-h-screen bg-[#F8F7F4] text-slate-800">
         <nav
           aria-label="Breadcrumb"
-          className="bg-slate-50 border-b border-slate-100"
+          className="bg-white border-b border-stone-200"
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <ol className="flex items-center gap-1.5 text-xs text-slate-500 flex-wrap">
@@ -199,7 +258,7 @@ export default async function GuidePage({
                     ) : (
                       <Link
                         href={item.url}
-                        className="hover:text-blue-600 transition-colors"
+                        className="hover:text-[#7A5C2E] transition-colors"
                       >
                         {item.label}
                       </Link>
@@ -212,23 +271,32 @@ export default async function GuidePage({
         </nav>
 
         <section className="relative overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImage})` }}
+          <img
+            src={heroImage}
+            alt={guide.guide_title}
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-blue-700/80 to-blue-500/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#161B22]/82 via-[#24303A]/72 to-[#7A5C2E]/38" />
 
-          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 overflow-hidden pointer-events-none"
+          >
+            <div className="absolute -top-20 right-0 w-[520px] h-[520px] rounded-full bg-white/5 blur-3xl" />
+            <div className="absolute -bottom-16 -left-16 w-[420px] h-[420px] rounded-full bg-[#7A5C2E]/18 blur-3xl" />
+          </div>
+
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
             <div className="max-w-3xl">
-              <p className="text-blue-200 text-sm font-semibold uppercase tracking-widest mb-4">
+              <p className="text-stone-200 text-sm font-semibold uppercase tracking-[0.24em] mb-4">
                 Country Guide · {country.country_name}
               </p>
 
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-5">
                 {guide.h1 || guide.guide_title}
               </h1>
 
-              <p className="text-blue-100 text-lg leading-relaxed max-w-2xl">
+              <p className="text-stone-100/90 text-lg sm:text-xl leading-relaxed max-w-2xl">
                 {guide.intro_paragraph ||
                   `Practical car rental guidance for ${country.country_name}.`}
               </p>
@@ -236,14 +304,14 @@ export default async function GuidePage({
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Link
                   href={`/car-rental/${country.country_slug}/`}
-                  className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3.5 text-base font-bold text-blue-700 hover:bg-blue-50 transition-colors"
+                  className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3.5 text-base font-bold text-[#24303A] hover:bg-stone-100 transition-colors"
                 >
                   Go to {country.country_name} Rental Hub
                 </Link>
 
                 <Link
                   href="/guide/"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-blue-800/40 px-6 py-3.5 text-base font-semibold text-white hover:bg-blue-800/60 transition-colors"
+                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-6 py-3.5 text-base font-semibold text-white hover:bg-white/15 transition-colors"
                 >
                   All Guides
                 </Link>
@@ -252,43 +320,28 @@ export default async function GuidePage({
           </div>
         </section>
 
-        <section className="border-b border-slate-100 bg-slate-50">
+        <section className="border-b border-stone-200 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div className="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                <p className="text-xs text-slate-400">Country</p>
-                <p className="text-sm font-semibold text-slate-800">
-                  {country.country_name}
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                <p className="text-xs text-slate-400">Driving Side</p>
-                <p className="text-sm font-semibold text-slate-800">
-                  {country.driving_side === "left"
+              <InfoCard label="Country" value={country.country_name} />
+              <InfoCard
+                label="Driving Side"
+                value={
+                  country.driving_side === "left"
                     ? "Drive on the left"
-                    : "Drive on the right"}
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                <p className="text-xs text-slate-400">Minimum Age</p>
-                <p className="text-sm font-semibold text-slate-800">
-                  {country.minimum_driver_age}+ years
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                <p className="text-xs text-slate-400">Currency</p>
-                <p className="text-sm font-semibold text-slate-800">
-                  {country.currency_code}
-                </p>
-              </div>
+                    : "Drive on the right"
+                }
+              />
+              <InfoCard
+                label="Minimum Age"
+                value={`${country.minimum_driver_age}+ years`}
+              />
+              <InfoCard label="Currency" value={country.currency_code} />
             </div>
           </div>
         </section>
 
-        <section className="py-14 sm:py-16">
+        <section className="py-16 sm:py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               label="Guide"
@@ -297,14 +350,17 @@ export default async function GuidePage({
             />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-              <div className="lg:col-span-2 space-y-8">
+              <div className="lg:col-span-2 space-y-6">
                 {sections.length > 0 ? (
                   sections.map((section, index) => (
-                    <article key={index} className="border-b border-slate-100 pb-8">
+                    <article
+                      key={index}
+                      className="rounded-3xl border border-stone-200 bg-white p-7"
+                    >
                       <h3 className="text-xl font-bold text-slate-900 mb-3">
                         {section.section_title || `Section ${index + 1}`}
                       </h3>
-                      <p className="text-slate-600 text-sm leading-relaxed">
+                      <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
                         {section.content || ""}
                       </p>
                     </article>
@@ -312,7 +368,7 @@ export default async function GuidePage({
                 ) : (
                   <>
                     {country.driving_notes && (
-                      <article className="border-b border-slate-100 pb-8">
+                      <article className="rounded-3xl border border-stone-200 bg-white p-7">
                         <h3 className="text-xl font-bold text-slate-900 mb-3">
                           Driving Rules
                         </h3>
@@ -323,7 +379,7 @@ export default async function GuidePage({
                     )}
 
                     {country.toll_information && (
-                      <article className="border-b border-slate-100 pb-8">
+                      <article className="rounded-3xl border border-stone-200 bg-white p-7">
                         <h3 className="text-xl font-bold text-slate-900 mb-3">
                           Tolls and Charges
                         </h3>
@@ -334,7 +390,7 @@ export default async function GuidePage({
                     )}
 
                     {country.fuel_notes && (
-                      <article className="border-b border-slate-100 pb-8">
+                      <article className="rounded-3xl border border-stone-200 bg-white p-7">
                         <h3 className="text-xl font-bold text-slate-900 mb-3">
                           Fuel
                         </h3>
@@ -345,7 +401,7 @@ export default async function GuidePage({
                     )}
 
                     {country.parking_notes && (
-                      <article className="border-b border-slate-100 pb-8">
+                      <article className="rounded-3xl border border-stone-200 bg-white p-7">
                         <h3 className="text-xl font-bold text-slate-900 mb-3">
                           Parking
                         </h3>
@@ -360,7 +416,7 @@ export default async function GuidePage({
 
               <aside className="lg:col-span-1">
                 <div className="sticky top-24 space-y-4">
-                  <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+                  <div className="bg-white border border-stone-200 rounded-3xl p-6">
                     <h3 className="font-bold text-slate-900 text-base mb-4">
                       Quick Snapshot
                     </h3>
@@ -402,36 +458,36 @@ export default async function GuidePage({
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6">
+                  <div className="bg-[#F3EEE5] border border-[#E5D8BF] rounded-3xl p-6">
                     <h3 className="font-bold text-slate-900 text-base mb-3">
                       Ready to Book?
                     </h3>
                     <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                      Compare car rental suppliers across {country.country_name}
+                      Compare car rental suppliers across {country.country_name}{" "}
                       and connect directly with trusted partners.
                     </p>
                     <a
                       href={affiliateUrl(country.affiliate_sid_base, "guide_sidebar")}
-                      className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-5 py-3 rounded-xl transition-colors"
+                      className="inline-flex items-center gap-2 bg-[#24303A] hover:bg-[#1B252D] text-white font-semibold text-sm px-5 py-3 rounded-xl transition-colors"
                     >
                       Compare Car Rentals
                     </a>
                   </div>
 
-                  <div className="bg-white border border-slate-200 rounded-2xl p-6">
+                  <div className="bg-white border border-stone-200 rounded-3xl p-6">
                     <h3 className="font-bold text-slate-900 text-base mb-3">
                       Quick Links
                     </h3>
                     <div className="flex flex-col gap-3">
                       <Link
                         href={`/car-rental/${country.country_slug}/`}
-                        className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                        className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors"
                       >
                         Country Rental Hub
                       </Link>
                       <Link
                         href="/guide/"
-                        className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                        className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors"
                       >
                         All Guides
                       </Link>
@@ -444,7 +500,7 @@ export default async function GuidePage({
         </section>
 
         {hasFaq && (
-          <section className="py-14 sm:py-16">
+          <section className="py-16 sm:py-20 bg-white border-y border-stone-200">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <SectionHeading
                 label="FAQs"
@@ -452,24 +508,18 @@ export default async function GuidePage({
               />
               <div className="space-y-3">
                 {faqItems.map((item, index) => (
-                  <div
+                  <FaqItem
                     key={index}
-                    className="border border-slate-200 rounded-xl bg-white p-5"
-                  >
-                    <p className="font-semibold text-slate-900 text-sm mb-2">
-                      {item.question}
-                    </p>
-                    <p className="text-slate-600 text-sm leading-relaxed">
-                      {item.answer}
-                    </p>
-                  </div>
+                    question={item.question}
+                    answer={item.answer}
+                  />
                 ))}
               </div>
             </div>
           </section>
         )}
 
-        <section className="py-14 sm:py-16 bg-slate-50 border-y border-slate-100">
+        <section className="py-16 sm:py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               label="Country Hub"
@@ -479,14 +529,15 @@ export default async function GuidePage({
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <Link
                 href={`/car-rental/${country.country_slug}/`}
-                className="group flex items-start gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:shadow-blue-50 transition-all duration-200"
+                className="group flex items-start gap-4 p-6 bg-white border border-stone-200 rounded-3xl hover:border-[#D8C5A0] hover:shadow-lg hover:shadow-stone-200/40 transition-all duration-200"
               >
-                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors">
+                <div className="w-11 h-11 rounded-2xl bg-[#F3EBDD] flex items-center justify-center shrink-0 group-hover:bg-[#EADBBE] transition-colors">
                   <svg
-                    className="w-5 h-5 text-blue-600"
+                    className="w-5 h-5 text-[#7A5C2E]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path
                       strokeLinecap="round"
@@ -497,40 +548,47 @@ export default async function GuidePage({
                   </svg>
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-1">
+                  <p className="text-xs text-[#7A5C2E] font-semibold uppercase tracking-wide mb-1">
                     Country Hub
                   </p>
-                  <h3 className="font-semibold text-slate-900 group-hover:text-blue-700 transition-colors text-base leading-snug">
+                  <h3 className="font-semibold text-slate-900 group-hover:text-[#5E451D] transition-colors text-base leading-snug">
                     Car Rental in {country.country_name}
                   </h3>
-                  <p className="text-xs text-slate-400 mt-2">
+                  <p className="text-sm text-slate-500 mt-2">
                     Cities · Airports · Guides
                   </p>
                 </div>
-                <span className="text-slate-300 group-hover:text-blue-500 transition-colors shrink-0 mt-0.5">
-                  →
+                <span className="text-slate-300 group-hover:text-[#7A5C2E] transition-colors shrink-0 mt-0.5">
+                  <ChevronRight />
                 </span>
               </Link>
             </div>
           </div>
         </section>
 
-        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-blue-700 to-blue-600">
+        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-[#24303A] to-[#161B22]">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 overflow-hidden pointer-events-none"
+          >
+            <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-white/5 blur-3xl" />
+            <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-[#7A5C2E]/15 blur-3xl" />
+          </div>
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-4">
               Find the Best Car Rental Deals in {country.country_name}
             </h2>
-            <p className="text-blue-100 text-base mb-8 leading-relaxed">
+            <p className="text-stone-200 text-base mb-8 leading-relaxed">
               Compare car rental suppliers across {country.country_name} and
               book with trusted partners.
             </p>
             <a
               href={affiliateUrl(country.affiliate_sid_base, "guide_bottom")}
-              className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 active:bg-blue-100 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl shadow-blue-900/20 text-base"
+              className="inline-flex items-center gap-2 bg-white text-[#24303A] hover:bg-stone-100 active:bg-stone-200 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl text-base"
             >
               Compare Car Rental Deals Now
             </a>
-            <p className="mt-4 text-blue-200/70 text-xs">
+            <p className="mt-4 text-stone-300/70 text-xs">
               Free to use · No booking fees
             </p>
           </div>

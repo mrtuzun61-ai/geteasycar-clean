@@ -74,23 +74,39 @@ function SectionHeading({
   label,
   title,
   subtitle,
+  light = false,
 }: {
   label?: string;
   title: string;
   subtitle?: string;
+  light?: boolean;
 }) {
   return (
     <div className="mb-8">
       {label && (
-        <p className="text-blue-600 text-xs font-bold uppercase tracking-widest mb-2">
+        <p
+          className={`text-xs font-bold uppercase tracking-[0.24em] mb-2 ${
+            light ? "text-stone-300" : "text-[#7A5C2E]"
+          }`}
+        >
           {label}
         </p>
       )}
-      <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+      <h2
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight ${
+          light ? "text-white" : "text-slate-900"
+        }`}
+      >
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-2 text-slate-500 text-base max-w-2xl">{subtitle}</p>
+        <p
+          className={`mt-3 text-base leading-relaxed max-w-2xl ${
+            light ? "text-stone-200/90" : "text-slate-500"
+          }`}
+        >
+          {subtitle}
+        </p>
       )}
     </div>
   );
@@ -127,77 +143,89 @@ export default async function GuideIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
       />
 
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-[#F8F7F4]">
         <section className="relative overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${GUIDE_INDEX_HERO_IMAGE})` }}
+          <img
+            src={GUIDE_INDEX_HERO_IMAGE}
+            alt="Car rental travel guides"
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-blue-700/80 to-blue-500/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#161B22]/78 via-[#24303A]/68 to-[#7A5C2E]/36" />
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden pointer-events-none"
           >
-            <div className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full bg-sky-400/15 blur-3xl" />
-            <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-blue-900/25 blur-3xl" />
+            <div className="absolute -top-20 right-0 w-[520px] h-[520px] rounded-full bg-white/5 blur-3xl" />
+            <div className="absolute bottom-0 -left-20 w-[420px] h-[420px] rounded-full bg-[#7A5C2E]/18 blur-3xl" />
           </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-20">
-            <div className="max-w-2xl">
-              <p className="text-blue-200 text-sm font-semibold uppercase tracking-widest mb-4">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+            <div className="max-w-3xl">
+              <p className="text-stone-200 text-sm font-semibold uppercase tracking-[0.24em] mb-4">
                 Practical Country Guides
               </p>
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-5">
                 Car Rental Travel Guides
               </h1>
-              <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-xl">
+              <p className="text-stone-100/90 text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl">
                 Explore practical country guides covering driving rules, toll roads,
                 fuel, parking, airport pickup, and rental tips before you book.
               </p>
-              <a
-                href={affiliateUrl("guide_index_hero")}
-                className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 active:bg-blue-100 font-bold text-base px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-900/20"
-              >
-                Compare Car Rental Deals Now
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href={affiliateUrl("guide_index_hero")}
+                  className="inline-flex items-center gap-2 bg-white text-[#24303A] hover:bg-stone-100 active:bg-stone-200 font-bold text-base px-7 py-3.5 rounded-xl transition-colors shadow-lg"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </a>
+                  Compare Car Rental Deals Now
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </a>
+                <Link
+                  href="/car-rental/airports/"
+                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold text-base px-6 py-3.5 rounded-xl transition-colors border border-white/15"
+                >
+                  Browse Airports
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="border-b border-slate-100 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-10 text-sm font-medium text-slate-600">
+        <section className="border-b border-stone-200 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
-                "Practical Driving Advice",
-                "Airport & City Pickup Tips",
-                "Trusted Rental Guidance",
+                "Practical driving advice",
+                "Airport and city pickup tips",
+                "Trusted rental guidance",
               ].map((label) => (
-                <div key={label} className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xs font-black">
+                <div
+                  key={label}
+                  className="flex items-center gap-3 rounded-2xl border border-stone-200 bg-[#F8F7F4] px-4 py-3"
+                >
+                  <span className="w-8 h-8 rounded-full bg-[#EFE7D6] text-[#7A5C2E] flex items-center justify-center font-bold">
                     ✓
                   </span>
-                  <span>{label}</span>
+                  <span className="text-sm font-medium text-slate-700">{label}</span>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-14 sm:py-16">
+        <section className="py-16 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               label="Country Guides"
@@ -210,11 +238,11 @@ export default async function GuideIndexPage() {
                 <Link
                   key={guide.guide_slug}
                   href={`/guide/${guide.guide_slug}/`}
-                  className="group flex items-start gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:shadow-blue-50 transition-all duration-200"
+                  className="group flex items-start gap-4 p-6 bg-white border border-stone-200 rounded-3xl hover:border-[#D8C5A0] hover:shadow-lg hover:shadow-stone-200/40 transition-all duration-200"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors">
+                  <div className="w-11 h-11 rounded-2xl bg-[#F3EBDD] flex items-center justify-center shrink-0 group-hover:bg-[#EADBBE] transition-colors">
                     <svg
-                      className="w-5 h-5 text-blue-600"
+                      className="w-5 h-5 text-[#7A5C2E]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -229,17 +257,17 @@ export default async function GuideIndexPage() {
                     </svg>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-1">
+                    <p className="text-xs text-[#7A5C2E] font-semibold uppercase tracking-wide mb-1">
                       {countryName(guide.country_slug, countries)}
                     </p>
-                    <h3 className="font-semibold text-slate-900 group-hover:text-blue-700 transition-colors text-base leading-snug">
+                    <h3 className="font-semibold text-slate-900 group-hover:text-[#5E451D] transition-colors text-base leading-snug">
                       {guide.guide_title}
                     </h3>
-                    <p className="text-xs text-slate-400 mt-2">
+                    <p className="text-sm text-slate-500 mt-2 leading-relaxed">
                       {guideSubtitle(guide, countries)}
                     </p>
                   </div>
-                  <span className="text-slate-300 group-hover:text-blue-500 transition-colors shrink-0 mt-0.5">
+                  <span className="text-slate-300 group-hover:text-[#7A5C2E] transition-colors shrink-0 mt-0.5">
                     <ChevronRight />
                   </span>
                 </Link>
@@ -249,7 +277,7 @@ export default async function GuideIndexPage() {
         </section>
 
         {guideCountries.length > 0 && (
-          <section className="py-12 sm:py-14 bg-slate-50 border-y border-slate-100">
+          <section className="py-14 sm:py-16 bg-white border-y border-stone-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <SectionHeading
                 label="Country Hubs"
@@ -262,12 +290,12 @@ export default async function GuideIndexPage() {
                   <Link
                     key={country.country_slug}
                     href={`/car-rental/${country.country_slug}/`}
-                    className="group flex items-center justify-between gap-2 p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-200 hover:shadow-md hover:shadow-blue-50 transition-all duration-200"
+                    className="group flex items-center justify-between gap-2 p-4 bg-[#F8F7F4] border border-stone-200 rounded-2xl hover:border-[#D8C5A0] hover:bg-white hover:shadow-md transition-all duration-200"
                   >
-                    <span className="font-semibold text-slate-900 text-sm group-hover:text-blue-700 transition-colors">
+                    <span className="font-semibold text-slate-900 text-sm group-hover:text-[#5E451D] transition-colors">
                       {country.country_name}
                     </span>
-                    <span className="text-slate-300 group-hover:text-blue-500 transition-colors">
+                    <span className="text-slate-300 group-hover:text-[#7A5C2E] transition-colors">
                       <ChevronRight />
                     </span>
                   </Link>
@@ -277,18 +305,18 @@ export default async function GuideIndexPage() {
           </section>
         )}
 
-        <section className="py-14 sm:py-16 bg-blue-50 border-y border-blue-100">
+        <section className="py-14 sm:py-16 bg-[#F3EEE5] border-y border-stone-200">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-4">
               Ready to Compare Car Rental Options?
             </h2>
             <p className="text-slate-600 text-base mb-7 leading-relaxed">
               Find and compare rental vehicles across cities and airports
-              worldwide. Connect directly with trusted suppliers — no booking fees.
+              worldwide. Connect directly with trusted suppliers with no booking fees.
             </p>
             <a
               href={affiliateUrl("guide_index_mid")}
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/20 text-base"
+              className="inline-flex items-center gap-2 bg-[#24303A] hover:bg-[#1B252D] active:bg-[#121920] text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg text-base"
             >
               Check Availability and Prices
               <svg
@@ -309,7 +337,7 @@ export default async function GuideIndexPage() {
           </div>
         </section>
 
-        <section className="py-14 sm:py-16">
+        <section className="py-16 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               label="Why These Guides Help"
@@ -334,11 +362,11 @@ export default async function GuideIndexPage() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="flex flex-col gap-3 p-6 bg-white border border-slate-200 rounded-2xl"
+                  className="flex flex-col gap-3 p-6 bg-white border border-stone-200 rounded-3xl"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                  <div className="w-11 h-11 rounded-2xl bg-[#F3EBDD] flex items-center justify-center shrink-0">
                     <svg
-                      className="w-5 h-5 text-blue-600"
+                      className="w-5 h-5 text-[#7A5C2E]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -364,35 +392,35 @@ export default async function GuideIndexPage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-blue-700 to-blue-600">
+        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-[#24303A] to-[#161B22]">
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden pointer-events-none"
           >
             <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-white/5 blur-3xl" />
-            <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-blue-900/20 blur-3xl" />
+            <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-[#7A5C2E]/15 blur-3xl" />
           </div>
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-4">
               Compare Car Rental Deals Worldwide
             </h2>
-            <p className="text-blue-100 text-base mb-8 leading-relaxed">
+            <p className="text-stone-200 text-base mb-8 leading-relaxed">
               Use the guides, then compare rental options across trusted suppliers
               serving airports and cities worldwide.
             </p>
             <a
               href={affiliateUrl("guide_index_bottom")}
-              className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 active:bg-blue-100 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl shadow-blue-900/20 text-base"
+              className="inline-flex items-center gap-2 bg-white text-[#24303A] hover:bg-stone-100 active:bg-stone-200 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl text-base"
             >
               Compare Car Rental Deals Now
             </a>
-            <p className="mt-4 text-blue-200/70 text-xs">
+            <p className="mt-4 text-stone-300/70 text-xs">
               Free to use · No booking fees
             </p>
           </div>
         </section>
 
-        <section className="py-12 bg-slate-50 border-t border-slate-100">
+        <section className="py-12 bg-white border-t border-stone-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               <div>
@@ -403,7 +431,7 @@ export default async function GuideIndexPage() {
                   <li>
                     <Link
                       href="/"
-                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                      className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors flex items-center gap-1.5"
                     >
                       <span className="text-slate-300">›</span>
                       Homepage
@@ -412,7 +440,7 @@ export default async function GuideIndexPage() {
                   <li>
                     <Link
                       href="/guide/"
-                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                      className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors flex items-center gap-1.5"
                     >
                       <span className="text-slate-300">›</span>
                       All Travel Guides
@@ -431,7 +459,7 @@ export default async function GuideIndexPage() {
                       <li key={country.country_slug}>
                         <Link
                           href={`/car-rental/${country.country_slug}/`}
-                          className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                          className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors flex items-center gap-1.5"
                         >
                           <span className="text-slate-300">›</span>
                           Car Rental in {country.country_name}
@@ -452,7 +480,7 @@ export default async function GuideIndexPage() {
                       <li key={guide.guide_slug}>
                         <Link
                           href={`/guide/${guide.guide_slug}/`}
-                          className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                          className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors flex items-center gap-1.5"
                         >
                           <span className="text-slate-300">›</span>
                           {guide.guide_title}

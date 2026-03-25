@@ -14,7 +14,7 @@ import {
 const AFFILIATE_BASE =
   "https://www.dpbolvw.net/click-101574986-15736982?sid=";
 
-function affiliateUrl(sidBase: string, position: string): string {
+function affiliateUrl(sidBase: string, position: string) {
   return `${AFFILIATE_BASE}${sidBase}_${position}`;
 }
 
@@ -32,7 +32,7 @@ const CITY_HERO_IMAGES: Record<string, string> = {
   orlando:
     "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1800&q=80",
   sydney:
-    "https://images.unsplash.com/photo-1506973035872-a4ec16b8d4a5?auto=format&fit=crop&w=1800&q=80",
+    "https://images.unsplash.com/photo-1523428096881-5bd79d043006?auto=format&fit=crop&w=1800&q=80",
   miami:
     "https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?auto=format&fit=crop&w=1800&q=80",
 };
@@ -61,23 +61,39 @@ function SectionHeading({
   label,
   title,
   subtitle,
+  light = false,
 }: {
   label?: string;
   title: string;
   subtitle?: string;
+  light?: boolean;
 }) {
   return (
     <div className="mb-8">
       {label && (
-        <p className="text-blue-600 text-xs font-bold uppercase tracking-widest mb-2">
+        <p
+          className={`text-xs font-bold uppercase tracking-[0.24em] mb-2 ${
+            light ? "text-stone-300" : "text-[#7A5C2E]"
+          }`}
+        >
           {label}
         </p>
       )}
-      <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+      <h2
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight ${
+          light ? "text-white" : "text-slate-900"
+        }`}
+      >
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-2 text-slate-500 text-base max-w-2xl">{subtitle}</p>
+        <p
+          className={`mt-3 text-base leading-relaxed max-w-2xl ${
+            light ? "text-stone-200/90" : "text-slate-500"
+          }`}
+        >
+          {subtitle}
+        </p>
       )}
     </div>
   );
@@ -90,6 +106,7 @@ function ChevronRight() {
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
+      aria-hidden="true"
     >
       <path
         strokeLinecap="round"
@@ -109,9 +126,9 @@ function FaqAccordionItem({
   answer: string;
 }) {
   return (
-    <div className="border border-slate-200 rounded-xl overflow-hidden bg-white">
-      <div className="p-5">
-        <p className="font-semibold text-slate-900 text-sm mb-2">{question}</p>
+    <div className="border border-stone-200 rounded-2xl overflow-hidden bg-white">
+      <div className="p-6">
+        <p className="font-semibold text-slate-900 text-base mb-2">{question}</p>
         <p className="text-slate-600 text-sm leading-relaxed">{answer}</p>
       </div>
     </div>
@@ -136,7 +153,7 @@ export async function generateMetadata({
   const { country: countrySlug, city: citySlug } = await params;
 
   const [city, country] = await Promise.all([
-    getCityBySlug(citySlug, countrySlug,),
+    getCityBySlug(citySlug, countrySlug, null),
     getCountryBySlug(countrySlug),
   ]);
 
@@ -253,10 +270,10 @@ export default async function CityPage({
         />
       )}
 
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-[#F8F7F4]">
         <nav
           aria-label="Breadcrumb"
-          className="bg-slate-50 border-b border-slate-100"
+          className="bg-white border-b border-stone-200"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <ol className="flex items-center gap-1.5 text-xs text-slate-500 flex-wrap">
@@ -277,7 +294,7 @@ export default async function CityPage({
                   ) : (
                     <Link
                       href={item.url}
-                      className="hover:text-blue-600 transition-colors"
+                      className="hover:text-[#7A5C2E] transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -289,76 +306,132 @@ export default async function CityPage({
         </nav>
 
         <section className="relative overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImage})` }}
+          <img
+            src={heroImage}
+            alt={`${city.city_name} car rental`}
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-blue-700/75 to-blue-500/65" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#161B22]/82 via-[#24303A]/72 to-[#7A5C2E]/36" />
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden pointer-events-none"
           >
-            <div className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full bg-sky-400/15 blur-3xl" />
-            <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full bg-blue-900/25 blur-3xl" />
+            <div className="absolute -top-20 right-0 w-[520px] h-[520px] rounded-full bg-white/5 blur-3xl" />
+            <div className="absolute bottom-0 -left-20 w-[420px] h-[420px] rounded-full bg-[#7A5C2E]/18 blur-3xl" />
           </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-20">
-            <div className="max-w-2xl">
-              <p className="text-blue-200 text-sm font-semibold uppercase tracking-widest mb-4">
-                {country.country_name} · Car Rental
-              </p>
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
-                {city.h1}
-              </h1>
-              <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-xl">
-                {city.intro_paragraph}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+            <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
+              <div className="max-w-3xl">
+                <p className="text-stone-200 text-sm font-semibold uppercase tracking-[0.24em] mb-4">
+                  {country.country_name} · City Rental
+                </p>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-5">
+                  {city.h1}
+                </h1>
+                <p className="text-stone-100/90 text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl">
+                  {city.intro_paragraph}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={affiliateUrl(city.affiliate_sid_base, "hero")}
+                    className="inline-flex items-center justify-center gap-2 bg-white text-[#24303A] hover:bg-stone-100 active:bg-stone-200 font-bold text-base px-7 py-3.5 rounded-xl transition-colors shadow-lg"
+                  >
+                    Compare Car Rentals in {city.city_name}
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a>
+                  {cityAirports.length > 0 && (
+                    <Link
+                      href={`/car-rental/airports/${cityAirports[0].airport_slug}/`}
+                      className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold text-base px-6 py-3.5 rounded-xl transition-colors border border-white/15"
+                    >
+                      Airport Pickup
+                    </Link>
+                  )}
+                </div>
+
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl">
+                  <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 backdrop-blur-sm">
+                    <p className="text-stone-200 text-xs uppercase tracking-wide font-semibold">
+                      Traffic Side
+                    </p>
+                    <p className="mt-1 text-white font-semibold">
+                      {country.driving_side === "left"
+                        ? "Drive on the left"
+                        : "Drive on the right"}
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 backdrop-blur-sm">
+                    <p className="text-stone-200 text-xs uppercase tracking-wide font-semibold">
+                      Minimum Age
+                    </p>
+                    <p className="mt-1 text-white font-semibold">
+                      {country.minimum_driver_age}+ years
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 backdrop-blur-sm">
+                    <p className="text-stone-200 text-xs uppercase tracking-wide font-semibold">
+                      Currency
+                    </p>
+                    <p className="mt-1 text-white font-semibold">
+                      {country.currency_code}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-white/10 bg-white/10 backdrop-blur-sm p-6">
+                <p className="text-stone-200 text-xs font-semibold uppercase tracking-[0.24em] mb-3">
+                  Why this page matters
+                </p>
+                <h2 className="text-2xl font-bold text-white tracking-tight mb-4">
+                  Compare city pickup with more confidence
+                </h2>
+                <div className="space-y-3 text-sm text-stone-100/90">
+                  <p>See airport access before you decide where to collect your car.</p>
+                  <p>Use city-level guidance to avoid parking, toll, and driving mistakes.</p>
+                  <p>Move into nearby destinations and country guides from one strong hub.</p>
+                </div>
                 <a
-                  href={affiliateUrl(city.affiliate_sid_base, "hero")}
-                  className="inline-flex items-center justify-center gap-2 bg-white text-blue-700 hover:bg-blue-50 active:bg-blue-100 font-bold text-base px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-900/20"
+                  href={affiliateUrl(city.affiliate_sid_base, "sidebar")}
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-white text-[#24303A] hover:bg-stone-100 font-bold px-6 py-3 rounded-xl transition-colors"
                 >
-                  Compare Car Rentals in {city.city_name}
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
+                  Check Prices in {city.city_name}
                 </a>
-                {cityAirports.length > 0 && (
-                  <Link
-                    href={`/car-rental/airports/${cityAirports[0].airport_slug}/`}
-                    className="inline-flex items-center justify-center gap-2 bg-blue-800/50 hover:bg-blue-800/70 text-white font-semibold text-base px-6 py-3.5 rounded-xl transition-colors border border-white/20"
-                  >
-                    Airport Pickup
-                  </Link>
-                )}
               </div>
             </div>
           </div>
         </section>
 
-        <section className="border-b border-slate-100 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-10 text-sm font-medium text-slate-600">
+        <section className="border-b border-stone-200 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
-                "Free Cancellation Available",
-                "No Hidden Platform Fees",
-                "Trusted Rental Partners",
+                "Free cancellation where available",
+                "No hidden platform fees",
+                "Trusted rental partners",
               ].map((label) => (
-                <div key={label} className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xs font-black">
+                <div
+                  key={label}
+                  className="flex items-center gap-3 rounded-2xl border border-stone-200 bg-[#F8F7F4] px-4 py-3"
+                >
+                  <span className="w-8 h-8 rounded-full bg-[#EFE7D6] text-[#7A5C2E] flex items-center justify-center font-bold">
                     ✓
                   </span>
-                  <span>{label}</span>
+                  <span className="text-sm font-medium text-slate-700">{label}</span>
                 </div>
               ))}
             </div>
@@ -366,25 +439,26 @@ export default async function CityPage({
         </section>
 
         {cityAirports.length > 0 && (
-          <section className="py-14 sm:py-16 bg-slate-900">
+          <section className="py-16 sm:py-20 bg-[#1D2730]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <SectionHeading
                 label="Airport Pickup"
                 title={`Car Rental at ${city.city_name} Airports`}
                 subtitle={`Pick up your rental car directly on arrival at airports serving ${city.city_name}.`}
+                light
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {cityAirports.map((airport) => (
                   <Link
                     key={airport.iata_code}
                     href={`/car-rental/airports/${airport.airport_slug}/`}
-                    className="group flex flex-col gap-4 p-6 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-sky-400/40 rounded-2xl transition-all duration-200"
+                    className="group flex flex-col gap-4 p-6 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#D8C5A0]/50 rounded-3xl transition-all duration-200"
                   >
                     <div className="flex items-start justify-between">
-                      <span className="inline-flex bg-blue-600 text-white text-xs font-extrabold px-3 py-1.5 rounded-lg tracking-wider">
+                      <span className="inline-flex bg-[#7A5C2E] text-white text-xs font-extrabold px-3 py-1.5 rounded-lg tracking-wider">
                         {airport.iata_code}
                       </span>
-                      <span className="text-slate-600 group-hover:text-sky-400 transition-colors">
+                      <span className="text-slate-500 group-hover:text-[#D8C5A0] transition-colors">
                         <ChevronRight />
                       </span>
                     </div>
@@ -392,7 +466,7 @@ export default async function CityPage({
                       <p className="text-white font-semibold text-base leading-snug">
                         {airport.airport_name}
                       </p>
-                      <p className="text-slate-400 text-sm mt-1">
+                      <p className="text-stone-300 text-sm mt-1">
                         {airport.pickup_type === "shuttle"
                           ? "Free shuttle from terminal"
                           : airport.pickup_type === "on_site"
@@ -400,12 +474,12 @@ export default async function CityPage({
                             : "On-site and shuttle options"}
                       </p>
                       {airport.distance_from_city_km && (
-                        <p className="text-slate-500 text-xs mt-1">
+                        <p className="text-stone-400 text-xs mt-1">
                           {airport.distance_from_city_km} km from city center
                         </p>
                       )}
                     </div>
-                    <p className="text-sky-400 text-sm font-medium group-hover:text-sky-300 transition-colors flex items-center gap-1">
+                    <p className="text-[#D8C5A0] text-sm font-medium group-hover:text-[#E9DCC5] transition-colors flex items-center gap-1">
                       View airport rental options →
                     </p>
                   </Link>
@@ -415,19 +489,19 @@ export default async function CityPage({
           </section>
         )}
 
-        <section className="py-12 sm:py-14 bg-blue-50 border-y border-blue-100">
+        <section className="py-12 sm:py-14 bg-[#F3EEE5] border-y border-stone-200">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-4">
               Ready to Compare Rental Cars in {city.city_name}?
             </h2>
             <p className="text-slate-600 text-base mb-7 leading-relaxed">
               Find and compare rental vehicles across {city.city_name} and
-              surrounding areas. Connect directly with trusted suppliers — no
+              surrounding areas. Connect directly with trusted suppliers with no
               booking fees.
             </p>
             <a
               href={affiliateUrl(city.affiliate_sid_base, "mid")}
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-blue-600/20 text-base"
+              className="inline-flex items-center gap-2 bg-[#24303A] hover:bg-[#1B252D] active:bg-[#121920] text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg text-base"
             >
               Check Availability and Prices
               <svg
@@ -435,6 +509,7 @@ export default async function CityPage({
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -447,7 +522,7 @@ export default async function CityPage({
           </div>
         </section>
 
-        <section className="py-14 sm:py-16">
+        <section className="py-16 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
               <div className="lg:col-span-1">
@@ -457,13 +532,14 @@ export default async function CityPage({
                   subtitle="Key information before you set off."
                 />
                 <div className="flex flex-col gap-3 mt-6">
-                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+                  <div className="flex items-center gap-3 bg-white border border-stone-200 rounded-xl px-4 py-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#F3EBDD] flex items-center justify-center shrink-0">
                       <svg
-                        className="w-4 h-4 text-blue-600"
+                        className="w-4 h-4 text-[#7A5C2E]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
@@ -484,13 +560,14 @@ export default async function CityPage({
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+                  <div className="flex items-center gap-3 bg-white border border-stone-200 rounded-xl px-4 py-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#F3EBDD] flex items-center justify-center shrink-0">
                       <svg
-                        className="w-4 h-4 text-blue-600"
+                        className="w-4 h-4 text-[#7A5C2E]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
@@ -509,13 +586,14 @@ export default async function CityPage({
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
-                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+                  <div className="flex items-center gap-3 bg-white border border-stone-200 rounded-xl px-4 py-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#F3EBDD] flex items-center justify-center shrink-0">
                       <svg
-                        className="w-4 h-4 text-blue-600"
+                        className="w-4 h-4 text-[#7A5C2E]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
@@ -541,8 +619,8 @@ export default async function CityPage({
                 {hasPracticalInfo ? (
                   <>
                     {country.driving_notes && (
-                      <div className="border-b border-slate-100 pb-6">
-                        <h3 className="text-base font-semibold text-slate-900 mb-2">
+                      <div className="rounded-3xl border border-stone-200 bg-white p-7">
+                        <h3 className="text-lg font-bold text-slate-900 mb-3">
                           Road Rules in {country.country_name}
                         </h3>
                         <p className="text-slate-600 text-sm leading-relaxed">
@@ -551,9 +629,9 @@ export default async function CityPage({
                       </div>
                     )}
                     {country.toll_information && (
-                      <div className="border-b border-slate-100 pb-6">
-                        <h3 className="text-base font-semibold text-slate-900 mb-2">
-                          Tolls & Road Charges
+                      <div className="rounded-3xl border border-stone-200 bg-white p-7">
+                        <h3 className="text-lg font-bold text-slate-900 mb-3">
+                          Tolls and Road Charges
                         </h3>
                         <p className="text-slate-600 text-sm leading-relaxed">
                           {country.toll_information}
@@ -561,8 +639,8 @@ export default async function CityPage({
                       </div>
                     )}
                     {country.fuel_notes && (
-                      <div className="border-b border-slate-100 pb-6">
-                        <h3 className="text-base font-semibold text-slate-900 mb-2">
+                      <div className="rounded-3xl border border-stone-200 bg-white p-7">
+                        <h3 className="text-lg font-bold text-slate-900 mb-3">
                           Fuel
                         </h3>
                         <p className="text-slate-600 text-sm leading-relaxed">
@@ -571,8 +649,8 @@ export default async function CityPage({
                       </div>
                     )}
                     {country.parking_notes && (
-                      <div>
-                        <h3 className="text-base font-semibold text-slate-900 mb-2">
+                      <div className="rounded-3xl border border-stone-200 bg-white p-7">
+                        <h3 className="text-lg font-bold text-slate-900 mb-3">
                           Parking in {city.city_name}
                         </h3>
                         <p className="text-slate-600 text-sm leading-relaxed">
@@ -582,8 +660,8 @@ export default async function CityPage({
                     )}
                   </>
                 ) : (
-                  <div>
-                    <h3 className="text-base font-semibold text-slate-900 mb-2">
+                  <div className="rounded-3xl border border-stone-200 bg-white p-7">
+                    <h3 className="text-lg font-bold text-slate-900 mb-3">
                       Driving Tips for {city.city_name}
                     </h3>
                     <p className="text-slate-600 text-sm leading-relaxed">
@@ -592,9 +670,9 @@ export default async function CityPage({
                       The minimum age to rent a car is typically{" "}
                       {country.minimum_driver_age} years old, though young
                       driver surcharges may apply for drivers under 25. Carry
-                      your driving license, passport, and rental documentation
+                      your driving licence, passport, and rental documentation
                       at all times. An International Driving Permit is
-                      recommended for visitors whose license is not in the local
+                      recommended for visitors whose licence is not in the local
                       language.
                     </p>
                   </div>
@@ -604,7 +682,7 @@ export default async function CityPage({
           </div>
         </section>
 
-        <section className="py-14 sm:py-16 bg-slate-50 border-y border-slate-100">
+        <section className="py-16 sm:py-20 bg-white border-y border-stone-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
               label="Rental Tips"
@@ -616,10 +694,11 @@ export default async function CityPage({
                 {
                   icon: (
                     <svg
-                      className="w-5 h-5 text-blue-600"
+                      className="w-5 h-5 text-[#7A5C2E]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -630,15 +709,16 @@ export default async function CityPage({
                     </svg>
                   ),
                   title: "Book in Advance",
-                  body: `Rental availability in ${city.city_name} is strong, but booking ahead secures better rates and your preferred vehicle category — especially during peak travel periods.`,
+                  body: `Rental availability in ${city.city_name} is strong, but booking ahead secures better rates and your preferred vehicle category, especially during peak travel periods.`,
                 },
                 {
                   icon: (
                     <svg
-                      className="w-5 h-5 text-blue-600"
+                      className="w-5 h-5 text-[#7A5C2E]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -649,15 +729,16 @@ export default async function CityPage({
                     </svg>
                   ),
                   title: "Check Insurance Options",
-                  body: `Review what coverage is included in your rental. Some credit cards offer supplemental coverage — check your card benefits before purchasing additional insurance at the counter.`,
+                  body: `Review what coverage is included in your rental. Some credit cards offer supplemental coverage, so check your card benefits before purchasing extra protection at the counter.`,
                 },
                 {
                   icon: (
                     <svg
-                      className="w-5 h-5 text-blue-600"
+                      className="w-5 h-5 text-[#7A5C2E]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -673,10 +754,11 @@ export default async function CityPage({
                 {
                   icon: (
                     <svg
-                      className="w-5 h-5 text-blue-600"
+                      className="w-5 h-5 text-[#7A5C2E]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -692,10 +774,11 @@ export default async function CityPage({
                 {
                   icon: (
                     <svg
-                      className="w-5 h-5 text-blue-600"
+                      className="w-5 h-5 text-[#7A5C2E]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -706,15 +789,16 @@ export default async function CityPage({
                     </svg>
                   ),
                   title: "Carry Your Documents",
-                  body: `You will need your driving license, passport or national ID, and booking confirmation. If your license is not in English or the local language, carry an International Driving Permit.`,
+                  body: `You will need your driving licence, passport or national ID, and booking confirmation. If your licence is not in English or the local language, carry an International Driving Permit.`,
                 },
                 {
                   icon: (
                     <svg
-                      className="w-5 h-5 text-blue-600"
+                      className="w-5 h-5 text-[#7A5C2E]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -725,14 +809,14 @@ export default async function CityPage({
                     </svg>
                   ),
                   title: "Inspect Before You Drive",
-                  body: `Walk around the vehicle with the rental agent before driving away. Note any existing damage on the inspection form and photograph it — this protects you from being charged for pre-existing issues.`,
+                  body: `Walk around the vehicle with the rental agent before driving away. Note any existing damage on the inspection form and photograph it to avoid being charged for pre-existing issues.`,
                 },
               ].map((tip) => (
                 <div
                   key={tip.title}
-                  className="flex flex-col gap-3 p-6 bg-white border border-slate-200 rounded-2xl"
+                  className="flex flex-col gap-3 p-6 bg-[#FBFAF7] border border-stone-200 rounded-3xl"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                  <div className="w-11 h-11 rounded-2xl bg-[#F3EBDD] flex items-center justify-center shrink-0">
                     {tip.icon}
                   </div>
                   <h3 className="font-semibold text-slate-900 text-base">
@@ -748,7 +832,7 @@ export default async function CityPage({
         </section>
 
         {hasFaq && (
-          <section className="py-14 sm:py-16">
+          <section className="py-16 sm:py-20">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <SectionHeading
                 label="FAQs"
@@ -768,7 +852,7 @@ export default async function CityPage({
         )}
 
         {indexedGuides.length > 0 && (
-          <section className="py-14 sm:py-16 bg-slate-50 border-y border-slate-100">
+          <section className="py-16 sm:py-20 bg-white border-y border-stone-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <SectionHeading
                 label="Travel Guides"
@@ -780,14 +864,15 @@ export default async function CityPage({
                   <Link
                     key={guide.guide_slug}
                     href={`/guide/${guide.guide_slug}/`}
-                    className="group flex items-start gap-4 p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-200 hover:shadow-md hover:shadow-blue-50 transition-all duration-200"
+                    className="group flex items-start gap-4 p-6 bg-[#FBFAF7] border border-stone-200 rounded-3xl hover:border-[#D8C5A0] hover:shadow-lg hover:shadow-stone-200/40 transition-all duration-200"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors">
+                    <div className="w-11 h-11 rounded-2xl bg-[#F3EBDD] flex items-center justify-center shrink-0 group-hover:bg-[#EADBBE] transition-colors">
                       <svg
-                        className="w-5 h-5 text-blue-600"
+                        className="w-5 h-5 text-[#7A5C2E]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"
@@ -798,17 +883,17 @@ export default async function CityPage({
                       </svg>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-1">
+                      <p className="text-xs text-[#7A5C2E] font-semibold uppercase tracking-wide mb-1">
                         Country Guide
                       </p>
-                      <h3 className="font-semibold text-slate-900 group-hover:text-blue-700 transition-colors text-base leading-snug">
+                      <h3 className="font-semibold text-slate-900 group-hover:text-[#5E451D] transition-colors text-base leading-snug">
                         {guide.guide_title}
                       </h3>
-                      <p className="text-xs text-slate-400 mt-2">
+                      <p className="text-sm text-slate-500 mt-2 leading-relaxed">
                         Driving rules · Tolls · Fuel · Parking
                       </p>
                     </div>
-                    <span className="text-slate-300 group-hover:text-blue-500 transition-colors shrink-0 mt-0.5">
+                    <span className="text-slate-300 group-hover:text-[#7A5C2E] transition-colors shrink-0 mt-0.5">
                       <ChevronRight />
                     </span>
                   </Link>
@@ -818,35 +903,35 @@ export default async function CityPage({
           </section>
         )}
 
-        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-blue-700 to-blue-600">
+        <section className="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-[#24303A] to-[#161B22]">
           <div
             aria-hidden="true"
             className="absolute inset-0 overflow-hidden pointer-events-none"
           >
             <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-white/5 blur-3xl" />
-            <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-blue-900/20 blur-3xl" />
+            <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full bg-[#7A5C2E]/15 blur-3xl" />
           </div>
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-4">
               Find the Best Car Rental Deals in {city.city_name}
             </h2>
-            <p className="text-blue-100 text-base mb-8 leading-relaxed">
+            <p className="text-stone-200 text-base mb-8 leading-relaxed">
               Compare options across all suppliers serving {city.city_name}.
-              Transparent pricing, trusted partners.
+              Transparent pricing and trusted partners.
             </p>
             <a
               href={affiliateUrl(city.affiliate_sid_base, "bottom")}
-              className="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl shadow-blue-900/20 text-base"
+              className="inline-flex items-center gap-2 bg-white text-[#24303A] hover:bg-stone-100 font-extrabold px-8 py-4 rounded-xl transition-colors shadow-xl text-base"
             >
               Compare Car Rental Deals Now
             </a>
-            <p className="mt-4 text-blue-200/70 text-xs">
+            <p className="mt-4 text-stone-300/70 text-xs">
               Free to use · No booking fees
             </p>
           </div>
         </section>
 
-        <section className="py-12 bg-slate-50 border-t border-slate-100">
+        <section className="py-12 bg-white border-t border-stone-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               <div>
@@ -857,7 +942,7 @@ export default async function CityPage({
                   <li>
                     <Link
                       href={`/car-rental/${countrySlug}/`}
-                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                      className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors flex items-center gap-1.5"
                     >
                       <span className="text-slate-300">›</span>
                       Car Rental in {country.country_name}
@@ -865,8 +950,8 @@ export default async function CityPage({
                   </li>
                   <li>
                     <Link
-                      href={`/guide/`}
-                      className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                      href="/guide/"
+                      className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors flex items-center gap-1.5"
                     >
                       <span className="text-slate-300">›</span>
                       All Travel Guides
@@ -885,7 +970,7 @@ export default async function CityPage({
                       <li key={`${airport.iata_code}-link`}>
                         <Link
                           href={`/car-rental/airports/${airport.airport_slug}/`}
-                          className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                          className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors flex items-center gap-1.5"
                         >
                           <span className="text-slate-300">›</span>
                           {airport.iata_code} — {airport.airport_name_short}
@@ -906,7 +991,7 @@ export default async function CityPage({
                       <li key={nearby.city_slug}>
                         <Link
                           href={nearbyCityUrl(nearby)}
-                          className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                          className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors flex items-center gap-1.5"
                         >
                           <span className="text-slate-300">›</span>
                           Car Rental in {nearby.city_name}
@@ -927,7 +1012,7 @@ export default async function CityPage({
                       <li key={guide.guide_slug}>
                         <Link
                           href={`/guide/${guide.guide_slug}/`}
-                          className="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5"
+                          className="text-sm text-slate-600 hover:text-[#7A5C2E] transition-colors flex items-center gap-1.5"
                         >
                           <span className="text-slate-300">›</span>
                           {guide.guide_title}
