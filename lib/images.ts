@@ -25,6 +25,22 @@ const cityHeroOverrides: Record<string, string> = {
     "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80",
   vancouver:
     "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80",
+  "new-york":
+    "https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?auto=format&fit=crop&w=1600&q=80",
+  chicago:
+    "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?auto=format&fit=crop&w=1600&q=80",
+  "las-vegas":
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+  montreal:
+    "https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=1600&q=80",
+  calgary:
+    "https://images.unsplash.com/photo-1511203466129-824e631920d4?auto=format&fit=crop&w=1600&q=80",
+  brisbane:
+    "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1600&q=80",
+  melbourne:
+    "https://images.unsplash.com/photo-1514395462725-fb4566210144?auto=format&fit=crop&w=1600&q=80",
+  perth:
+    "https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?auto=format&fit=crop&w=1600&q=80",
 };
 
 const countryHeroOverrides: Record<string, string> = {
@@ -50,13 +66,25 @@ const countryHeroOverrides: Record<string, string> = {
 
 const stateHeroOverrides: Record<string, string> = {
   california:
-    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1600&q=80",
   florida:
-    "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?auto=format&fit=crop&w=1600&q=80",
+  "new-york":
+    "https://images.unsplash.com/photo-1496588152823-ecc7f4df4b16?auto=format&fit=crop&w=1600&q=80",
+  nevada:
+    "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80",
+  illinois:
+    "https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?auto=format&fit=crop&w=1600&q=80",
   ontario:
     "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80",
   "british-columbia":
     "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80",
+  "new-south-wales":
+    "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1600&q=80",
+  victoria:
+    "https://images.unsplash.com/photo-1514395462725-fb4566210144?auto=format&fit=crop&w=1600&q=80",
+  queensland:
+    "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1600&q=80",
 };
 
 const airportHeroOverrides: Record<string, string> = {
@@ -95,33 +123,77 @@ const guideHeroOverrides: Record<string, string> = {
     "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80",
 };
 
-function toQuery(value: string): string {
-  return value.replace(/-/g, ",");
+const cityFallbackPool = [
+  "https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1514395462725-fb4566210144?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1600&q=80",
+];
+
+const countryFallbackPool = [
+  "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1600&q=80",
+];
+
+const stateFallbackPool = [
+  "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1496588152823-ecc7f4df4b16?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1600&q=80",
+];
+
+const airportFallbackPool = [
+  "https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1596838132731-3301c3fd4317?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1600&q=80",
+];
+
+const guideFallbackPool = [
+  "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1600&q=80",
+];
+
+function normalize(value: string): string {
+  return value.trim().toLowerCase();
 }
 
-function unsplashUrl(query: string): string {
-  return `https://source.unsplash.com/1600x900/?${encodeURIComponent(query)}`;
-}
-
-export function getCityHeroImage(citySlug: string, cityName?: string): string {
-  if (cityHeroOverrides[citySlug]) {
-    return cityHeroOverrides[citySlug];
+function hashString(value: string): number {
+  let hash = 0;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash << 5) - hash + value.charCodeAt(i);
+    hash |= 0;
   }
+  return Math.abs(hash);
+}
 
-  const query = cityName ? cityName : toQuery(citySlug);
-  return unsplashUrl(`${query},city,travel,landmark`);
+function pickDeterministic(values: string[], seed: string): string {
+  return values[hashString(seed) % values.length];
 }
 
 export function getCountryHeroImage(
   countrySlug: string,
   countryName?: string
 ): string {
-  if (countryHeroOverrides[countrySlug]) {
-    return countryHeroOverrides[countrySlug];
+  const slug = normalize(countrySlug);
+
+  if (countryHeroOverrides[slug]) {
+    return countryHeroOverrides[slug];
   }
 
-  const query = countryName ? countryName : toQuery(countrySlug);
-  return unsplashUrl(`${query},travel,roadtrip,landscape`);
+  return pickDeterministic(
+    countryFallbackPool,
+    `${slug}:${normalize(countryName ?? slug)}`
+  );
 }
 
 export function getStateHeroImage(
@@ -129,15 +201,36 @@ export function getStateHeroImage(
   stateName?: string,
   countryName?: string
 ): string {
-  if (stateHeroOverrides[stateSlug]) {
-    return stateHeroOverrides[stateSlug];
+  const slug = normalize(stateSlug);
+
+  if (stateHeroOverrides[slug]) {
+    return stateHeroOverrides[slug];
   }
 
-  const queryParts = [stateName ?? toQuery(stateSlug), countryName, "travel", "landscape"]
-    .filter(Boolean)
-    .join(",");
+  if (countryName) {
+    const countrySlug = normalize(countryName.replace(/\s+/g, "-"));
+    if (countryHeroOverrides[countrySlug]) {
+      return countryHeroOverrides[countrySlug];
+    }
+  }
 
-  return unsplashUrl(queryParts);
+  return pickDeterministic(
+    stateFallbackPool,
+    `${slug}:${normalize(stateName ?? slug)}:${normalize(countryName ?? "")}`
+  );
+}
+
+export function getCityHeroImage(citySlug: string, cityName?: string): string {
+  const slug = normalize(citySlug);
+
+  if (cityHeroOverrides[slug]) {
+    return cityHeroOverrides[slug];
+  }
+
+  return pickDeterministic(
+    cityFallbackPool,
+    `${slug}:${normalize(cityName ?? slug)}`
+  );
 }
 
 export function getAirportHeroImage(
@@ -145,15 +238,23 @@ export function getAirportHeroImage(
   airportName?: string,
   cityName?: string
 ): string {
-  if (airportHeroOverrides[iataCode]) {
-    return airportHeroOverrides[iataCode];
+  const code = normalize(iataCode).toUpperCase();
+
+  if (airportHeroOverrides[code]) {
+    return airportHeroOverrides[code];
   }
 
-  const query = [airportName, cityName, "airport", "travel"]
-    .filter(Boolean)
-    .join(",");
+  if (cityName) {
+    const derivedCitySlug = normalize(cityName.replace(/\s+/g, "-"));
+    if (cityHeroOverrides[derivedCitySlug]) {
+      return cityHeroOverrides[derivedCitySlug];
+    }
+  }
 
-  return unsplashUrl(query || `${iataCode},airport,travel`);
+  return pickDeterministic(
+    airportFallbackPool,
+    `${code}:${normalize(airportName ?? "")}:${normalize(cityName ?? "")}`
+  );
 }
 
 export function getGuideHeroImage(
@@ -161,13 +262,21 @@ export function getGuideHeroImage(
   guideTitle?: string,
   countryName?: string
 ): string {
-  if (guideHeroOverrides[guideSlug]) {
-    return guideHeroOverrides[guideSlug];
+  const slug = normalize(guideSlug);
+
+  if (guideHeroOverrides[slug]) {
+    return guideHeroOverrides[slug];
   }
 
-  const query = [guideTitle, countryName, "travel", "car rental"]
-    .filter(Boolean)
-    .join(",");
+  if (countryName) {
+    const derivedCountrySlug = normalize(countryName.replace(/\s+/g, "-"));
+    if (countryHeroOverrides[derivedCountrySlug]) {
+      return countryHeroOverrides[derivedCountrySlug];
+    }
+  }
 
-  return unsplashUrl(query || `${toQuery(guideSlug)},travel`);
+  return pickDeterministic(
+    guideFallbackPool,
+    `${slug}:${normalize(guideTitle ?? "")}:${normalize(countryName ?? "")}`
+  );
 }
