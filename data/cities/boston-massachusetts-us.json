@@ -7,9 +7,31 @@
   "airport_slugs": ["BOS"],
   "nearby_city_slugs": ["new-york", "philadelphia"],
   "affiliate_sid_base": "us_boston",
+  "canonical_url": "/car-rental/united-states/massachusetts/boston/",
   "meta_title": "Car Rental in Boston, MA — Compare Rental Options",
   "meta_description": "Compare car rental options in Boston, Massachusetts with airport and city pickup guidance.",
   "h1": "Car Rental in Boston",
   "intro_paragraph": "Compare rental options across Boston and nearby airport pickup locations before you book.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Massachusetts", "url": "/car-rental/united-states/massachusetts/" },
+    { "label": "Boston", "url": "/car-rental/united-states/massachusetts/boston/" }
+  ],
+  "faq": [
+    {
+      "question": "Do I need a car in Boston?",
+      "answer": "A rental car is useful for trips beyond central Boston and for regional travel across Massachusetts and nearby states."
+    },
+    {
+      "question": "Can I rent a car at Boston airport?",
+      "answer": "Yes. Boston Logan International Airport is the main airport pickup point for travelers arriving by air."
+    },
+    {
+      "question": "What is the minimum age to rent a car in Boston?",
+      "answer": "Minimum driver age varies by supplier, but most rental companies require drivers to be at least 21."
+    }
+  ],
+  "last_updated": "2026-03-25",
   "publication_state": "indexed"
 }
