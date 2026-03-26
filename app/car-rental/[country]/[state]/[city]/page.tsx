@@ -44,7 +44,8 @@ const CITY_HERO_IMAGES: Record<string, string> = {
     boston:
   "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&w=1600&q=80",
   dallas:
-  "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80"
+  "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80",
+};
 
 function getCityHeroImage(
   citySlug: string,
