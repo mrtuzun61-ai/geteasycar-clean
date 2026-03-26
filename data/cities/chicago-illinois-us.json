@@ -1,0 +1,37 @@
+{
+  "city_slug": "chicago",
+  "city_name": "Chicago",
+  "country_slug": "united-states",
+  "state_slug": "illinois",
+  "has_state_layer": true,
+  "airport_slugs": ["ORD", "MDW"],
+  "nearby_city_slugs": ["milwaukee", "indianapolis"],
+  "affiliate_sid_base": "us_chicago",
+  "canonical_url": "/car-rental/united-states/illinois/chicago/",
+  "meta_title": "Car Rental in Chicago, IL — Compare Rental Options",
+  "meta_description": "Compare car rental options in Chicago, Illinois with airport and downtown pickup guidance.",
+  "h1": "Car Rental in Chicago",
+  "intro_paragraph": "Find rental car options in Chicago with practical guidance for airport and city pickup.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Illinois", "url": "/car-rental/united-states/illinois/" },
+    { "label": "Chicago", "url": "/car-rental/united-states/illinois/chicago/" }
+  ],
+  "faq": [
+    {
+      "question": "Do I need a car in Chicago?",
+      "answer": "A rental car is useful for trips outside central Chicago and for travel across Illinois and nearby states."
+    },
+    {
+      "question": "Can I rent a car at Chicago airports?",
+      "answer": "Yes. Chicago has major airport pickup options including O'Hare and Midway."
+    },
+    {
+      "question": "What is the minimum age to rent a car in Chicago?",
+      "answer": "Minimum driver age varies by supplier, but most rental companies require drivers to be at least 21."
+    }
+  ],
+  "last_updated": "2026-03-26",
+  "publication_state": "indexed"
+}

@@ -1,0 +1,37 @@
+{
+  "city_slug": "dallas",
+  "city_name": "Dallas",
+  "country_slug": "united-states",
+  "state_slug": "texas",
+  "has_state_layer": true,
+  "airport_slugs": ["DFW", "DAL"],
+  "nearby_city_slugs": ["fort-worth", "austin"],
+  "affiliate_sid_base": "us_dallas",
+  "canonical_url": "/car-rental/united-states/texas/dallas/",
+  "meta_title": "Car Rental in Dallas, TX — Compare Rental Options",
+  "meta_description": "Compare car rental options in Dallas, Texas with airport and local pickup guidance.",
+  "h1": "Car Rental in Dallas",
+  "intro_paragraph": "Compare rental car options across Dallas and nearby airport locations before you travel.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Texas", "url": "/car-rental/united-states/texas/" },
+    { "label": "Dallas", "url": "/car-rental/united-states/texas/dallas/" }
+  ],
+  "faq": [
+    {
+      "question": "Do I need a car in Dallas?",
+      "answer": "A rental car is usually the easiest way to move around Dallas and the wider metro area."
+    },
+    {
+      "question": "Can I rent a car at Dallas airports?",
+      "answer": "Yes. Dallas has major airport pickup options including DFW and Dallas Love Field."
+    },
+    {
+      "question": "What is the minimum age to rent a car in Dallas?",
+      "answer": "Minimum driver age varies by supplier, but most rental companies require drivers to be at least 21."
+    }
+  ],
+  "last_updated": "2026-03-26",
+  "publication_state": "indexed"
+}

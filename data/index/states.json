@@ -61,5 +61,12 @@
   "country_slug": "united-states",
   "iso_subdivision_code": "US-MA",
   "publication_state": "indexed"
+},
+{
+  "state_slug": "texas",
+  "state_name": "Texas",
+  "country_slug": "united-states",
+  "iso_subdivision_code": "US-TX",
+  "publication_state": "indexed"
 }
 ]

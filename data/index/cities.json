@@ -1,3 +1,4 @@
+
 [
   {
     "city_slug": "paris",
@@ -70,5 +71,22 @@
     "state_slug": "massachusetts",
     "has_state_layer": true,
     "publication_state": "indexed"
-  }
+  },
+  {
+  "city_slug": "chicago",
+  "city_name": "Chicago",
+  "country_slug": "united-states",
+  "state_slug": "illinois",
+  "has_state_layer": true,
+  "publication_state": "indexed"
+},
+{
+  "city_slug": "dallas",
+  "city_name": "Dallas",
+  "country_slug": "united-states",
+  "state_slug": "texas",
+  "has_state_layer": true,
+  "publication_state": "indexed"
+}
+  
 ]

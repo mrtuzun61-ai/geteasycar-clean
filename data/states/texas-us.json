@@ -1,0 +1,19 @@
+{
+  "state_slug": "texas",
+  "state_name": "Texas",
+  "country_slug": "united-states",
+  "iso_subdivision_code": "US-TX",
+  "has_state_layer": true,
+  "affiliate_sid_base": "us_texas",
+  "canonical_url": "/car-rental/united-states/texas/",
+  "meta_title": "Car Rental in Texas — Cities & Airports",
+  "meta_description": "Compare car rental options across Texas including Dallas and nearby cities.",
+  "h1": "Car Rental in Texas",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "Texas", "url": "/car-rental/united-states/texas/" }
+  ],
+  "last_updated": "2026-03-26",
+  "publication_state": "indexed"
+}
