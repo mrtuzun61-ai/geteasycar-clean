@@ -6,6 +6,48 @@
     "publication_state": "indexed"
   },
   {
+    "country_slug": "canada",
+    "country_name": "Canada",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "mexico",
+    "country_name": "Mexico",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "brazil",
+    "country_name": "Brazil",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "argentina",
+    "country_name": "Argentina",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "chile",
+    "country_name": "Chile",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "united-kingdom",
+    "country_name": "United Kingdom",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "ireland",
+    "country_name": "Ireland",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
     "country_slug": "france",
     "country_name": "France",
     "has_state_layer": false,
@@ -24,9 +66,243 @@
     "publication_state": "indexed"
   },
   {
+    "country_slug": "portugal",
+    "country_name": "Portugal",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "germany",
+    "country_name": "Germany",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "netherlands",
+    "country_name": "Netherlands",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "belgium",
+    "country_name": "Belgium",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "switzerland",
+    "country_name": "Switzerland",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "austria",
+    "country_name": "Austria",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "greece",
+    "country_name": "Greece",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "croatia",
+    "country_name": "Croatia",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "iceland",
+    "country_name": "Iceland",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "norway",
+    "country_name": "Norway",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "sweden",
+    "country_name": "Sweden",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "denmark",
+    "country_name": "Denmark",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "poland",
+    "country_name": "Poland",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "czechia",
+    "country_name": "Czechia",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "hungary",
+    "country_name": "Hungary",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "turkey",
+    "country_name": "Turkey",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "united-arab-emirates",
+    "country_name": "United Arab Emirates",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "saudi-arabia",
+    "country_name": "Saudi Arabia",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "qatar",
+    "country_name": "Qatar",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "oman",
+    "country_name": "Oman",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "morocco",
+    "country_name": "Morocco",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "egypt",
+    "country_name": "Egypt",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "south-africa",
+    "country_name": "South Africa",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
     "country_slug": "australia",
     "country_name": "Australia",
     "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "new-zealand",
+    "country_name": "New Zealand",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "japan",
+    "country_name": "Japan",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "south-korea",
+    "country_name": "South Korea",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "thailand",
+    "country_name": "Thailand",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "malaysia",
+    "country_name": "Malaysia",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "singapore",
+    "country_name": "Singapore",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "indonesia",
+    "country_name": "Indonesia",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "vietnam",
+    "country_name": "Vietnam",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "philippines",
+    "country_name": "Philippines",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "india",
+    "country_name": "India",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "china",
+    "country_name": "China",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "taiwan",
+    "country_name": "Taiwan",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "dominican-republic",
+    "country_name": "Dominican Republic",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "costa-rica",
+    "country_name": "Costa Rica",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "peru",
+    "country_name": "Peru",
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "country_slug": "colombia",
+    "country_name": "Colombia",
+    "has_state_layer": false,
     "publication_state": "indexed"
   }
 ]

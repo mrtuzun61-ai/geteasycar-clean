@@ -1,40 +1,5 @@
 [
   {
-    "state_slug": "california",
-    "state_name": "California",
-    "country_slug": "united-states",
-    "iso_subdivision_code": "US-CA",
-    "publication_state": "indexed"
-  },
-  {
-    "state_slug": "florida",
-    "state_name": "Florida",
-    "country_slug": "united-states",
-    "iso_subdivision_code": "US-FL",
-    "publication_state": "indexed"
-  },
-  {
-    "state_slug": "new-york",
-    "state_name": "New York",
-    "country_slug": "united-states",
-    "iso_subdivision_code": "US-NY",
-    "publication_state": "indexed"
-  },
-  {
-    "state_slug": "nevada",
-    "state_name": "Nevada",
-    "country_slug": "united-states",
-    "iso_subdivision_code": "US-NV",
-    "publication_state": "indexed"
-  },
-  {
-    "state_slug": "illinois",
-    "state_name": "Illinois",
-    "country_slug": "united-states",
-    "iso_subdivision_code": "US-IL",
-    "publication_state": "indexed"
-  },
-  {
     "state_slug": "new-south-wales",
     "state_name": "New South Wales",
     "country_slug": "australia",
@@ -56,17 +21,486 @@
     "publication_state": "indexed"
   },
   {
-  "state_slug": "massachusetts",
-  "state_name": "Massachusetts",
-  "country_slug": "united-states",
-  "iso_subdivision_code": "US-MA",
-  "publication_state": "indexed"
-},
-{
-  "state_slug": "texas",
-  "state_name": "Texas",
-  "country_slug": "united-states",
-  "iso_subdivision_code": "US-TX",
-  "publication_state": "indexed"
-}
+    "state_slug": "western-australia",
+    "state_name": "Western Australia",
+    "country_slug": "australia",
+    "iso_subdivision_code": "AU-WA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "south-australia",
+    "state_name": "South Australia",
+    "country_slug": "australia",
+    "iso_subdivision_code": "AU-SA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "tasmania",
+    "state_name": "Tasmania",
+    "country_slug": "australia",
+    "iso_subdivision_code": "AU-TAS",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "australian-capital-territory",
+    "state_name": "Australian Capital Territory",
+    "country_slug": "australia",
+    "iso_subdivision_code": "AU-ACT",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "northern-territory",
+    "state_name": "Northern Territory",
+    "country_slug": "australia",
+    "iso_subdivision_code": "AU-NT",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "alberta",
+    "state_name": "Alberta",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-AB",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "british-columbia",
+    "state_name": "British Columbia",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-BC",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "manitoba",
+    "state_name": "Manitoba",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-MB",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "new-brunswick",
+    "state_name": "New Brunswick",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-NB",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "newfoundland-and-labrador",
+    "state_name": "Newfoundland and Labrador",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-NL",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "nova-scotia",
+    "state_name": "Nova Scotia",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-NS",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "ontario",
+    "state_name": "Ontario",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-ON",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "prince-edward-island",
+    "state_name": "Prince Edward Island",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-PE",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "quebec",
+    "state_name": "Quebec",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-QC",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "saskatchewan",
+    "state_name": "Saskatchewan",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-SK",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "northwest-territories",
+    "state_name": "Northwest Territories",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-NT",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "nunavut",
+    "state_name": "Nunavut",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-NU",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "yukon",
+    "state_name": "Yukon",
+    "country_slug": "canada",
+    "iso_subdivision_code": "CA-YT",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "alabama",
+    "state_name": "Alabama",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-AL",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "alaska",
+    "state_name": "Alaska",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-AK",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "arizona",
+    "state_name": "Arizona",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-AZ",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "arkansas",
+    "state_name": "Arkansas",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-AR",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "california",
+    "state_name": "California",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-CA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "colorado",
+    "state_name": "Colorado",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-CO",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "connecticut",
+    "state_name": "Connecticut",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-CT",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "delaware",
+    "state_name": "Delaware",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-DE",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "district-of-columbia",
+    "state_name": "District of Columbia",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-DC",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "florida",
+    "state_name": "Florida",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-FL",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "georgia",
+    "state_name": "Georgia",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-GA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "hawaii",
+    "state_name": "Hawaii",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-HI",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "idaho",
+    "state_name": "Idaho",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-ID",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "illinois",
+    "state_name": "Illinois",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-IL",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "indiana",
+    "state_name": "Indiana",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-IN",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "iowa",
+    "state_name": "Iowa",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-IA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "kansas",
+    "state_name": "Kansas",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-KS",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "kentucky",
+    "state_name": "Kentucky",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-KY",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "louisiana",
+    "state_name": "Louisiana",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-LA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "maine",
+    "state_name": "Maine",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-ME",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "maryland",
+    "state_name": "Maryland",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-MD",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "massachusetts",
+    "state_name": "Massachusetts",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-MA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "michigan",
+    "state_name": "Michigan",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-MI",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "minnesota",
+    "state_name": "Minnesota",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-MN",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "mississippi",
+    "state_name": "Mississippi",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-MS",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "missouri",
+    "state_name": "Missouri",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-MO",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "montana",
+    "state_name": "Montana",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-MT",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "nebraska",
+    "state_name": "Nebraska",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-NE",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "nevada",
+    "state_name": "Nevada",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-NV",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "new-hampshire",
+    "state_name": "New Hampshire",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-NH",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "new-jersey",
+    "state_name": "New Jersey",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-NJ",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "new-mexico",
+    "state_name": "New Mexico",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-NM",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "new-york",
+    "state_name": "New York",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-NY",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "north-carolina",
+    "state_name": "North Carolina",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-NC",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "north-dakota",
+    "state_name": "North Dakota",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-ND",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "ohio",
+    "state_name": "Ohio",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-OH",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "oklahoma",
+    "state_name": "Oklahoma",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-OK",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "oregon",
+    "state_name": "Oregon",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-OR",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "pennsylvania",
+    "state_name": "Pennsylvania",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-PA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "rhode-island",
+    "state_name": "Rhode Island",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-RI",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "south-carolina",
+    "state_name": "South Carolina",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-SC",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "south-dakota",
+    "state_name": "South Dakota",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-SD",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "tennessee",
+    "state_name": "Tennessee",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-TN",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "texas",
+    "state_name": "Texas",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-TX",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "utah",
+    "state_name": "Utah",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-UT",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "vermont",
+    "state_name": "Vermont",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-VT",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "virginia",
+    "state_name": "Virginia",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-VA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "washington",
+    "state_name": "Washington",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-WA",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "west-virginia",
+    "state_name": "West Virginia",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-WV",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "wisconsin",
+    "state_name": "Wisconsin",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-WI",
+    "publication_state": "indexed"
+  },
+  {
+    "state_slug": "wyoming",
+    "state_name": "Wyoming",
+    "country_slug": "united-states",
+    "iso_subdivision_code": "US-WY",
+    "publication_state": "indexed"
+  }
 ]

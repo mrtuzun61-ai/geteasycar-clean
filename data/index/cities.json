@@ -1,4 +1,3 @@
-
 [
   {
     "city_slug": "paris",
@@ -87,6 +86,815 @@
   "state_slug": "texas",
   "has_state_layer": true,
   "publication_state": "indexed"
-}
-  
-]
+},
+[
+  {
+    "city_slug": "new-york-city",
+    "city_name": "New York City",
+    "country_slug": "united-states",
+    "state_slug": "new-york",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "san-francisco",
+    "city_name": "San Francisco",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "san-diego",
+    "city_name": "San Diego",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "las-vegas",
+    "city_name": "Las Vegas",
+    "country_slug": "united-states",
+    "state_slug": "nevada",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "washington",
+    "city_name": "Washington",
+    "country_slug": "united-states",
+    "state_slug": "district-of-columbia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "seattle",
+    "city_name": "Seattle",
+    "country_slug": "united-states",
+    "state_slug": "washington",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "houston",
+    "city_name": "Houston",
+    "country_slug": "united-states",
+    "state_slug": "texas",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "austin",
+    "city_name": "Austin",
+    "country_slug": "united-states",
+    "state_slug": "texas",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "san-antonio",
+    "city_name": "San Antonio",
+    "country_slug": "united-states",
+    "state_slug": "texas",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "fort-worth",
+    "city_name": "Fort Worth",
+    "country_slug": "united-states",
+    "state_slug": "texas",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "atlanta",
+    "city_name": "Atlanta",
+    "country_slug": "united-states",
+    "state_slug": "georgia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "phoenix",
+    "city_name": "Phoenix",
+    "country_slug": "united-states",
+    "state_slug": "arizona",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "philadelphia",
+    "city_name": "Philadelphia",
+    "country_slug": "united-states",
+    "state_slug": "pennsylvania",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "denver",
+    "city_name": "Denver",
+    "country_slug": "united-states",
+    "state_slug": "colorado",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "portland",
+    "city_name": "Portland",
+    "country_slug": "united-states",
+    "state_slug": "oregon",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "nashville",
+    "city_name": "Nashville",
+    "country_slug": "united-states",
+    "state_slug": "tennessee",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "new-orleans",
+    "city_name": "New Orleans",
+    "country_slug": "united-states",
+    "state_slug": "louisiana",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "charlotte",
+    "city_name": "Charlotte",
+    "country_slug": "united-states",
+    "state_slug": "north-carolina",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "raleigh",
+    "city_name": "Raleigh",
+    "country_slug": "united-states",
+    "state_slug": "north-carolina",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "detroit",
+    "city_name": "Detroit",
+    "country_slug": "united-states",
+    "state_slug": "michigan",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "orlando",
+    "city_name": "Orlando",
+    "country_slug": "united-states",
+    "state_slug": "florida",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "tampa",
+    "city_name": "Tampa",
+    "country_slug": "united-states",
+    "state_slug": "florida",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "fort-lauderdale",
+    "city_name": "Fort Lauderdale",
+    "country_slug": "united-states",
+    "state_slug": "florida",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "key-west",
+    "city_name": "Key West",
+    "country_slug": "united-states",
+    "state_slug": "florida",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "sacramento",
+    "city_name": "Sacramento",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "san-jose",
+    "city_name": "San Jose",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "palm-springs",
+    "city_name": "Palm Springs",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "oakland",
+    "city_name": "Oakland",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "minneapolis",
+    "city_name": "Minneapolis",
+    "country_slug": "united-states",
+    "state_slug": "minnesota",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "cleveland",
+    "city_name": "Cleveland",
+    "country_slug": "united-states",
+    "state_slug": "ohio",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "columbus",
+    "city_name": "Columbus",
+    "country_slug": "united-states",
+    "state_slug": "ohio",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "cincinnati",
+    "city_name": "Cincinnati",
+    "country_slug": "united-states",
+    "state_slug": "ohio",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "salt-lake-city",
+    "city_name": "Salt Lake City",
+    "country_slug": "united-states",
+    "state_slug": "utah",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "richmond",
+    "city_name": "Richmond",
+    "country_slug": "united-states",
+    "state_slug": "virginia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "virginia-beach",
+    "city_name": "Virginia Beach",
+    "country_slug": "united-states",
+    "state_slug": "virginia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "milwaukee",
+    "city_name": "Milwaukee",
+    "country_slug": "united-states",
+    "state_slug": "wisconsin",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "indianapolis",
+    "city_name": "Indianapolis",
+    "country_slug": "united-states",
+    "state_slug": "indiana",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "kansas-city",
+    "city_name": "Kansas City",
+    "country_slug": "united-states",
+    "state_slug": "missouri",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "st-louis",
+    "city_name": "St. Louis",
+    "country_slug": "united-states",
+    "state_slug": "missouri",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "anchorage",
+    "city_name": "Anchorage",
+    "country_slug": "united-states",
+    "state_slug": "alaska",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "toronto",
+    "city_name": "Toronto",
+    "country_slug": "canada",
+    "state_slug": "ontario",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "vancouver",
+    "city_name": "Vancouver",
+    "country_slug": "canada",
+    "state_slug": "british-columbia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "calgary",
+    "city_name": "Calgary",
+    "country_slug": "canada",
+    "state_slug": "alberta",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "edmonton",
+    "city_name": "Edmonton",
+    "country_slug": "canada",
+    "state_slug": "alberta",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "ottawa",
+    "city_name": "Ottawa",
+    "country_slug": "canada",
+    "state_slug": "ontario",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "quebec-city",
+    "city_name": "Quebec City",
+    "country_slug": "canada",
+    "state_slug": "quebec",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "halifax",
+    "city_name": "Halifax",
+    "country_slug": "canada",
+    "state_slug": "nova-scotia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "winnipeg",
+    "city_name": "Winnipeg",
+    "country_slug": "canada",
+    "state_slug": "manitoba",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "victoria",
+    "city_name": "Victoria",
+    "country_slug": "canada",
+    "state_slug": "british-columbia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "kelowna",
+    "city_name": "Kelowna",
+    "country_slug": "canada",
+    "state_slug": "british-columbia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "st-johns",
+    "city_name": "St. John's",
+    "country_slug": "canada",
+    "state_slug": "newfoundland-and-labrador",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "charlottetown",
+    "city_name": "Charlottetown",
+    "country_slug": "canada",
+    "state_slug": "prince-edward-island",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "saskatoon",
+    "city_name": "Saskatoon",
+    "country_slug": "canada",
+    "state_slug": "saskatchewan",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "regina",
+    "city_name": "Regina",
+    "country_slug": "canada",
+    "state_slug": "saskatchewan",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "mont-tremblant",
+    "city_name": "Mont-Tremblant",
+    "country_slug": "canada",
+    "state_slug": "quebec",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "melbourne",
+    "city_name": "Melbourne",
+    "country_slug": "australia",
+    "state_slug": "victoria",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "brisbane",
+    "city_name": "Brisbane",
+    "country_slug": "australia",
+    "state_slug": "queensland",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "perth",
+    "city_name": "Perth",
+    "country_slug": "australia",
+    "state_slug": "western-australia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "adelaide",
+    "city_name": "Adelaide",
+    "country_slug": "australia",
+    "state_slug": "south-australia",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "gold-coast",
+    "city_name": "Gold Coast",
+    "country_slug": "australia",
+    "state_slug": "queensland",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "cairns",
+    "city_name": "Cairns",
+    "country_slug": "australia",
+    "state_slug": "queensland",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "hobart",
+    "city_name": "Hobart",
+    "country_slug": "australia",
+    "state_slug": "tasmania",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "canberra",
+    "city_name": "Canberra",
+    "country_slug": "australia",
+    "state_slug": "australian-capital-territory",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "darwin",
+    "city_name": "Darwin",
+    "country_slug": "australia",
+    "state_slug": "northern-territory",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "sunshine-coast",
+    "city_name": "Sunshine Coast",
+    "country_slug": "australia",
+    "state_slug": "queensland",
+    "has_state_layer": true,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "london",
+    "city_name": "London",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "manchester",
+    "city_name": "Manchester",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "birmingham",
+    "city_name": "Birmingham",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "glasgow",
+    "city_name": "Glasgow",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "edinburgh",
+    "city_name": "Edinburgh",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "liverpool",
+    "city_name": "Liverpool",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "bristol",
+    "city_name": "Bristol",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "belfast",
+    "city_name": "Belfast",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "nice",
+    "city_name": "Nice",
+    "country_slug": "france",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "lyon",
+    "city_name": "Lyon",
+    "country_slug": "france",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "marseille",
+    "city_name": "Marseille",
+    "country_slug": "france",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "bordeaux",
+    "city_name": "Bordeaux",
+    "country_slug": "france",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "toulouse",
+    "city_name": "Toulouse",
+    "country_slug": "france",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "cannes",
+    "city_name": "Cannes",
+    "country_slug": "france",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "valencia",
+    "city_name": "Valencia",
+    "country_slug": "spain",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "seville",
+    "city_name": "Seville",
+    "country_slug": "spain",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "malaga",
+    "city_name": "Malaga",
+    "country_slug": "spain",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "palma-de-mallorca",
+    "city_name": "Palma de Mallorca",
+    "country_slug": "spain",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "alicante",
+    "city_name": "Alicante",
+    "country_slug": "spain",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "milan",
+    "city_name": "Milan",
+    "country_slug": "italy",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "florence",
+    "city_name": "Florence",
+    "country_slug": "italy",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "venice",
+    "city_name": "Venice",
+    "country_slug": "italy",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "naples",
+    "city_name": "Naples",
+    "country_slug": "italy",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "bologna",
+    "city_name": "Bologna",
+    "country_slug": "italy",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "berlin",
+    "city_name": "Berlin",
+    "country_slug": "germany",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "munich",
+    "city_name": "Munich",
+    "country_slug": "germany",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "frankfurt",
+    "city_name": "Frankfurt",
+    "country_slug": "germany",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "hamburg",
+    "city_name": "Hamburg",
+    "country_slug": "germany",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "lisbon",
+    "city_name": "Lisbon",
+    "country_slug": "portugal",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "porto",
+    "city_name": "Porto",
+    "country_slug": "portugal",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "faro",
+    "city_name": "Faro",
+    "country_slug": "portugal",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "istanbul",
+    "city_name": "Istanbul",
+    "country_slug": "turkey",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "antalya",
+    "city_name": "Antalya",
+    "country_slug": "turkey",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+
+  {
+    "city_slug": "dubai",
+    "city_name": "Dubai",
+    "country_slug": "united-arab-emirates",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  },
+  {
+    "city_slug": "abu-dhabi",
+    "city_name": "Abu Dhabi",
+    "country_slug": "united-arab-emirates",
+    "state_slug": null,
+    "has_state_layer": false,
+    "publication_state": "indexed"
+  }
