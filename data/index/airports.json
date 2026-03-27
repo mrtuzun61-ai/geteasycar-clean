@@ -79,5 +79,771 @@
     "country_slug": "united-states",
     "state_slug": "florida",
     "publication_state": "indexed"
+  },
+  [
+  {
+    "iata_code": "BOS",
+    "airport_slug": "bos-boston-logan-international",
+    "airport_name": "Boston Logan International Airport",
+    "city_slug": "boston",
+    "country_slug": "united-states",
+    "state_slug": "massachusetts",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "ORD",
+    "airport_slug": "ord-chicago-ohare-international",
+    "airport_name": "Chicago O'Hare International Airport",
+    "city_slug": "chicago",
+    "country_slug": "united-states",
+    "state_slug": "illinois",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MDW",
+    "airport_slug": "mdw-chicago-midway-international",
+    "airport_name": "Chicago Midway International Airport",
+    "city_slug": "chicago",
+    "country_slug": "united-states",
+    "state_slug": "illinois",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "DFW",
+    "airport_slug": "dfw-dallas-fort-worth-international",
+    "airport_name": "Dallas Fort Worth International Airport",
+    "city_slug": "dallas",
+    "country_slug": "united-states",
+    "state_slug": "texas",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "DAL",
+    "airport_slug": "dal-dallas-love-field",
+    "airport_name": "Dallas Love Field",
+    "city_slug": "dallas",
+    "country_slug": "united-states",
+    "state_slug": "texas",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "IAH",
+    "airport_slug": "iah-houston-george-bush-intercontinental",
+    "airport_name": "George Bush Intercontinental Airport",
+    "city_slug": "houston",
+    "country_slug": "united-states",
+    "state_slug": "texas",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "HOU",
+    "airport_slug": "hou-houston-william-p-hobby",
+    "airport_name": "William P. Hobby Airport",
+    "city_slug": "houston",
+    "country_slug": "united-states",
+    "state_slug": "texas",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "PHX",
+    "airport_slug": "phx-phoenix-sky-harbor-international",
+    "airport_name": "Phoenix Sky Harbor International Airport",
+    "city_slug": "phoenix",
+    "country_slug": "united-states",
+    "state_slug": "arizona",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "SEA",
+    "airport_slug": "sea-seattle-tacoma-international",
+    "airport_name": "Seattle-Tacoma International Airport",
+    "city_slug": "seattle",
+    "country_slug": "united-states",
+    "state_slug": "washington",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "ATL",
+    "airport_slug": "atl-hartsfield-jackson-atlanta-international",
+    "airport_name": "Hartsfield-Jackson Atlanta International Airport",
+    "city_slug": "atlanta",
+    "country_slug": "united-states",
+    "state_slug": "georgia",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "SAN",
+    "airport_slug": "san-san-diego-international",
+    "airport_name": "San Diego International Airport",
+    "city_slug": "san-diego",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "SFO",
+    "airport_slug": "sfo-san-francisco-international",
+    "airport_name": "San Francisco International Airport",
+    "city_slug": "san-francisco",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "OAK",
+    "airport_slug": "oak-oakland-international",
+    "airport_name": "Oakland International Airport",
+    "city_slug": "san-francisco",
+    "country_slug": "united-states",
+    "state_slug": "california",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "DEN",
+    "airport_slug": "den-denver-international",
+    "airport_name": "Denver International Airport",
+    "city_slug": "denver",
+    "country_slug": "united-states",
+    "state_slug": "colorado",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "PDX",
+    "airport_slug": "pdx-portland-international",
+    "airport_name": "Portland International Airport",
+    "city_slug": "portland",
+    "country_slug": "united-states",
+    "state_slug": "oregon",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "PHL",
+    "airport_slug": "phl-philadelphia-international",
+    "airport_name": "Philadelphia International Airport",
+    "city_slug": "philadelphia",
+    "country_slug": "united-states",
+    "state_slug": "pennsylvania",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "BNA",
+    "airport_slug": "bna-nashville-international",
+    "airport_name": "Nashville International Airport",
+    "city_slug": "nashville",
+    "country_slug": "united-states",
+    "state_slug": "tennessee",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MKE",
+    "airport_slug": "mke-milwaukee-mitchell-international",
+    "airport_name": "Milwaukee Mitchell International Airport",
+    "city_slug": "milwaukee",
+    "country_slug": "united-states",
+    "state_slug": "wisconsin",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "IND",
+    "airport_slug": "ind-indianapolis-international",
+    "airport_name": "Indianapolis International Airport",
+    "city_slug": "indianapolis",
+    "country_slug": "united-states",
+    "state_slug": "indiana",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "JFK",
+    "airport_slug": "jfk-john-f-kennedy-international",
+    "airport_name": "John F. Kennedy International Airport",
+    "city_slug": "new-york-city",
+    "country_slug": "united-states",
+    "state_slug": "new-york",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "LGA",
+    "airport_slug": "lga-laguardia",
+    "airport_name": "LaGuardia Airport",
+    "city_slug": "new-york-city",
+    "country_slug": "united-states",
+    "state_slug": "new-york",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "EWR",
+    "airport_slug": "ewr-newark-liberty-international",
+    "airport_name": "Newark Liberty International Airport",
+    "city_slug": "new-york-city",
+    "country_slug": "united-states",
+    "state_slug": "new-york",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YYZ",
+    "airport_slug": "yyz-toronto-pearson-international",
+    "airport_name": "Toronto Pearson International Airport",
+    "city_slug": "toronto",
+    "country_slug": "canada",
+    "state_slug": "ontario",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YTZ",
+    "airport_slug": "ytz-billy-bishop-toronto-city",
+    "airport_name": "Billy Bishop Toronto City Airport",
+    "city_slug": "toronto",
+    "country_slug": "canada",
+    "state_slug": "ontario",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YUL",
+    "airport_slug": "yul-montreal-trudeau-international",
+    "airport_name": "Montréal–Trudeau International Airport",
+    "city_slug": "montreal",
+    "country_slug": "canada",
+    "state_slug": "quebec",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YVR",
+    "airport_slug": "yvr-vancouver-international",
+    "airport_name": "Vancouver International Airport",
+    "city_slug": "vancouver",
+    "country_slug": "canada",
+    "state_slug": "british-columbia",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YYC",
+    "airport_slug": "yyc-calgary-international",
+    "airport_name": "Calgary International Airport",
+    "city_slug": "calgary",
+    "country_slug": "canada",
+    "state_slug": "alberta",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YOW",
+    "airport_slug": "yow-ottawa-macdonald-cartier-international",
+    "airport_name": "Ottawa Macdonald–Cartier International Airport",
+    "city_slug": "ottawa",
+    "country_slug": "canada",
+    "state_slug": "ontario",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YEG",
+    "airport_slug": "yeg-edmonton-international",
+    "airport_name": "Edmonton International Airport",
+    "city_slug": "edmonton",
+    "country_slug": "canada",
+    "state_slug": "alberta",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YQB",
+    "airport_slug": "yqb-quebec-city-jean-lesage-international",
+    "airport_name": "Québec City Jean Lesage International Airport",
+    "city_slug": "quebec-city",
+    "country_slug": "canada",
+    "state_slug": "quebec",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YHZ",
+    "airport_slug": "yhz-halifax-stanfield-international",
+    "airport_name": "Halifax Stanfield International Airport",
+    "city_slug": "halifax",
+    "country_slug": "canada",
+    "state_slug": "nova-scotia",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YWG",
+    "airport_slug": "ywg-winnipeg-james-armstrong-richardson-international",
+    "airport_name": "Winnipeg James Armstrong Richardson International Airport",
+    "city_slug": "winnipeg",
+    "country_slug": "canada",
+    "state_slug": "manitoba",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YYJ",
+    "airport_slug": "yyj-victoria-international",
+    "airport_name": "Victoria International Airport",
+    "city_slug": "victoria",
+    "country_slug": "canada",
+    "state_slug": "british-columbia",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YLW",
+    "airport_slug": "ylw-kelowna-international",
+    "airport_name": "Kelowna International Airport",
+    "city_slug": "kelowna",
+    "country_slug": "canada",
+    "state_slug": "british-columbia",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YYT",
+    "airport_slug": "yyt-st-johns-international",
+    "airport_name": "St. John's International Airport",
+    "city_slug": "st-johns",
+    "country_slug": "canada",
+    "state_slug": "newfoundland-and-labrador",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YYG",
+    "airport_slug": "yyg-charlottetown-airport",
+    "airport_name": "Charlottetown Airport",
+    "city_slug": "charlottetown",
+    "country_slug": "canada",
+    "state_slug": "prince-edward-island",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YXE",
+    "airport_slug": "yxe-saskatoon-john-g-diefenbaker-international",
+    "airport_name": "Saskatoon John G. Diefenbaker International Airport",
+    "city_slug": "saskatoon",
+    "country_slug": "canada",
+    "state_slug": "saskatchewan",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "YQR",
+    "airport_slug": "yqr-regina-international",
+    "airport_name": "Regina International Airport",
+    "city_slug": "regina",
+    "country_slug": "canada",
+    "state_slug": "saskatchewan",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "SYD",
+    "airport_slug": "syd-sydney-kingsford-smith",
+    "airport_name": "Sydney Kingsford Smith Airport",
+    "city_slug": "sydney",
+    "country_slug": "australia",
+    "state_slug": "new-south-wales",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MEL",
+    "airport_slug": "mel-melbourne-tullamarine",
+    "airport_name": "Melbourne Airport",
+    "city_slug": "melbourne",
+    "country_slug": "australia",
+    "state_slug": "victoria",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "BNE",
+    "airport_slug": "bne-brisbane-airport",
+    "airport_name": "Brisbane Airport",
+    "city_slug": "brisbane",
+    "country_slug": "australia",
+    "state_slug": "queensland",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "PER",
+    "airport_slug": "per-perth-airport",
+    "airport_name": "Perth Airport",
+    "city_slug": "perth",
+    "country_slug": "australia",
+    "state_slug": "western-australia",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "ADL",
+    "airport_slug": "adl-adelaide-airport",
+    "airport_name": "Adelaide Airport",
+    "city_slug": "adelaide",
+    "country_slug": "australia",
+    "state_slug": "south-australia",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "OOL",
+    "airport_slug": "ool-gold-coast-airport",
+    "airport_name": "Gold Coast Airport",
+    "city_slug": "gold-coast",
+    "country_slug": "australia",
+    "state_slug": "queensland",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "CNS",
+    "airport_slug": "cns-cairns-airport",
+    "airport_name": "Cairns Airport",
+    "city_slug": "cairns",
+    "country_slug": "australia",
+    "state_slug": "queensland",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "HBA",
+    "airport_slug": "hba-hobart-airport",
+    "airport_name": "Hobart Airport",
+    "city_slug": "hobart",
+    "country_slug": "australia",
+    "state_slug": "tasmania",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "CBR",
+    "airport_slug": "cbr-canberra-airport",
+    "airport_name": "Canberra Airport",
+    "city_slug": "canberra",
+    "country_slug": "australia",
+    "state_slug": "australian-capital-territory",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "DRW",
+    "airport_slug": "drw-darwin-international",
+    "airport_name": "Darwin International Airport",
+    "city_slug": "darwin",
+    "country_slug": "australia",
+    "state_slug": "northern-territory",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MCY",
+    "airport_slug": "mcy-sunshine-coast-airport",
+    "airport_name": "Sunshine Coast Airport",
+    "city_slug": "sunshine-coast",
+    "country_slug": "australia",
+    "state_slug": "queensland",
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "LHR",
+    "airport_slug": "lhr-london-heathrow",
+    "airport_name": "London Heathrow Airport",
+    "city_slug": "london",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "LGW",
+    "airport_slug": "lgw-london-gatwick",
+    "airport_name": "London Gatwick Airport",
+    "city_slug": "london",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MAN",
+    "airport_slug": "man-manchester-airport",
+    "airport_name": "Manchester Airport",
+    "city_slug": "manchester",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "BHX",
+    "airport_slug": "bhx-birmingham-airport",
+    "airport_name": "Birmingham Airport",
+    "city_slug": "birmingham",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "GLA",
+    "airport_slug": "gla-glasgow-airport",
+    "airport_name": "Glasgow Airport",
+    "city_slug": "glasgow",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "EDI",
+    "airport_slug": "edi-edinburgh-airport",
+    "airport_name": "Edinburgh Airport",
+    "city_slug": "edinburgh",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "LPL",
+    "airport_slug": "lpl-liverpool-john-lennon",
+    "airport_name": "Liverpool John Lennon Airport",
+    "city_slug": "liverpool",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "BRS",
+    "airport_slug": "brs-bristol-airport",
+    "airport_name": "Bristol Airport",
+    "city_slug": "bristol",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "BFS",
+    "airport_slug": "bfs-belfast-international",
+    "airport_name": "Belfast International Airport",
+    "city_slug": "belfast",
+    "country_slug": "united-kingdom",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "NCE",
+    "airport_slug": "nce-nice-cote-dazur",
+    "airport_name": "Nice Côte d'Azur Airport",
+    "city_slug": "nice",
+    "country_slug": "france",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "LYS",
+    "airport_slug": "lys-lyon-saint-exupery",
+    "airport_name": "Lyon-Saint Exupéry Airport",
+    "city_slug": "lyon",
+    "country_slug": "france",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MRS",
+    "airport_slug": "mrs-marseille-provence",
+    "airport_name": "Marseille Provence Airport",
+    "city_slug": "marseille",
+    "country_slug": "france",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "BOD",
+    "airport_slug": "bod-bordeaux-merignac",
+    "airport_name": "Bordeaux–Mérignac Airport",
+    "city_slug": "bordeaux",
+    "country_slug": "france",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "TLS",
+    "airport_slug": "tls-toulouse-blagnac",
+    "airport_name": "Toulouse-Blagnac Airport",
+    "city_slug": "toulouse",
+    "country_slug": "france",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "VLC",
+    "airport_slug": "vlc-valencia-airport",
+    "airport_name": "Valencia Airport",
+    "city_slug": "valencia",
+    "country_slug": "spain",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "SVQ",
+    "airport_slug": "svq-seville-airport",
+    "airport_name": "Seville Airport",
+    "city_slug": "seville",
+    "country_slug": "spain",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "AGP",
+    "airport_slug": "agp-malaga-costa-del-sol",
+    "airport_name": "Málaga-Costa del Sol Airport",
+    "city_slug": "malaga",
+    "country_slug": "spain",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "PMI",
+    "airport_slug": "pmi-palma-de-mallorca-airport",
+    "airport_name": "Palma de Mallorca Airport",
+    "city_slug": "palma-de-mallorca",
+    "country_slug": "spain",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "ALC",
+    "airport_slug": "alc-alicante-elche-miguel-hernandez",
+    "airport_name": "Alicante–Elche Miguel Hernández Airport",
+    "city_slug": "alicante",
+    "country_slug": "spain",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MXP",
+    "airport_slug": "mxp-milan-malpensa",
+    "airport_name": "Milan Malpensa Airport",
+    "city_slug": "milan",
+    "country_slug": "italy",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "LIN",
+    "airport_slug": "lin-milan-linate",
+    "airport_name": "Milan Linate Airport",
+    "city_slug": "milan",
+    "country_slug": "italy",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "FLR",
+    "airport_slug": "flr-florence-airport",
+    "airport_name": "Florence Airport",
+    "city_slug": "florence",
+    "country_slug": "italy",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "VCE",
+    "airport_slug": "vce-venice-marco-polo",
+    "airport_name": "Venice Marco Polo Airport",
+    "city_slug": "venice",
+    "country_slug": "italy",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "NAP",
+    "airport_slug": "nap-naples-international",
+    "airport_name": "Naples International Airport",
+    "city_slug": "naples",
+    "country_slug": "italy",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "BLQ",
+    "airport_slug": "blq-bologna-guglielmo-marconi",
+    "airport_name": "Bologna Guglielmo Marconi Airport",
+    "city_slug": "bologna",
+    "country_slug": "italy",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "BER",
+    "airport_slug": "ber-berlin-brandenburg",
+    "airport_name": "Berlin Brandenburg Airport",
+    "city_slug": "berlin",
+    "country_slug": "germany",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "MUC",
+    "airport_slug": "muc-munich-airport",
+    "airport_name": "Munich Airport",
+    "city_slug": "munich",
+    "country_slug": "germany",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "FRA",
+    "airport_slug": "fra-frankfurt-airport",
+    "airport_name": "Frankfurt Airport",
+    "city_slug": "frankfurt",
+    "country_slug": "germany",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "HAM",
+    "airport_slug": "ham-hamburg-airport",
+    "airport_name": "Hamburg Airport",
+    "city_slug": "hamburg",
+    "country_slug": "germany",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "LIS",
+    "airport_slug": "lis-humberto-delgado",
+    "airport_name": "Humberto Delgado Airport",
+    "city_slug": "lisbon",
+    "country_slug": "portugal",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "OPO",
+    "airport_slug": "opo-francisco-sa-carneiro",
+    "airport_name": "Francisco Sá Carneiro Airport",
+    "city_slug": "porto",
+    "country_slug": "portugal",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "FAO",
+    "airport_slug": "fao-faro-airport",
+    "airport_name": "Faro Airport",
+    "city_slug": "faro",
+    "country_slug": "portugal",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "IST",
+    "airport_slug": "ist-istanbul-airport",
+    "airport_name": "Istanbul Airport",
+    "city_slug": "istanbul",
+    "country_slug": "turkey",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "AYT",
+    "airport_slug": "ayt-antalya-airport",
+    "airport_name": "Antalya Airport",
+    "city_slug": "antalya",
+    "country_slug": "turkey",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "DXB",
+    "airport_slug": "dxb-dubai-international",
+    "airport_name": "Dubai International Airport",
+    "city_slug": "dubai",
+    "country_slug": "united-arab-emirates",
+    "state_slug": null,
+    "publication_state": "indexed"
+  },
+  {
+    "iata_code": "AUH",
+    "airport_slug": "auh-abu-dhabi-international",
+    "airport_name": "Abu Dhabi International Airport",
+    "city_slug": "abu-dhabi",
+    "country_slug": "united-arab-emirates",
+    "state_slug": null,
+    "publication_state": "indexed"
   }
 ]
