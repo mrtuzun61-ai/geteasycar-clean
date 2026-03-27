@@ -1,0 +1,19 @@
+{
+  "city_slug": "san-francisco",
+  "city_name": "San Francisco",
+  "country_slug": "united-states",
+  "state_slug": "california",
+  "has_state_layer": true,
+  "airport_slugs": ["SFO"],
+  "nearby_city_slugs": ["los-angeles"],
+  "affiliate_sid_base": "us_sf",
+  "canonical_url": "/car-rental/united-states/california/san-francisco/",
+  "meta_title": "Car Rental in San Francisco — Compare Rental Options",
+  "meta_description": "Compare car rental options in San Francisco with airport pickup guidance.",
+  "h1": "Car Rental in San Francisco",
+  "intro_paragraph": "Explore rental options in San Francisco with airport access.",
+  "breadcrumb_path": [],
+  "faq": [],
+  "last_updated": "2026-03-27",
+  "publication_state": "indexed"
+}

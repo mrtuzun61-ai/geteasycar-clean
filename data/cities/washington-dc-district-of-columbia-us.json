@@ -1,0 +1,19 @@
+{
+  "city_slug": "washington-dc",
+  "city_name": "Washington DC",
+  "country_slug": "united-states",
+  "state_slug": "district-of-columbia",
+  "has_state_layer": true,
+  "airport_slugs": ["DCA", "IAD"],
+  "nearby_city_slugs": ["baltimore"],
+  "affiliate_sid_base": "us_dc",
+  "canonical_url": "/car-rental/united-states/district-of-columbia/washington-dc/",
+  "meta_title": "Car Rental in Washington DC — Compare Rental Options",
+  "meta_description": "Compare rental options in Washington DC.",
+  "h1": "Car Rental in Washington DC",
+  "intro_paragraph": "Find rental options across Washington DC.",
+  "breadcrumb_path": [],
+  "faq": [],
+  "last_updated": "2026-03-27",
+  "publication_state": "indexed"
+}

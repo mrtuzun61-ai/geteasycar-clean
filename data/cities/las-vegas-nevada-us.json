@@ -1,0 +1,19 @@
+{
+  "city_slug": "las-vegas",
+  "city_name": "Las Vegas",
+  "country_slug": "united-states",
+  "state_slug": "nevada",
+  "has_state_layer": true,
+  "airport_slugs": ["LAS"],
+  "nearby_city_slugs": ["los-angeles"],
+  "affiliate_sid_base": "us_vegas",
+  "canonical_url": "/car-rental/united-states/nevada/las-vegas/",
+  "meta_title": "Car Rental in Las Vegas — Compare Rental Options",
+  "meta_description": "Compare rental options in Las Vegas with airport pickup.",
+  "h1": "Car Rental in Las Vegas",
+  "intro_paragraph": "Find rental car options across Las Vegas.",
+  "breadcrumb_path": [],
+  "faq": [],
+  "last_updated": "2026-03-27",
+  "publication_state": "indexed"
+}

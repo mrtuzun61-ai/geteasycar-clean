@@ -1,0 +1,24 @@
+{
+  "city_slug": "new-york-city",
+  "city_name": "New York City",
+  "country_slug": "united-states",
+  "state_slug": "new-york",
+  "has_state_layer": true,
+  "airport_slugs": ["JFK", "LGA"],
+  "nearby_city_slugs": ["boston", "philadelphia"],
+  "affiliate_sid_base": "us_nyc",
+  "canonical_url": "/car-rental/united-states/new-york/new-york-city/",
+  "meta_title": "Car Rental in New York City — Compare Rental Options",
+  "meta_description": "Compare car rental options in New York City with airport and city pickup guidance.",
+  "h1": "Car Rental in New York City",
+  "intro_paragraph": "Compare rental options across NYC and nearby airport pickup locations.",
+  "breadcrumb_path": [
+    { "label": "Home", "url": "/" },
+    { "label": "United States", "url": "/car-rental/united-states/" },
+    { "label": "New York", "url": "/car-rental/united-states/new-york/" },
+    { "label": "New York City", "url": "/car-rental/united-states/new-york/new-york-city/" }
+  ],
+  "faq": [],
+  "last_updated": "2026-03-27",
+  "publication_state": "indexed"
+}
