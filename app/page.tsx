@@ -23,6 +23,14 @@ interface CountryIndex {
   country_slug: string;
   country_name: string;
   publication_state: string;
+  has_state_layer?: boolean;
+}
+
+interface StateIndex {
+  state_slug: string;
+  state_name: string;
+  country_slug: string;
+  publication_state: string;
 }
 
 interface CityIndex {
@@ -67,21 +75,35 @@ function cityUrl(city: CityIndex): string {
   return `/city-rental/${city.country_slug}/${city.city_slug}/`;
 }
 
-function countryUrl(countrySlug: string): string {
-  return `/car-rental/${countrySlug}/`;
+function countryUrl(country: CountryIndex): string {
+  if (country.has_state_layer) {
+    return `/car-rental/${country.country_slug}/`;
+  }
+  return `/city-rental/${country.country_slug}/`;
+}
+
+function formatSlug(value: string): string {
+  return value.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
 }
 
 const AFFILIATE =
   "https://www.dpbolvw.net/click-101574986-15736982?sid=get_easy_car";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1800&q=80";
+  "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=2000&q=80";
+
 const countryMeta: Record<string, { emoji: string; tagline: string }> = {
   france: { emoji: "🇫🇷", tagline: "Cities, airports and driving guidance" },
   spain: { emoji: "🇪🇸", tagline: "Popular coastal and city pickup locations" },
   italy: { emoji: "🇮🇹", tagline: "Historic cities and regional rental hubs" },
   australia: { emoji: "🇦🇺", tagline: "Major airports and urban road-trip routes" },
   "united-states": { emoji: "🇺🇸", tagline: "State, city and airport rental coverage" },
+  canada: { emoji: "🇨🇦", tagline: "Province, city and airport rental coverage" },
+  germany: { emoji: "🇩🇪", tagline: "Business hubs and airport-connected cities" },
+  portugal: { emoji: "🇵🇹", tagline: "Gateway cities and leisure destinations" },
+  "united-kingdom": { emoji: "🇬🇧", tagline: "Direct access to major rental cities" },
+  turkey: { emoji: "🇹🇷", tagline: "Airport-led and city-led rental journeys" },
+  "united-arab-emirates": { emoji: "🇦🇪", tagline: "High-intent airport and city demand" },
 };
 
 const cityMeta: Record<string, { emoji: string; tagline: string }> = {
@@ -93,14 +115,12 @@ const cityMeta: Record<string, { emoji: string; tagline: string }> = {
   orlando: { emoji: "🇺🇸", tagline: "Theme Park Capital" },
   sydney: { emoji: "🇦🇺", tagline: "Harbour City" },
   miami: { emoji: "🇺🇸", tagline: "South Florida" },
-};
-
-const airportMeta: Record<string, { city: string; country: string }> = {
-  CDG: { city: "Paris", country: "France" },
-  LAX: { city: "Los Angeles", country: "USA" },
-  MCO: { city: "Orlando", country: "USA" },
-  SYD: { city: "Sydney", country: "Australia" },
-  MIA: { city: "Miami", country: "USA" },
+  toronto: { emoji: "🇨🇦", tagline: "Ontario Gateway" },
+  vancouver: { emoji: "🇨🇦", tagline: "Pacific Coast Hub" },
+  london: { emoji: "🇬🇧", tagline: "Global Gateway" },
+  dubai: { emoji: "🇦🇪", tagline: "Gulf Megacity" },
+  chicago: { emoji: "🇺🇸", tagline: "Midwest Hub" },
+  dallas: { emoji: "🇺🇸", tagline: "Texas Gateway" },
 };
 
 const guideEmoji: Record<string, string> = {
@@ -109,6 +129,7 @@ const guideEmoji: Record<string, string> = {
   "renting-a-car-in-italy": "🇮🇹",
   "renting-a-car-in-united-states": "🇺🇸",
   "renting-a-car-in-australia": "🇦🇺",
+  "renting-a-car-in-canada": "🇨🇦",
 };
 
 function SectionHeading({
@@ -158,6 +179,10 @@ export default function HomePage() {
     (c) => c.publication_state === "indexed"
   );
 
+  const allStates = readIndex<StateIndex>("states.json").filter(
+    (s) => s.publication_state === "indexed"
+  );
+
   const allCities = readIndex<CityIndex>("cities.json").filter(
     (c) => c.publication_state === "indexed"
   );
@@ -170,60 +195,70 @@ export default function HomePage() {
     (g) => g.publication_state === "indexed"
   );
 
-  const featuredCountrySlugs = [
-    "france",
-    "spain",
-    "italy",
-    "united-states",
-    "australia",
-  ];
+  const countriesWithCounts = allCountries
+    .map((country) => {
+      const cityCount = allCities.filter(
+        (city) => city.country_slug === country.country_slug
+      ).length;
+      const airportCount = allAirports.filter(
+        (airport) => airport.country_slug === country.country_slug
+      ).length;
+      const guideCount = allGuides.filter(
+        (guide) => guide.country_slug === country.country_slug
+      ).length;
+      const stateCount = allStates.filter(
+        (state) => state.country_slug === country.country_slug
+      ).length;
 
-  const featuredCountries = featuredCountrySlugs
-    .map((slug) => allCountries.find((c) => c.country_slug === slug))
-    .filter(Boolean) as CountryIndex[];
+      return {
+        ...country,
+        cityCount,
+        airportCount,
+        guideCount,
+        stateCount,
+        score: cityCount * 3 + airportCount * 4 + guideCount * 2 + stateCount,
+      };
+    })
+    .sort((a, b) => b.score - a.score);
 
-  const featuredCitySlugs = [
-    "paris",
-    "barcelona",
-    "madrid",
-    "rome",
-    "los-angeles",
-    "orlando",
-    "sydney",
-    "miami",
-  ];
+  const featuredCountries = countriesWithCounts.slice(0, 8);
 
-  const featuredCities = featuredCitySlugs
-    .map((slug) => allCities.find((c) => c.city_slug === slug))
-    .filter(Boolean) as CityIndex[];
+  const featuredCities = allCities
+    .map((city) => {
+      const airportCount = allAirports.filter(
+        (airport) =>
+          airport.city_slug === city.city_slug &&
+          airport.country_slug === city.country_slug &&
+          (airport.state_slug ?? null) === (city.state_slug ?? null)
+      ).length;
 
-  const featuredAirportCodes = ["CDG", "LAX", "MCO", "SYD", "MIA"];
+      return {
+        ...city,
+        airportCount,
+      };
+    })
+    .sort((a, b) => {
+      if (b.airportCount !== a.airportCount) return b.airportCount - a.airportCount;
+      return a.city_name.localeCompare(b.city_name);
+    })
+    .slice(0, 12);
 
-  const featuredAirports = featuredAirportCodes
-    .map((code) => allAirports.find((a) => a.iata_code === code))
-    .filter(Boolean) as AirportIndex[];
+  const featuredAirports = [...allAirports]
+    .sort((a, b) => a.iata_code.localeCompare(b.iata_code))
+    .slice(0, 8);
+
+  const featuredStates = allStates.slice(0, 8);
+  const featuredGuides = allGuides.slice(0, 6);
+
+  const denseCityLinks = allCities.slice(0, 18);
+  const denseCountryLinks = countriesWithCounts.slice(0, 12);
+  const denseAirportLinks = allAirports.slice(0, 12);
 
   const heroQuickLinks = [
-    {
-      label: "Browse Destinations",
-      href: "#destinations",
-      icon: "🌍",
-    },
-    {
-      label: "Explore Cities",
-      href: "#cities",
-      icon: "🏙️",
-    },
-    {
-      label: "Airport Pickup Guides",
-      href: "/car-rental/airports/",
-      icon: "✈️",
-    },
-    {
-      label: "Read Guides",
-      href: "/guide/",
-      icon: "📘",
-    },
+    { label: "Cities", href: "/cities", icon: "🏙️" },
+    { label: "States", href: "/states", icon: "🗺️" },
+    { label: "Airports", href: "/airports", icon: "✈️" },
+    { label: "Guides", href: "/guide/", icon: "📘" },
   ];
 
   return (
@@ -253,20 +288,26 @@ export default function HomePage() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600">
-            <a
-              href="#destinations"
+            <Link
+              href="/car-rental/"
               className="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-slate-900 transition-colors"
             >
               Destinations
-            </a>
-            <a
-              href="#cities"
+            </Link>
+            <Link
+              href="/cities"
               className="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-slate-900 transition-colors"
             >
               Cities
-            </a>
+            </Link>
             <Link
-              href="/car-rental/airports/"
+              href="/states"
+              className="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-slate-900 transition-colors"
+            >
+              States
+            </Link>
+            <Link
+              href="/airports"
               className="px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-slate-900 transition-colors"
             >
               Airports
@@ -291,32 +332,11 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <img
           src={HERO_IMAGE}
-          alt="Airport rental guidance hero"
-          className="absolute inset-0 w-full h-full object-cover"
+          alt="Airport car rental pickup"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F2742]/78 via-[#163B66]/56 to-[#2C5F95]/22" />
-
-        <div aria-hidden="true" className="absolute inset-0 opacity-[0.08]">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern
-                id="grid"
-                width="42"
-                height="42"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 42 0 L 0 0 0 42"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="1"
-                />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F2742]/85 via-[#163B66]/72 to-[#2C5F95]/40" />
 
         <div
           aria-hidden="true"
@@ -326,7 +346,7 @@ export default function HomePage() {
           <div className="absolute bottom-0 -left-20 w-[460px] h-[460px] rounded-full bg-[#0B1D31]/22 blur-3xl" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 sm:pt-20 sm:pb-16">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 sm:pt-20 sm:pb-16">
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold text-blue-100 mb-6">
@@ -338,8 +358,8 @@ export default function HomePage() {
               </h1>
 
               <p className="text-blue-50 text-lg sm:text-xl leading-relaxed max-w-2xl">
-                Compare airport and city pickup options, explore destination pages,
-                and choose the rental strategy that fits your route, timing, and budget.
+                Compare airport pickup options, city rentals, and destination pages
+                to choose the smartest rental strategy before your trip begins.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -365,37 +385,37 @@ export default function HomePage() {
                 </a>
 
                 <Link
-                  href="/car-rental/airports/"
+                  href="/airports"
                   className="inline-flex items-center justify-center gap-2 bg-white/12 hover:bg-white/18 text-white font-semibold text-base px-6 py-3.5 rounded-xl transition-colors border border-white/20"
                 >
                   Browse Airport Guides
                 </Link>
               </div>
 
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl">
+              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl">
                 <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
                   <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
                     Airports Indexed
                   </p>
-                  <p className="mt-1 text-white font-semibold">
-                    {allAirports.length}
-                  </p>
+                  <p className="mt-1 text-white font-semibold">{allAirports.length}</p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
                   <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
-                    Popular Cities
+                    Cities Indexed
                   </p>
-                  <p className="mt-1 text-white font-semibold">
-                    {featuredCities.length}
+                  <p className="mt-1 text-white font-semibold">{allCities.length}</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
+                    States Indexed
                   </p>
+                  <p className="mt-1 text-white font-semibold">{allStates.length}</p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/12 px-4 py-4 backdrop-blur-sm">
                   <p className="text-blue-100 text-xs uppercase tracking-wide font-semibold">
                     Country Hubs
                   </p>
-                  <p className="mt-1 text-white font-semibold">
-                    {featuredCountries.length}
-                  </p>
+                  <p className="mt-1 text-white font-semibold">{allCountries.length}</p>
                 </div>
               </div>
             </div>
@@ -406,31 +426,18 @@ export default function HomePage() {
               </p>
               <SearchWidget affiliateUrl={AFFILIATE} />
               <div className="mt-6 grid grid-cols-2 gap-3">
-                {heroQuickLinks.map((item) =>
-                  item.href.startsWith("/") ? (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className="group rounded-2xl border border-white/10 bg-white/10 px-4 py-4 text-left hover:bg-white/15 transition-colors"
-                    >
-                      <div className="text-xl mb-2">{item.icon}</div>
-                      <div className="text-white font-semibold text-sm sm:text-base">
-                        {item.label}
-                      </div>
-                    </Link>
-                  ) : (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="group rounded-2xl border border-white/10 bg-white/10 px-4 py-4 text-left hover:bg-white/15 transition-colors"
-                    >
-                      <div className="text-xl mb-2">{item.icon}</div>
-                      <div className="text-white font-semibold text-sm sm:text-base">
-                        {item.label}
-                      </div>
-                    </a>
-                  )
-                )}
+                {heroQuickLinks.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="group rounded-2xl border border-white/10 bg-white/10 px-4 py-4 text-left hover:bg-white/15 transition-colors"
+                  >
+                    <div className="text-xl mb-2">{item.icon}</div>
+                    <div className="text-white font-semibold text-sm sm:text-base">
+                      {item.label}
+                    </div>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -460,7 +467,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="destinations" className="py-16 sm:py-20">
+      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            label="Smart Rental System"
+            title="Plan your rental the smart way"
+            subtitle="Use practical travel logic before you book, not just a price list."
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              {
+                title: "Choose airport vs city pickup",
+                body: "Some trips are easier and cheaper with an airport pickup. Others are better with a downtown location.",
+              },
+              {
+                title: "Compare before arrival",
+                body: "Avoid rushed decisions at the terminal by checking pickup options and route logic first.",
+              },
+              {
+                title: "Understand insurance traps",
+                body: "Know what your card covers and what the supplier may still try to sell at the desk.",
+              },
+              {
+                title: "Avoid hidden fees",
+                body: "Fuel, extra drivers, young driver fees, and pickup surcharges can change the real price.",
+              },
+              {
+                title: "Pick the right car size",
+                body: "Choose a vehicle that matches your luggage, road conditions, and parking reality.",
+              },
+              {
+                title: "Plan your route ahead",
+                body: "Check airport exits, toll roads, and parking before pickup to avoid stress after landing.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-3xl border border-slate-200 bg-[#FBFCFE] p-6 hover:bg-white transition-colors"
+              >
+                <h3 className="font-bold text-slate-900 text-lg mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             label="Destinations"
@@ -468,13 +522,13 @@ export default function HomePage() {
             subtitle="Explore country hubs with major cities, airports and rental guidance."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {featuredCountries.map((country) => {
               const meta = countryMeta[country.country_slug];
               return (
                 <Link
                   key={country.country_slug}
-                  href={countryUrl(country.country_slug)}
+                  href={countryUrl(country)}
                   className="group rounded-3xl border border-slate-200 bg-white p-6 hover:border-[#B7CDE3] hover:shadow-lg hover:shadow-slate-200/60 transition-all duration-200"
                 >
                   <div className="flex items-center justify-between mb-4">
@@ -489,8 +543,9 @@ export default function HomePage() {
                   <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                     {meta?.tagline ?? "Explore rental locations and guides"}
                   </p>
-                  <p className="mt-4 text-sm font-semibold text-[#2C5F95]">
-                    Explore destination
+                  <p className="mt-4 text-xs text-slate-400">
+                    {country.cityCount} cities · {country.airportCount} airports
+                    {country.stateCount > 0 ? ` · ${country.stateCount} states` : ""}
                   </p>
                 </Link>
               );
@@ -499,7 +554,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="cities" className="py-16 sm:py-20 bg-white border-y border-slate-200">
+      <section className="py-16 sm:py-20 bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             label="Cities"
@@ -512,7 +567,7 @@ export default function HomePage() {
               const meta = cityMeta[city.city_slug];
               return (
                 <Link
-                  key={city.city_slug}
+                  key={`${city.country_slug}-${city.state_slug ?? "nostate"}-${city.city_slug}`}
                   href={cityUrl(city)}
                   className="group flex flex-col gap-3 rounded-3xl border border-slate-200 bg-[#FBFCFE] p-5 hover:border-[#B7CDE3] hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-200"
                 >
@@ -527,7 +582,10 @@ export default function HomePage() {
                       {city.city_name}
                     </p>
                     <p className="text-xs text-slate-400 mt-1">
-                      {meta?.tagline ?? city.country_slug}
+                      {meta?.tagline ??
+                        (city.state_slug
+                          ? formatSlug(city.state_slug)
+                          : formatSlug(city.country_slug))}
                     </p>
                   </div>
                   <p className="text-xs font-medium text-[#2C5F95]">
@@ -536,6 +594,16 @@ export default function HomePage() {
                 </Link>
               );
             })}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/cities"
+              className="inline-flex items-center gap-2 bg-[#163B66] hover:bg-[#1E4C82] text-white font-bold px-7 py-3.5 rounded-2xl transition-colors shadow-sm"
+            >
+              Browse All Cities
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -549,47 +617,143 @@ export default function HomePage() {
             light
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-            {featuredAirports.map((airport) => {
-              const meta = airportMeta[airport.iata_code];
-              return (
-                <Link
-                  key={airport.iata_code}
-                  href={`/car-rental/airports/${airport.airport_slug}/`}
-                  className="group flex flex-col gap-4 rounded-3xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 hover:border-sky-300/40 transition-all duration-200"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="inline-flex items-center bg-[#2C5F95] text-white text-xs font-bold px-2.5 py-1 rounded-lg tracking-wider">
-                      {airport.iata_code}
-                    </span>
-                    <span className="text-slate-500 group-hover:text-sky-300 transition-colors">
-                      →
-                    </span>
-                  </div>
-                  <div>
-                    <p className="text-white font-medium text-sm leading-snug">
-                      {airport.airport_name}
-                    </p>
-                    {meta && (
-                      <p className="text-slate-400 text-xs mt-1">
-                        {meta.city}, {meta.country}
-                      </p>
-                    )}
-                  </div>
-                  <p className="text-sky-300 text-xs font-medium">
-                    View airport rental
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {featuredAirports.map((airport) => (
+              <Link
+                key={airport.iata_code}
+                href={`/car-rental/airports/${airport.airport_slug}/`}
+                className="group flex flex-col gap-4 rounded-3xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 hover:border-sky-300/40 transition-all duration-200"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="inline-flex items-center bg-[#2C5F95] text-white text-xs font-bold px-2.5 py-1 rounded-lg tracking-wider">
+                    {airport.iata_code}
+                  </span>
+                  <span className="text-slate-500 group-hover:text-sky-300 transition-colors">
+                    →
+                  </span>
+                </div>
+                <div>
+                  <p className="text-white font-medium text-sm leading-snug">
+                    {airport.airport_name}
                   </p>
-                </Link>
-              );
-            })}
+                  <p className="text-slate-400 text-xs mt-1">
+                    {formatSlug(airport.city_slug)}, {formatSlug(airport.country_slug)}
+                  </p>
+                </div>
+                <p className="text-sky-300 text-xs font-medium">
+                  View airport rental
+                </p>
+              </Link>
+            ))}
           </div>
 
           <div className="mt-8 text-center">
             <Link
-              href="/car-rental/airports/"
+              href="/airports"
               className="inline-flex items-center gap-2 bg-white text-[#163B66] hover:bg-blue-50 font-bold px-7 py-3.5 rounded-2xl transition-colors shadow-sm"
             >
               Browse All Airport Rental Locations
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            label="Explore"
+            title="Popular country, city and airport destinations"
+            subtitle="Use quick links to jump directly into high-intent rental pages."
+          />
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="rounded-3xl border border-slate-200 bg-[#FBFCFE] p-6">
+              <h3 className="font-bold text-slate-900 text-lg mb-4">Cities</h3>
+              <ul className="space-y-3 text-sm">
+                {denseCityLinks.map((city) => (
+                  <li key={`${city.country_slug}-${city.state_slug ?? "nostate"}-${city.city_slug}`}>
+                    <Link
+                      href={cityUrl(city)}
+                      className="text-slate-600 hover:text-[#163B66] transition-colors"
+                    >
+                      Car Rental {city.city_name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200 bg-[#FBFCFE] p-6">
+              <h3 className="font-bold text-slate-900 text-lg mb-4">Countries</h3>
+              <ul className="space-y-3 text-sm">
+                {denseCountryLinks.map((country) => (
+                  <li key={country.country_slug}>
+                    <Link
+                      href={countryUrl(country)}
+                      className="text-slate-600 hover:text-[#163B66] transition-colors"
+                    >
+                      Car Rental {country.country_name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200 bg-[#FBFCFE] p-6">
+              <h3 className="font-bold text-slate-900 text-lg mb-4">Airports</h3>
+              <ul className="space-y-3 text-sm">
+                {denseAirportLinks.map((airport) => (
+                  <li key={airport.iata_code}>
+                    <Link
+                      href={`/car-rental/airports/${airport.airport_slug}/`}
+                      className="text-slate-600 hover:text-[#163B66] transition-colors"
+                    >
+                      {airport.iata_code} Car Rental
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            label="States"
+            title="Explore states and provinces"
+            subtitle="Browse the state layer for markets that use deeper location structure."
+          />
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {featuredStates.map((state) => (
+              <Link
+                key={`${state.country_slug}-${state.state_slug}`}
+                href={`/car-rental/${state.country_slug}/${state.state_slug}/`}
+                className="group flex flex-col gap-2 rounded-3xl border border-slate-200 bg-[#FBFCFE] p-5 hover:border-[#B7CDE3] hover:bg-white hover:shadow-md transition-all duration-200"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-lg">🧭</span>
+                  <span className="text-slate-300 group-hover:text-[#2C5F95] transition-colors">
+                    →
+                  </span>
+                </div>
+                <p className="font-semibold text-slate-900 group-hover:text-[#163B66] transition-colors text-base leading-tight">
+                  {state.state_name}
+                </p>
+                <p className="text-xs text-slate-400">{formatSlug(state.country_slug)}</p>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/states"
+              className="inline-flex items-center gap-2 bg-[#163B66] hover:bg-[#1E4C82] text-white font-bold px-7 py-3.5 rounded-2xl transition-colors shadow-sm"
+            >
+              Browse All States
               <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -605,7 +769,7 @@ export default function HomePage() {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {allGuides.map((guide) => (
+            {featuredGuides.map((guide) => (
               <Link
                 key={guide.guide_slug}
                 href={`/guide/${guide.guide_slug}/`}
@@ -631,6 +795,16 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href="/guide/"
+              className="inline-flex items-center gap-2 bg-[#163B66] hover:bg-[#1E4C82] text-white font-bold px-7 py-3.5 rounded-2xl transition-colors shadow-sm"
+            >
+              Browse All Guides
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -653,7 +827,7 @@ export default function HomePage() {
               {
                 num: "1",
                 title: "Choose Your Pickup Point",
-                body: "Start with airport, city or destination pages depending on how and when you arrive.",
+                body: "Start with airport, city, state or destination pages depending on how and when you arrive.",
               },
               {
                 num: "2",
@@ -716,6 +890,74 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+      <section className="py-20 bg-white border-t border-slate-200">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-8">
+      Popular country and city car rental destinations
+    </h2>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
+
+      {/* COLUMN 1 */}
+      <div className="space-y-2">
+        <a href="/car-rental/united-arab-emirates/dubai/" className="block hover:text-[#2C5F95]">Car rental Dubai</a>
+        <a href="/city-rental/united-kingdom/london/" className="block hover:text-[#2C5F95]">Car hire London</a>
+        <a href="/city-rental/united-kingdom/edinburgh/" className="block hover:text-[#2C5F95]">Car hire Edinburgh</a>
+        <a href="/city-rental/united-kingdom/birmingham/" className="block hover:text-[#2C5F95]">Car hire Birmingham</a>
+        <a href="/city-rental/italy/milan/" className="block hover:text-[#2C5F95]">Car hire Milan</a>
+        <a href="/city-rental/italy/florence/" className="block hover:text-[#2C5F95]">Car hire Florence</a>
+        <a href="/city-rental/spain/majorca/" className="block hover:text-[#2C5F95]">Car hire Majorca</a>
+        <a href="/city-rental/spain/tenerife/" className="block hover:text-[#2C5F95]">Car hire Tenerife</a>
+        <a href="/city-rental/spain/ibiza/" className="block hover:text-[#2C5F95]">Car hire Ibiza</a>
+        <a href="/city-rental/iceland/reykjavik/" className="block hover:text-[#2C5F95]">Car hire Iceland</a>
+        <a href="/city-rental/united-states/las-vegas/" className="block hover:text-[#2C5F95]">Car rental Las Vegas</a>
+        <a href="/city-rental/united-states/miami/" className="block hover:text-[#2C5F95]">Car rental Miami</a>
+        <a href="/city-rental/united-states/denver/" className="block hover:text-[#2C5F95]">Car rental Denver</a>
+        <a href="/city-rental/united-states/san-antonio/" className="block hover:text-[#2C5F95]">Car rental San Antonio</a>
+        <a href="/city-rental/united-states/hawaii/" className="block hover:text-[#2C5F95]">Car rental Hawaii</a>
+      </div>
+
+      {/* COLUMN 2 */}
+      <div className="space-y-2">
+        <a href="/car-rental/united-kingdom/" className="block hover:text-[#2C5F95]">Car hire United Kingdom</a>
+        <a href="/city-rental/united-kingdom/manchester/" className="block hover:text-[#2C5F95]">Car hire Manchester</a>
+        <a href="/city-rental/united-kingdom/glasgow/" className="block hover:text-[#2C5F95]">Car hire Glasgow</a>
+        <a href="/car-rental/italy/" className="block hover:text-[#2C5F95]">Car hire Italy</a>
+        <a href="/city-rental/italy/rome/" className="block hover:text-[#2C5F95]">Car hire Rome</a>
+        <a href="/car-rental/spain/" className="block hover:text-[#2C5F95]">Car hire Spain</a>
+        <a href="/city-rental/spain/barcelona/" className="block hover:text-[#2C5F95]">Car hire Barcelona</a>
+        <a href="/city-rental/spain/alicante/" className="block hover:text-[#2C5F95]">Car hire Alicante</a>
+        <a href="/city-rental/spain/malaga/" className="block hover:text-[#2C5F95]">Car hire Malaga</a>
+        <a href="/car-rental/united-states/florida/" className="block hover:text-[#2C5F95]">Car rental USA Florida</a>
+        <a href="/city-rental/united-states/orlando/" className="block hover:text-[#2C5F95]">Car rental Orlando</a>
+        <a href="/city-rental/united-states/los-angeles/" className="block hover:text-[#2C5F95]">Car rental Los Angeles</a>
+        <a href="/city-rental/united-states/new-york/" className="block hover:text-[#2C5F95]">Car rental New York</a>
+        <a href="/city-rental/united-states/honolulu/" className="block hover:text-[#2C5F95]">Car rental Honolulu</a>
+      </div>
+
+      {/* COLUMN 3 */}
+      <div className="space-y-2">
+        <a href="/car-rental/australia/" className="block hover:text-[#2C5F95]">Car hire Australia</a>
+        <a href="/city-rental/australia/sydney/" className="block hover:text-[#2C5F95]">Car hire Sydney</a>
+        <a href="/city-rental/australia/perth/" className="block hover:text-[#2C5F95]">Car hire Perth</a>
+        <a href="/city-rental/australia/cairns/" className="block hover:text-[#2C5F95]">Car hire Cairns</a>
+        <a href="/city-rental/new-zealand/auckland/" className="block hover:text-[#2C5F95]">Car hire Auckland</a>
+        <a href="/car-rental/costa-rica/" className="block hover:text-[#2C5F95]">Car rental Costa Rica</a>
+        <a href="/city-rental/ireland/dublin/" className="block hover:text-[#2C5F95]">Car hire Dublin</a>
+        <a href="/city-rental/france/paris/" className="block hover:text-[#2C5F95]">Car hire Paris</a>
+        <a href="/city-rental/portugal/lisbon/" className="block hover:text-[#2C5F95]">Car hire Lisbon</a>
+        <a href="/city-rental/india/goa/" className="block hover:text-[#2C5F95]">Car hire Goa</a>
+        <a href="/car-rental/canada/" className="block hover:text-[#2C5F95]">Car rental Canada</a>
+        <a href="/city-rental/canada/vancouver/" className="block hover:text-[#2C5F95]">Car rental Vancouver</a>
+        <a href="/car-rental/mexico/" className="block hover:text-[#2C5F95]">Car rental Mexico</a>
+        <a href="/city-rental/greece/crete/" className="block hover:text-[#2C5F95]">Car hire Crete</a>
+        <a href="/city-rental/malta/malta/" className="block hover:text-[#2C5F95]">Car hire Malta</a>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       <footer className="bg-[#0B1420] text-slate-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -752,17 +994,22 @@ export default function HomePage() {
               </h4>
               <ul className="space-y-3 text-sm">
                 <li>
-                  <a href="#destinations" className="hover:text-white transition-colors">
+                  <Link href="/car-rental/" className="hover:text-white transition-colors">
                     Destinations
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#cities" className="hover:text-white transition-colors">
+                  <Link href="/cities" className="hover:text-white transition-colors">
                     Cities
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/car-rental/airports/" className="hover:text-white transition-colors">
+                  <Link href="/states" className="hover:text-white transition-colors">
+                    States
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/airports" className="hover:text-white transition-colors">
                     Airports
                   </Link>
                 </li>
@@ -780,7 +1027,7 @@ export default function HomePage() {
               </h4>
               <ul className="space-y-3 text-sm">
                 {featuredCities.slice(0, 5).map((city) => (
-                  <li key={city.city_slug}>
+                  <li key={`${city.country_slug}-${city.state_slug ?? "nostate"}-${city.city_slug}`}>
                     <Link
                       href={cityUrl(city)}
                       className="hover:text-white transition-colors"
