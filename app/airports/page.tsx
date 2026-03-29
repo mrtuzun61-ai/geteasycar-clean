@@ -28,18 +28,6 @@ const COUNTRY_HERO_IMAGES: Record<string, string> = {
     "https://images.unsplash.com/photo-1506973035872-a4ec16b8d77f?auto=format&fit=crop&w=1200&q=80",
   "united-states":
     "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80",
-  canada:
-    "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1200&q=80",
-  "united-kingdom":
-    "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80",
-  portugal:
-    "https://images.unsplash.com/photo-1513735492246-483525079686?auto=format&fit=crop&w=1200&q=80",
-  germany:
-    "https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?auto=format&fit=crop&w=1200&q=80",
-  turkey:
-    "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80",
-  "united-arab-emirates":
-    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80",
 };
 
 function SectionHeading({
@@ -108,13 +96,13 @@ export const metadata: Metadata = {
   description:
     "Compare airport car rental pickup points across major destinations. Browse airport rental guides, country hubs, and smarter booking paths.",
   alternates: {
-    canonical: "https://geteasycar.com/airports",
+    canonical: "https://geteasycar.com/car-rental/airports/",
   },
   openGraph: {
     title: "Airport Car Rental Guides — Compare Major Pickup Locations",
     description:
       "Compare airport car rental pickup points across major destinations and browse smarter airport rental guidance.",
-    url: "https://geteasycar.com/airports",
+    url: "https://geteasycar.com/car-rental/airports/",
     siteName: "GetEasyCar",
     type: "website",
   },
@@ -170,7 +158,7 @@ export default async function AirportsHubPage() {
     name: "Airport Car Rental Guides — Compare Major Pickup Locations",
     description:
       "Compare airport car rental pickup points across major destinations. Browse airport rental guides, country hubs, and smarter booking paths.",
-    url: "https://geteasycar.com/airports",
+    url: "https://geteasycar.com/car-rental/airports/",
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -184,7 +172,7 @@ export default async function AirportsHubPage() {
           "@type": "ListItem",
           position: 2,
           name: "Airports",
-          item: "https://geteasycar.com/airports",
+          item: "https://geteasycar.com/car-rental/airports/",
         },
       ],
     },
@@ -537,7 +525,7 @@ export default async function AirportsHubPage() {
                         {country.airports.length} indexed airport pages
                       </p>
                       <Link
-                        href={country.has_state_layer ? `/car-rental/${country.country_slug}/` : `/city-rental/${country.country_slug}/`}
+                        href={`/car-rental/${country.country_slug}/`}
                         className="text-sm font-semibold text-[#2C5F95] hover:text-[#163B66] transition-colors"
                       >
                         Country hub →
@@ -574,7 +562,7 @@ export default async function AirportsHubPage() {
                         Compare Cars in {country.country_name}
                       </a>
                       <Link
-                        href={country.has_state_layer ? `/car-rental/${country.country_slug}/` : `/city-rental/${country.country_slug}/`}
+                        href={`/car-rental/${country.country_slug}/`}
                         className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-[#B7CDE3] text-slate-700 font-semibold px-5 py-3 rounded-xl transition-colors text-sm"
                       >
                         Explore Country Pages
